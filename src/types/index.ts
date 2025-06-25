@@ -20,3 +20,11 @@ export interface NewsItem {
   imageUrl: string;
   content?: Document; // Changed type to Document and kept optional
 }
+
+export interface CarouselItem {
+  id: string;
+  slug: string;
+  name: string;
+  imageUrl: string;
+  description: string;
+}

@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Rss, ArrowRight } from "lucide-react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import Image from "next/image";
-import { getAllNews, getLatestNews, getMainBanner } from "@/lib/contentfulHttp";
+import { getLatestNews } from "@/lib/contentfulHttp";
 import RichTextRenderer from "@/lib/richTextRenderer";
 
 export default async function SearaNewsPreview() {
