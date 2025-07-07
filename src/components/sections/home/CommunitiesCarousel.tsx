@@ -14,43 +14,9 @@ import SectionWrapper from "@/components/shared/SectionWrapper";
 import { HorizontalScrollContainer } from "@/components/shared/HorizontalScrollContainer";
 import { getCommunities } from "@/lib/contentfulHttp";
 
-const mockCommunities: CarouselItem[] = [
-  {
-    id: "1",
-    slug: "norte",
-    name: "Comunidade Norte",
-    imageUrl: "https://placehold.co/400x300.png",
-    description: "Conheça nossa comunidade na Zona Norte.",
-  },
-  {
-    id: "2",
-    slug: "sul",
-    name: "Comunidade Sul",
-    imageUrl: "https://placehold.co/400x300.png",
-    description: "Participe dos encontros na Zona Sul.",
-  },
-  {
-    id: "3",
-    slug: "leste",
-    name: "Comunidade Leste",
-    imageUrl: "https://placehold.co/400x300.png",
-    description: "Nossas atividades na Zona Leste.",
-  },
-  {
-    id: "4",
-    slug: "oeste",
-    name: "Comunidade Oeste",
-    imageUrl: "https://placehold.co/400x300.png",
-    description: "Envolva-se com a Zona Oeste.",
-  },
-];
-
 export default async function CommunitiesCarousel() {
   const communities: CarouselItem[] | null = await getCommunities();
-  console.log(
-    "🚀 ~ CommunitiesCarousel ~ communities:",
-    communities.map((item) => item.imageUrl)
-  );
+
   return (
     <SectionWrapper
       title='Comunidades de Alcance'

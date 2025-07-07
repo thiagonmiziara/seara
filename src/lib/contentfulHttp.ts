@@ -114,3 +114,31 @@ export async function getCommunities() {
     description: item.fields.description,
   }));
 }
+
+export async function getCommunityDetailBySlug(slug: string) {
+  const entries = await contentfulClient.getEntries({
+    content_type: "detalhesDaComunidade", // Usar o ID da API do novo Content Type
+    "fields.slug": slug,
+    limit: 1,
+  });
+
+  const item = entries.items[0] as any;
+
+  if (!item) {
+    return null;
+  }
+
+  return {
+    id: item.sys.id,
+    name: item.fields.name,
+    slug: item.fields.slug,
+    imageUrl: item.fields.imageUrl?.fields?.file?.url
+      ? `https:${item.fields.imageUrl.fields.file.url}`
+      : "",
+    description: item.fields.description,
+    fullDescription: item.fields.fullDescription,
+    address: item.fields.address,
+    meetingTimes: item.fields.meetingTimes,
+    leader: item.fields.leader,
+  };
+}

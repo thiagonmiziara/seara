@@ -10,9 +10,5 @@ export default function ClientOnlyMainBannerWrapper() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return null; // Ou um skeleton/placeholder
-  }
-
   return <MainBanner />;
 }

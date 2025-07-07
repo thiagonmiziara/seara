@@ -7,7 +7,7 @@ interface RichTextRendererProps {
 }
 
 const RichTextRenderer: React.FC<RichTextRendererProps> = ({ document }) => {
-  if (!document) {
+  if (!document || !document.content) {
     return null;
   }
 
