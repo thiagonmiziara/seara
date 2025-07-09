@@ -65,7 +65,7 @@ export async function getLatestNews() {
       : "",
     date: item.fields.date,
     slug: item.fields.title.toLowerCase().replace(/\s+/g, "-"),
-    content: item.fields.content, // Include full content
+    content: item.fields.content,
   };
 }
 
@@ -115,9 +115,37 @@ export async function getCommunities() {
   }));
 }
 
+export async function getSchoolDetailBySlug(slug: string) {
+  const entries = await contentfulClient.getEntries({
+    content_type: "detalhesDaEscola",
+    "fields.slug": slug,
+    limit: 1,
+  });
+
+  const item = entries.items[0] as any;
+
+  if (!item) {
+    return null;
+  }
+
+  return {
+    id: item.sys.id,
+    name: item.fields.name,
+    slug: item.fields.slug,
+    imageUrl: item.fields.imageUrl?.fields?.file?.url
+      ? `https:${item.fields.imageUrl.fields.file.url}`
+      : "",
+    description: item.fields.description,
+    fullDescription: item.fields.fullDescription,
+    curriculum: item.fields.curriculum,
+    duration: item.fields.duration,
+    targetAudience: item.fields.targetAudience,
+  };
+}
+
 export async function getCommunityDetailBySlug(slug: string) {
   const entries = await contentfulClient.getEntries({
-    content_type: "detalhesDaComunidade", // Usar o ID da API do novo Content Type
+    content_type: "detalhesDaComunidade",
     "fields.slug": slug,
     limit: 1,
   });
@@ -141,4 +169,27 @@ export async function getCommunityDetailBySlug(slug: string) {
     meetingTimes: item.fields.meetingTimes,
     leader: item.fields.leader,
   };
+}
+
+export async function getAllSchools() {
+  const entries = await contentfulClient.getEntries({
+    content_type: "escolas",
+  });
+
+  if (!entries.items || entries.items.length === 0) {
+    return [];
+  }
+
+  return entries.items.map((item: any) => ({
+    id: item.sys.id,
+    slug: item.fields.slug,
+    name: item.fields.name,
+    logoUrl: item.fields.logoUrl?.fields?.file?.url
+      ? `https:${item.fields.logoUrl.fields.file.url}`
+      : "",
+    imageUrl: item.fields.imageUrl?.fields?.file?.url
+      ? `https:${item.fields.imageUrl.fields.file.url}`
+      : "",
+    description: item.fields.description,
+  }));
 }

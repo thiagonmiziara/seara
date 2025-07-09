@@ -5,15 +5,24 @@ import { cn } from "@/lib/utils";
 interface HorizontalScrollContainerProps {
   children: ReactNode;
   className?: string;
+  shouldCenter?: boolean; // Nova propriedade para centralização
 }
 
 export function HorizontalScrollContainer({
   children,
   className,
+  shouldCenter = false,
 }: HorizontalScrollContainerProps) {
   return (
     <ScrollArea className={cn("w-full whitespace-nowrap", className)}>
-      <div className='flex w-max space-x-4 p-1 pb-4'>{children}</div>
+      <div
+        className={cn(
+          "flex space-x-4 p-1 pb-4",
+          shouldCenter ? "w-full justify-center" : "w-max"
+        )}
+      >
+        {children}
+      </div>
       <ScrollBar orientation='horizontal' className='h-2.5' />
     </ScrollArea>
   );

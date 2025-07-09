@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
 import { MainBannerData } from "@/types";
-import { getMainBanner } from "@/lib/contentfulHttp";
 
 export default function MainBanner() {
   const [bannerData, setBannerData] = useState<MainBannerData | null>(null);
@@ -34,7 +33,7 @@ export default function MainBanner() {
 
   if (loading) {
     return (
-      <div className='relative h-[calc(100vh-4rem)] min-h-[500px] md:min-h-[600px] flex items-center justify-center text-center text-white overflow-hidden'>
+      <div className='relative h-screen min-h-[700px] md:min-h-[800px] flex items-center justify-center text-center text-white overflow-hidden'>
         {/* Overlay escuro */}
         <div className='absolute inset-0 bg-black/30 z-10'></div>
         {/* Logo centralizada */}
@@ -90,12 +89,12 @@ export default function MainBanner() {
           alt={bannerData.title || "Banner Principal Seara de Deus"}
           layout='fill'
           objectFit='cover'
-          quality={80}
+          quality={100}
           className='z-0'
           priority
         />
       )}
-      <div className='absolute inset-0 bg-black/25 z-10'></div>
+      <div className='absolute inset-0 bg-black/50 z-10'></div>
       {/* Dark overlay */}
       <div className='relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center'>
         <h1 className='text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight shadow-text animate-fade-in-down'>
@@ -125,24 +124,6 @@ export default function MainBanner() {
           </Button>
         )}
       </div>
-      <style jsx global>{`
-        .shadow-text {
-          text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        @keyframes fadeInDown {
-          from {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in-down {
-          animation: fadeInDown 0.8s ease-out forwards;
-        }
-      `}</style>
     </div>
   );
 }

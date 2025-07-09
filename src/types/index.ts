@@ -25,6 +25,7 @@ export interface CarouselItem {
   id: string;
   slug: string;
   name: string;
+  logoUrl?: string; // Adicionado como opcional
   imageUrl: string;
   description: string;
 }
