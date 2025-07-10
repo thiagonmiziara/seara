@@ -34,7 +34,7 @@ export default async function CommunitiesCarousel() {
                 alt={item.name}
                 width={400}
                 height={250}
-                className='h-full w-full object-cover'
+                className='h-full w-full object-contain'
                 data-ai-hint='community representation'
               />
             </CardHeader>
