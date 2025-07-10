@@ -44,7 +44,7 @@ export default async function LatestSermon() {
               <Button
                 asChild
                 variant='default'
-                className='bg-accent hover:bg-accent/90 text-accent-foreground'
+                className='bg-accent hover:bg-accent/90 text-accent-foreground w-full'
               >
                 <Link href={latestSermon?.podcastUrl ?? ""} target='_blank'>
                   Ouvir Agora <Headphones className='ml-2 h-4 w-4' />
