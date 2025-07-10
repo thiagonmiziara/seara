@@ -36,3 +36,23 @@ export interface ILatestSermon {
   imageUrl: string;
   podcastUrl: string;
 }
+
+export interface IMinistrySectionButton {
+  text: string;
+  link: string;
+  variant: "default" | "outline";
+  icon?: React.ElementType;
+  target?: string;
+}
+
+export interface IMinistrySectionProps {
+  title: string;
+  subtitle: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  categoryIcon?: React.ElementType;
+  categoryText: string;
+  mainTitle: string;
+  description: string | Document;
+  buttons: IMinistrySectionButton[];
+}

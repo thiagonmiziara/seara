@@ -6,6 +6,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingContactButtons from "@/components/layout/FloatingContactButtons";
 import { cn } from "@/lib/utils";
+import GlobalLoading from "@/components/GlobalLoading";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,6 +46,7 @@ export default function RootLayout({
         <Footer />
         <FloatingContactButtons />
         <Toaster />
+        <GlobalLoading />
       </body>
     </html>
   );
