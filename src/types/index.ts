@@ -29,3 +29,10 @@ export interface CarouselItem {
   imageUrl: string;
   description: string;
 }
+
+export interface ILatestSermon {
+  title: string;
+  preacher: string;
+  imageUrl: string;
+  podcastUrl: string;
+}

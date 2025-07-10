@@ -1,3 +1,4 @@
+import { Asset } from "contentful";
 import { contentfulClient } from "./contentful";
 
 export async function getAllNews() {
@@ -239,5 +240,25 @@ export async function getMeetingsDetailBySlug(slug: string) {
     schedule: item.fields.schedule,
     location: item.fields.location,
     contactPerson: item.fields.contactPerson,
+  };
+}
+
+export async function getLatestSermon() {
+  const entries = await contentfulClient.getEntries({
+    content_type: "ultimaPregacao",
+  });
+
+  if (!entries?.items?.length) return null;
+
+  const item = entries.items[0].fields;
+  const imageAsset = item.imageUrl as Asset;
+
+  return {
+    title: String(item.title ?? ""),
+    preacher: String(item.preacher ?? ""),
+    imageUrl: imageAsset?.fields?.file?.url
+      ? `https:${imageAsset.fields.file.url}`
+      : "",
+    podcastUrl: String(item.podcastUrl ?? ""),
   };
 }

@@ -16,15 +16,15 @@ export default function HomePage() {
     <>
       <ClientOnlyMainBannerWrapper />
       <CommunitiesCarousel />
-      <SchoolsCarousel />
       <MeetingsCarousel />
-      <ServiceTimes />
       <LatestSermon />
       <SearaNewsPreview />
       <MissionDiaryPreview />
       <YouthAndKidsSections />
       <StorePreview />
+      <SchoolsCarousel />
       <AdditionalFeaturesPreview />
+      <ServiceTimes />
       <LocationMap />
     </>
   );

@@ -31,12 +31,12 @@ export default async function SearaNewsPreview() {
         <div className='md:flex'>
           {latestNews.imageUrl && (
             <div className='md:w-1/3 md:shrink-0'>
-              <img
+              <Image
                 src={latestNews.imageUrl}
                 alt={latestNews.title}
-                width={500}
-                height={300}
-                className='h-56 w-full object-cover md:h-full'
+                width={600}
+                height={400}
+                className='object-cover w-full h-full'
                 data-ai-hint='news announcement event'
               />
             </div>
