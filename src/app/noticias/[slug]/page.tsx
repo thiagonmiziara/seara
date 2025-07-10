@@ -24,7 +24,6 @@ export default async function NewsDetailPage({
   params: { slug: string };
 }) {
   const newsItem = await getNewsItemBySlug(params.slug); // Fetch news by slug
-  console.log("🚀 ~ newsItem:", newsItem);
 
   if (!newsItem) {
     return (

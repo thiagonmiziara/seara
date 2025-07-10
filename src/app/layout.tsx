@@ -31,6 +31,7 @@ export default function RootLayout({
     <html lang='pt-BR' className='dark'>
       <head>
         <link rel='manifest' href='/manifest.json' />
+        <link rel='icon' href='/assets/logosemtexto.jpeg' />
       </head>
       <body
         className={cn(
