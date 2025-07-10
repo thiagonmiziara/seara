@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   Home,
   Users,
@@ -14,9 +18,11 @@ import {
   Briefcase,
   BookHeart,
   Newspaper,
+  Menu,
 } from "lucide-react";
 import Logo from "../Logo"; // Assuming you have a Logo component that renders the SVG
 export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // Basic navigation items, can be expanded with dropdowns or a mobile menu
   const navItems = [
     { href: "/", label: "Início", icon: Home },
@@ -48,7 +54,28 @@ export default function Header() {
         </nav>
         {/* Placeholder for mobile menu trigger */}
         <div className='md:hidden'>
-          {/* <Button variant="ghost" size="icon"><Menu className="h-6 w-6" /></Button> */}
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <Button variant='ghost' size='icon'>
+                <Menu className='h-6 w-6' />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side='left'>
+              <nav className='flex flex-col space-y-4 pt-8'>
+                {navItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className='flex items-center space-x-2 text-lg font-medium'
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <item.icon className='h-5 w-5' />
+                    <span>{item.label}</span>
+                  </Link>
+                ))}
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
