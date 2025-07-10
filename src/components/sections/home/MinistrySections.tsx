@@ -10,7 +10,7 @@ interface IMinistrySections {
 
 export default async function MinistrySections() {
   const ministries: IMinistrySections[] | null = await getMinistries();
-  console.log("🚀 ~ MinistrySections ~ ministries:", ministries);
+
   return (
     <>
       {ministries.map((item, index) => (

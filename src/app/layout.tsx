@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/layout/Header";
@@ -46,7 +47,9 @@ export default function RootLayout({
         <Footer />
         <FloatingContactButtons />
         <Toaster />
-        <GlobalLoading />
+        <Suspense fallback={null}>
+          <GlobalLoading />
+        </Suspense>
       </body>
     </html>
   );

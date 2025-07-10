@@ -68,7 +68,7 @@ export default function MinistrySection({ data, reverse }: IMinistrySection) {
           <p className='text-lg text-muted-foreground mb-6 text-center md:text-left'>
             {data.description}
           </p>
-          <Link href={`/${data.slug}`}>
+          <Link href={`/ministerios/${data.slug}`}>
             <Button size='lg' className='mt-4 w-full md:w-auto'>
               Saiba Mais
             </Button>
