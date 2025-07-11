@@ -1,50 +1,192 @@
-import SectionWrapper from '@/components/shared/SectionWrapper';
-import type { ProductItem } from '@/types';
-import Image from 'next/image';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { ShoppingBag } from 'lucide-react';
+"use client";
 
-const mockStoreProducts: ProductItem[] = [
-  { id: '1', name: 'Camiseta Seara Connect - Modelo Fé', imageUrl: 'https://placehold.co/350x350.png?text=Camiseta+Fé', price: 'R$ 59,90' },
-  { id: '2', name: 'Livro "Crescendo em Graça"', imageUrl: 'https://placehold.co/350x350.png?text=Livro+Graça', price: 'R$ 45,00' },
-  { id: '3', name: 'Caneca Personalizada Seara', imageUrl: 'https://placehold.co/350x350.png?text=Caneca+Seara', price: 'R$ 29,90' },
-  { id: '4', name: 'Bíblia de Estudo Pentecostal', imageUrl: 'https://placehold.co/350x350.png?text=Bíblia+Estudo', price: 'R$ 120,00' },
-  { id: '5', name: 'Agenda Devocional 2025', imageUrl: 'https://placehold.co/350x350.png?text=Agenda+2025', price: 'R$ 38,00' },
-  { id: '6', name: 'Boné Seara Jovem', imageUrl: 'https://placehold.co/350x350.png?text=Boné+Jovem', price: 'R$ 42,00' },
-];
-
+import { useState, useEffect } from "react";
+import SectionWrapper from "@/components/shared/SectionWrapper";
+import EmptyState from "@/components/shared/EmptyState";
+import type { IProduct } from "@/types";
+import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ShoppingBag } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function LojaPage() {
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        setError(false);
+        const response = await fetch("/api/contentful?type=products");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (err) {
+        console.error("Failed to fetch products:", err);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const handleBuyClick = (productName: string) => {
+    const message = encodeURIComponent(
+      `Olá, vim pelo site e gostaria de saber mais sobre o produto: ${productName}`
+    );
+    const whatsappUrl = `https://wa.me/+55${products[0].phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
+  if (loading) {
+    return (
+      <SectionWrapper
+        title='Seara Store'
+        subtitle='Produtos que edificam e expressam sua fé.'
+      >
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+          {Array.from({ length: 8 }).map((_, index) => (
+            <Card
+              key={index}
+              className='flex flex-col overflow-hidden shadow-lg'
+            >
+              <CardHeader className='p-0'>
+                <Skeleton className='w-full h-64' />
+              </CardHeader>
+              <CardContent className='flex-grow p-4'>
+                <Skeleton className='h-6 w-3/4 mb-2' />
+                <Skeleton className='h-4 w-1/2' />
+              </CardContent>
+              <CardFooter className='p-4 pt-0'>
+                <Skeleton className='w-full h-10' />
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </SectionWrapper>
+    );
+  }
+
+  if (error) {
+    return (
+      <SectionWrapper
+        title='Seara Store'
+        subtitle='Produtos que edificam e expressam sua fé.'
+      >
+        <EmptyState
+          title='Erro ao carregar produtos'
+          description='Não foi possível carregar os produtos da loja. Por favor, tente novamente mais tarde.'
+        />
+      </SectionWrapper>
+    );
+  }
+
+  if (products.length === 0) {
+    return (
+      <SectionWrapper
+        title='Seara Store'
+        subtitle='Produtos que edificam e expressam sua fé.'
+      >
+        <EmptyState
+          title='Nenhum produto encontrado'
+          description='Parece que não há produtos disponíveis no momento. Volte em breve!'
+        />
+      </SectionWrapper>
+    );
+  }
+
   return (
-    <SectionWrapper title="Seara Store" subtitle="Produtos que edificam e expressam sua fé.">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {mockStoreProducts.map((item) => (
-          <Card key={item.id} className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <CardHeader className="p-0">
-              <Image
-                src={item.imageUrl}
-                alt={item.name}
-                width={350}
-                height={350}
-                className="object-cover w-full h-64"
-                data-ai-hint="product merchandise store"
-              />
+    <SectionWrapper
+      title='Seara Store'
+      subtitle='Produtos que edificam e expressam sua fé.'
+    >
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+        {products.map((item) => (
+          <Card
+            key={item.id}
+            className='flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300'
+          >
+            <CardHeader className='p-0 relative'>
+              {item.imageUrls && item.imageUrls.length > 1 ? (
+                <Carousel className='w-full'>
+                  <CarouselContent>
+                    {item.imageUrls.map((imageUrl, index) => (
+                      <CarouselItem key={index}>
+                        <Image
+                          src={imageUrl}
+                          alt={`${item.name} - Imagem ${index + 1}`}
+                          width={350}
+                          height={350}
+                          className='object-cover w-full h-64'
+                          data-ai-hint={`product merchandise store image ${
+                            index + 1
+                          }`}
+                        />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className='absolute left-2 top-1/2 -translate-y-1/2' />
+                  <CarouselNext className='absolute right-2 top-1/2 -translate-y-1/2' />
+                </Carousel>
+              ) : (
+                <Image
+                  src={
+                    item.imageUrls?.[0] ||
+                    "https://placehold.co/350x350.png?text=No+Image"
+                  }
+                  alt={item.name}
+                  width={350}
+                  height={350}
+                  className='object-cover w-full h-64'
+                  data-ai-hint='product merchandise store'
+                />
+              )}
             </CardHeader>
-            <CardContent className="flex-grow p-4">
-              <CardTitle className="text-lg mb-1 text-foreground line-clamp-2 h-14">{item.name}</CardTitle>
-              {item.price && <p className="text-md font-semibold text-primary">{item.price}</p>}
+            <CardContent className='flex-grow p-4'>
+              <CardTitle className='text-lg mb-1 text-foreground line-clamp-2 h-14'>
+                {item.name}
+              </CardTitle>
+              {item.price && (
+                <p className='text-md font-semibold text-primary'>
+                  {item.price}
+                </p>
+              )}
             </CardContent>
-            <CardFooter className="p-4 pt-0">
-               <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                 <ShoppingBag className="mr-2 h-4 w-4" /> Comprar
-               </Button>
+            <CardFooter className='p-4 pt-0'>
+              <Button
+                className='w-full bg-accent hover:bg-accent/90 text-accent-foreground'
+                onClick={() => handleBuyClick(item.name)}
+              >
+                <ShoppingBag className='mr-2 h-4 w-4' /> Comprar
+              </Button>
             </CardFooter>
           </Card>
         ))}
       </div>
-      <div className="mt-12 text-center">
-        <p className="text-muted-foreground">Esta é uma vitrine de demonstração. Em breve, nossa loja online completa!</p>
+      <div className='mt-12 text-center'>
+        <p className='text-muted-foreground'>
+          Esta é uma vitrine de demonstração.
+        </p>
       </div>
     </SectionWrapper>
   );

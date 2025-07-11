@@ -56,3 +56,16 @@ export interface IMinistrySectionProps {
   description: string | Document;
   buttons: IMinistrySectionButton[];
 }
+
+export interface IProduct {
+  id: string;
+  name: string;
+  imageUrls: string[];
+  price: string;
+  phoneNumber: string;
+}
+
+export interface IEmptyStateProps {
+  title: string;
+  description: string;
+}
