@@ -69,3 +69,13 @@ export interface IEmptyStateProps {
   title: string;
   description: string;
 }
+
+export interface IKidsData {
+  name: string;
+  imageUrl: string;
+  description: string;
+  vision: string;
+  ageGroups: { name: string; description: string }[];
+  leader: string;
+  contact: string;
+}
