@@ -79,3 +79,22 @@ export interface IKidsData {
   leader: string;
   contact: string;
 }
+
+export interface IYoungData {
+  name: string;
+  imageUrl: string;
+  description: string;
+  mission: string;
+  activities: { name: string; description: string }[];
+  leader: string;
+  contact: string;
+}
+
+export interface IServiceProviders {
+  id: string;
+  name: string;
+  contact: string;
+  description: string;
+  serviceType: string;
+  approved: boolean;
+}

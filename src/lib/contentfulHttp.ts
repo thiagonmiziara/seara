@@ -326,3 +326,22 @@ export async function getProducts() {
     phoneNumber: item.fields.phoneNumber,
   }));
 }
+
+export async function getServiceProviders() {
+  const entries = await contentfulClient.getEntries({
+    content_type: "prestadoresDeServico",
+  });
+
+  if (!entries.items || entries.items.length === 0) {
+    return [];
+  }
+
+  return entries.items.map((item: any) => ({
+    id: item.sys.id,
+    name: item.fields.name,
+    contact: item.fields.contact,
+    description: item.fields.description,
+    serviceType: item.fields.serviceType,
+    approved: item.fields.approved,
+  }));
+}

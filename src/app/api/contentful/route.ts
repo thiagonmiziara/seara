@@ -1,4 +1,8 @@
-import { getMainBanner, getProducts } from "@/lib/contentfulHttp";
+import {
+  getMainBanner,
+  getProducts,
+  getServiceProviders,
+} from "@/lib/contentfulHttp";
 import { NextResponse } from "next/server";
 
 // Utility function to handle API errors
@@ -19,6 +23,10 @@ const requestHandlers: Record<
   products: {
     handler: getProducts,
     errorMessage: "Error fetching products",
+  },
+  serviceProviders: {
+    handler: getServiceProviders,
+    errorMessage: "Error fetching service providers",
   },
 };
 
