@@ -1,20 +1,8 @@
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { Users, Zap, Music, MessageCircle, CalendarDays } from "lucide-react";
-import { getYoungDetails } from "@/services/contentfulHttp";
-
-export interface IYoungData {
-  name: string;
-  imageUrl: string;
-  description: string;
-  mission: string;
-  activities: { name: string; description: string }[];
-  leader: string;
-  contact: string;
-}
+import { CalendarDays } from "lucide-react";
+import { getYoungDetails, IYoungData } from "@/services/contentfulHttp";
 
 export default async function JovemPage() {
   const youngData: IYoungData | null = await getYoungDetails();

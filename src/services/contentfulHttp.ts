@@ -386,3 +386,13 @@ export async function getYoungDetails() {
     contact: item.fields.contact,
   };
 }
+
+export interface IYoungData {
+  name: string;
+  imageUrl: string;
+  description: string;
+  mission: string;
+  activities: { name: string; description: string }[];
+  leader: string;
+  contact: string;
+}
