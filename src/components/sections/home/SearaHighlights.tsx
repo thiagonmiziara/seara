@@ -18,21 +18,21 @@ export default async function SearaHighlights() {
       subtitle='Ouça as pregações mais recentes e confira os avisos e novidades.'
     >
       <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-        <Card className='overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full'>
-          <div className='md:flex h-full'>
+        <Card className='overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 md:h-full'>
+          <div className='md:flex md:h-full'>
             {latestSermon?.imageUrl && (
-              <div className='md:w-1/3 md:shrink-0 h-full'>
+              <div className='md:w-1/3 md:shrink-0 md:h-full'>
                 <Image
                   src={latestSermon.imageUrl}
                   alt={latestSermon.title ?? "Imagem da pregação"}
                   width={600}
                   height={400}
-                  className='object-cover w-full h-full'
+                  className='object-cover w-full md:h-full'
                   data-ai-hint='podcast microphone audio'
                 />
               </div>
             )}
-            <div className='p-6 md:p-8 flex flex-col justify-center md:w-2/3 h-full'>
+            <div className='p-6 md:p-8 flex flex-col justify-center md:w-2/3 md:h-full'>
               <div className='mb-2 flex items-center text-sm font-semibold uppercase tracking-wide text-primary'>
                 <Podcast className='mr-2 h-5 w-5' />
                 Podcast Seara
@@ -58,21 +58,21 @@ export default async function SearaHighlights() {
           </div>
         </Card>
 
-        <Card className='overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full'>
-          <div className='md:flex h-full'>
+        <Card className='overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 md:h-full'>
+          <div className='md:flex md:h-full'>
             {latestNews?.imageUrl && (
-              <div className='md:w-1/3 md:shrink-0 h-full'>
+              <div className='md:w-1/3 md:shrink-0 md:h-full'>
                 <Image
                   src={latestNews.imageUrl}
                   alt={latestNews.title}
                   width={600}
                   height={400}
-                  className='object-cover w-full h-full'
+                  className='object-cover w-full md:h-full'
                   data-ai-hint='news announcement event'
                 />
               </div>
             )}
-            <div className='p-6 md:p-8 flex flex-col justify-center md:w-2/3 h-full'>
+            <div className='p-6 md:p-8 flex flex-col justify-center md:w-2/3 md:h-full'>
               <div className='mb-2 flex items-center text-sm font-semibold uppercase tracking-wide text-primary'>
                 <Rss className='mr-2 h-5 w-5' />
                 Recado em Destaque
