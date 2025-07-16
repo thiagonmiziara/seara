@@ -1,34 +1,88 @@
-import SectionWrapper from '@/components/shared/SectionWrapper';
-// import DevotionalClientPage from './DevotionalClientPage'; // To be removed once content is static
-import { BookHeart } from 'lucide-react'; // Keep for potential icon usage
+"use client";
 
-// This is a mocked devotional content. In the future, this will be fetched from a backend API.
-const mockedDevotional = {
-  title: "O Poder da Gratidão em Tempos Difíceis",
-  date: "18 de Outubro de 2023",
-  content: [
-    "Em meio às tribulações da vida, a gratidão pode parecer algo distante e difícil de praticar. No entanto, a Bíblia nos ensina a sermos gratos em todas as circunstâncias (1 Tessalonicenses 5:18). A gratidão não nega a dor ou a dificuldade, mas nos permite enxergar além delas, reconhecendo a soberania de Deus e as bênçãos que Ele continua a derramar sobre nós.",
-    "Praticar a gratidão transforma nossa perspectiva. Em vez de focar no que nos falta, passamos a valorizar o que temos. Isso nos fortalece, nos enche de esperança e nos aproxima de Deus. Mesmo nos momentos mais sombrios, sempre há algo pelo qual agradecer: a vida, a família, os amigos, a natureza, e acima de tudo, o amor inabalável de Deus.",
-    "Que hoje você possa encontrar motivos para ser grato, por menores que pareçam. A gratidão é um poderoso antídoto contra o desespero e uma chave para uma vida mais plena e feliz em Cristo Jesus.",
-  ],
-};
+import { useState, useEffect } from "react";
+import SectionWrapper from "@/components/shared/SectionWrapper";
+import DevotionalCard from "@/components/containers/devotional/DevotionalCard";
+import DevotionalModal from "@/components/containers/devotional/DevotionalModal";
+import { IDevotional } from "@/types";
+import { BLOCKS } from "@contentful/rich-text-types";
+import { Skeleton } from "@/components/ui/skeleton";
+import EmptyState from "@/components/shared/EmptyState";
+import { formatDate } from "@/lib/utils";
 
 export default function DevocionalPage() {
+  const [selectedDevotional, setSelectedDevotional] =
+    useState<IDevotional | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [devotionals, setDevotionals] = useState<IDevotional[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const fetchDevotionals = async () => {
+      try {
+        setLoading(true);
+        setError(false);
+        const response = await fetch("/api/contentful?type=serviceDevotionals");
+        if (!response.ok) {
+          throw new Error("Failed to fetch devotionals");
+        }
+        const data: IDevotional[] = await response.json();
+        setDevotionals(data);
+      } catch (err) {
+        console.error("Error fetching devotionals:", err);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDevotionals();
+  }, []);
+
+  const handleReadMore = (devotional: IDevotional) => {
+    setSelectedDevotional(devotional);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedDevotional(null);
+  };
+
   return (
-    <SectionWrapper 
-      title="Devocional Diário"
-      // Subtitle updated to reflect static content for now
-      subtitle="Encontre inspiração e reflexão para o seu dia com nosso devocional."
+    <SectionWrapper
+      title='Devocional Diário'
+      subtitle='Encontre inspiração e reflexão para o seu dia com nosso devocional.'
     >
-      <div className="max-w-3xl mx-auto">
-        {/* This section will eventually fetch and display devotional content from an API */}
-        <h2 className="text-2xl font-bold mb-4">{mockedDevotional.title}</h2>
-        <p className="text-gray-500 mb-6">{mockedDevotional.date}</p>
-        {mockedDevotional.content.map((paragraph, index) => (
-          <p key={index} className="mb-4">{paragraph}</p>
-        ))}
-        {/* <DevotionalClientPage /> */} {/* Remove this component once backend integration is complete */}
-      </div>
+      {loading ? (
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+          {[...Array(3)].map((_, index) => (
+            <Skeleton key={index} className='h-64 w-full rounded-lg' />
+          ))}
+        </div>
+      ) : error || devotionals.length === 0 ? (
+        <EmptyState
+          title='Nenhum devocional encontrado'
+          description='Não foi possível carregar os devocionais. Por favor, tente novamente mais tarde.'
+        />
+      ) : (
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+          {devotionals.map((devotional) => (
+            <DevotionalCard
+              key={devotional.id}
+              devotional={{ ...devotional, date: formatDate(devotional.date) }}
+              onReadMore={handleReadMore}
+            />
+          ))}
+        </div>
+      )}
+
+      <DevotionalModal
+        devotional={selectedDevotional}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </SectionWrapper>
   );
 }

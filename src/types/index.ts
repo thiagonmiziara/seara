@@ -111,3 +111,11 @@ export interface IPsychologicalSupportData {
   address: string;
   description: string;
 }
+
+export interface IDevotional {
+  id: string;
+  title: string;
+  date: string;
+  preview: string;
+  content: Document;
+}

@@ -10,6 +10,8 @@ import SectionWrapper from "@/components/shared/SectionWrapper";
 import type { NewsItem } from "@/types";
 import { CalendarDays, UserCircle } from "lucide-react";
 import { getNewsItemBySlug, getAllNews } from "@/lib/contentfulHttp"; // Import functions
+import RichTextRenderer from "@/lib/richTextRenderer";
+import { formatDate } from "@/lib/utils";
 
 export async function generateStaticParams() {
   const news = await getAllNews(); // Fetch all news to generate slugs
@@ -55,25 +57,13 @@ export default async function NewsDetailPage({
             {newsItem.date && (
               <div className='flex items-center'>
                 <CalendarDays className='h-4 w-4 mr-1.5' />
-                {new Date(newsItem.date).toLocaleDateString("pt-BR", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+                {formatDate(newsItem.date)}
               </div>
             )}
-            {/* Assuming author is available in NewsItem type or fetched */}
-            {/* {newsItem.author && (
-              <div className='flex items-center'>
-                <UserCircle className='h-4 w-4 mr-1.5' />
-                Por: {newsItem.author}
-              </div>
-            )} */}
           </div>
         </CardHeader>
         <CardContent className='prose prose-lg dark:prose-invert max-w-none text-foreground/90 whitespace-pre-line py-6'>
-          {/* Using prose for nice article formatting. whitespace-pre-line to respect newlines. */}
-          {newsItem.content} {/* Use newsItem.content */}
+          <RichTextRenderer document={newsItem.summary} />
         </CardContent>
       </Card>
     </SectionWrapper>
