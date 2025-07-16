@@ -16,16 +16,16 @@ export interface NewsItem {
   slug: string;
   title: string;
   date: string;
-  summary: Document; // Changed type to Document
+  summary: Document;
   imageUrl: string;
-  content?: Document; // Changed type to Document and kept optional
+  content?: Document;
 }
 
 export interface CarouselItem {
   id: string;
   slug: string;
   name: string;
-  logoUrl?: string; // Adicionado como opcional
+  logoUrl?: string;
   imageUrl: string;
   description: string;
 }
@@ -97,4 +97,17 @@ export interface IServiceProviders {
   description: string;
   serviceType: string;
   approved: boolean;
+}
+
+export interface IPsychologicalSupportData {
+  id: string;
+  name: string;
+  title: string;
+  imageUrl: string;
+  bio: string;
+  services: string[];
+  phone: string;
+  email: string;
+  address: string;
+  description: string;
 }

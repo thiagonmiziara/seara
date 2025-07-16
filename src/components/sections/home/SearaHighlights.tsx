@@ -1,13 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Podcast, Headphones, Rss, ArrowRight } from "lucide-react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
@@ -25,10 +18,10 @@ export default async function SearaHighlights() {
       subtitle='Ouça as pregações mais recentes e confira os avisos e novidades.'
     >
       <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-        <Card className='overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300'>
-          <div className='md:flex'>
+        <Card className='overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full'>
+          <div className='md:flex h-full'>
             {latestSermon?.imageUrl && (
-              <div className='md:w-1/3 md:shrink-0'>
+              <div className='md:w-1/3 md:shrink-0 h-full'>
                 <Image
                   src={latestSermon.imageUrl}
                   alt={latestSermon.title ?? "Imagem da pregação"}
@@ -39,17 +32,17 @@ export default async function SearaHighlights() {
                 />
               </div>
             )}
-            <div className='p-6 md:p-8 flex flex-col justify-center md:w-2/3'>
+            <div className='p-6 md:p-8 flex flex-col justify-center md:w-2/3 h-full'>
               <div className='mb-2 flex items-center text-sm font-semibold uppercase tracking-wide text-primary'>
                 <Podcast className='mr-2 h-5 w-5' />
                 Podcast Seara
               </div>
-              <h3 className='text-2xl font-bold mb-2 text-foreground'>
+              <CardTitle className='text-2xl font-bold mb-2 text-foreground'>
                 {latestSermon?.title}
-              </h3>
-              <p className='text-muted-foreground mb-4'>
+              </CardTitle>
+              <CardDescription className='text-muted-foreground mb-4 line-clamp-3'>
                 Pregador: {latestSermon?.preacher}
-              </p>
+              </CardDescription>
               <div className='mt-auto'>
                 <Button
                   asChild
@@ -65,10 +58,10 @@ export default async function SearaHighlights() {
           </div>
         </Card>
 
-        <Card className='overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300'>
-          <div className='md:flex'>
+        <Card className='overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full'>
+          <div className='md:flex h-full'>
             {latestNews?.imageUrl && (
-              <div className='md:w-1/3 md:shrink-0'>
+              <div className='md:w-1/3 md:shrink-0 h-full'>
                 <Image
                   src={latestNews.imageUrl}
                   alt={latestNews.title}
@@ -79,7 +72,7 @@ export default async function SearaHighlights() {
                 />
               </div>
             )}
-            <div className='p-6 md:p-8 flex flex-col justify-center md:w-2/3'>
+            <div className='p-6 md:p-8 flex flex-col justify-center md:w-2/3 h-full'>
               <div className='mb-2 flex items-center text-sm font-semibold uppercase tracking-wide text-primary'>
                 <Rss className='mr-2 h-5 w-5' />
                 Recado em Destaque
