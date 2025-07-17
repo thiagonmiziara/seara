@@ -1,6 +1,12 @@
 import { contentfulClient } from "@/lib/contentful";
-import { IDevotional } from "@/types";
+import {
+  IDevotional,
+  IMissionDetails,
+  IMissionDiaryEntry,
+  IMissionItem,
+} from "@/types";
 import { Asset } from "contentful";
+import { Document } from "@contentful/rich-text-types";
 
 export async function getAllNews() {
   const entries = await contentfulClient.getEntries({
@@ -17,6 +23,47 @@ export async function getAllNews() {
     date: item.fields.date,
     slug: item.fields.title.toLowerCase().replace(/\s+/g, "-"),
   }));
+}
+
+export async function getMissionDiaryEntryBySlug(
+  slug: string
+): Promise<IMissionDiaryEntry | null> {
+  const entries = await contentfulClient.getEntries({
+    content_type: "diarioDeMissoesCard",
+    "fields.slug": slug,
+    limit: 1,
+    include: 1,
+  });
+
+  const item = entries.items[0];
+  if (!item) return null;
+
+  const fields = item.fields;
+  const imageAsset = fields.imageUrl as Asset;
+  const qrCodePixUrlAsset = fields.qrCodePixUrl as Asset;
+
+  return {
+    id: item.sys.id,
+    slug: String(fields.slug ?? ""),
+    title: String(fields.title ?? ""),
+    date: String(fields.date ?? ""),
+    missionaryName: String(fields.missionaryName ?? ""),
+    content: fields.content as Document,
+    imageUrl: imageAsset?.fields?.file?.url
+      ? `https:${imageAsset.fields.file.url}`
+      : "",
+    qrCodePixUrl: qrCodePixUrlAsset?.fields?.file?.url
+      ? `https:${qrCodePixUrlAsset.fields.file.url}`
+      : "",
+    account: String(fields.account ?? ""),
+    agency: String(fields.agency ?? ""),
+    bankName: String(fields.bankName ?? ""),
+    beneficiary: String(fields.beneficiary ?? ""),
+    pixKey: String(fields.pixKey ?? ""),
+    donationSubtitle: String(fields.donationSubtitle ?? ""),
+    donationTitle: String(fields.donationTitle ?? ""),
+    cnpj: String(fields.cnpj ?? ""),
+  };
 }
 
 export async function getNewsItemBySlug(slug: string) {
@@ -457,5 +504,98 @@ export async function getDevotionals(): Promise<IDevotional[] | null> {
     date: item.fields.date ?? "",
     preview: item.fields.preview ?? "",
     content: item.fields.content ?? null,
+  }));
+}
+
+export async function getMissions(): Promise<IMissionItem[] | null> {
+  const entries = await contentfulClient.getEntries({
+    content_type: "missoes",
+  });
+
+  if (!entries.items || entries.items.length === 0) {
+    return null;
+  }
+
+  return entries.items.map((item: any) => ({
+    id: item.sys.id,
+    slug: item.fields.slug ?? "",
+    title: item.fields.title ?? "",
+    description: item.fields.description ?? "",
+    imageUrl: item.fields.imageUrl?.fields?.file?.url
+      ? `https:${item.fields.imageUrl.fields.file.url}`
+      : "",
+    qrCodeUrl: item.fields.qrCodeUrl?.fields?.file?.url
+      ? `https:${item.fields.qrCodeUrl.fields.file.url}`
+      : "",
+  }));
+}
+
+export async function getMissionDetailsBySlug(
+  slug: string
+): Promise<IMissionDetails | null> {
+  const entries = await contentfulClient.getEntries({
+    content_type: "detalhesMissao",
+    "fields.slug": slug,
+    limit: 1,
+    include: 1,
+  });
+
+  const item = entries.items[0];
+  if (!item) return null;
+
+  const fields = item.fields;
+  const imageAsset = fields.imageUrl as Asset;
+  const qrCodeAsset = fields.qrCodeUrl as Asset;
+  const qrCodePixUrlAsset = fields.qrCodePixUrl as Asset;
+
+  return {
+    id: item.sys.id,
+    slug: String(fields.slug ?? ""),
+    title: String(fields.title ?? ""),
+    imageUrl: imageAsset?.fields?.file?.url
+      ? `https:${imageAsset.fields.file.url}`
+      : "",
+    description: String(fields.description ?? ""),
+    fullDetails: fields.fullDetails as Document,
+    objectives: (fields.objectives as string[]) ?? [],
+    howToHelp: (fields.howToHelp as string[]) ?? [],
+    qrCodeUrl: qrCodeAsset?.fields?.file?.url
+      ? `https:${qrCodeAsset.fields.file.url}`
+      : "",
+  };
+}
+
+export async function getDailyMissionsMissionsCard(): Promise<
+  IMissionDiaryEntry[] | null
+> {
+  const entries = await contentfulClient.getEntries({
+    content_type: "diarioDeMissoesCard",
+  });
+
+  if (!entries.items || entries.items.length === 0) {
+    return null;
+  }
+
+  return entries.items.map((item: any) => ({
+    id: item.sys.id,
+    slug: item.fields.slug ?? "",
+    title: item.fields.title ?? "",
+    date: item.fields.date ?? "",
+    missionaryName: item.fields.missionaryName ?? "",
+    content: item.fields.content ?? "",
+    imageUrl: item.fields.imageUrl?.fields?.file?.url
+      ? `https:${item.fields.imageUrl.fields.file.url}`
+      : "",
+    qrCodePixUrl: item.fields.qrCodePixUrl?.fields?.file?.url
+      ? `https:${item.fields.qrCodePixUrl.fields.file.url}`
+      : "",
+    account: String(item.fields.account ?? ""),
+    agency: String(item.fields.agency ?? ""),
+    bankName: String(item.fields.bankName ?? ""),
+    beneficiary: String(item.fields.beneficiary ?? ""),
+    pixKey: String(item.fields.pixKey ?? ""),
+    donationSubtitle: String(item.fields.donationSubtitle ?? ""),
+    donationTitle: String(item.fields.donationTitle ?? ""),
+    cnpj: String(item.fields.cnpj ?? ""),
   }));
 }

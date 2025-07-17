@@ -3,7 +3,10 @@ import {
   getProducts,
   getServiceProviders,
 } from "@/lib/contentfulHttp";
-import { getDevotionals } from "@/services/contentfulHttp";
+import {
+  getDailyMissionsMissionsCard,
+  getDevotionals,
+} from "@/services/contentfulHttp";
 import { NextResponse } from "next/server";
 
 // Utility function to handle API errors
@@ -32,6 +35,10 @@ const requestHandlers: Record<
   serviceDevotionals: {
     handler: getDevotionals,
     errorMessage: "Error fetching service devotionals",
+  },
+  serviceDailyMissionsCard: {
+    handler: getDailyMissionsMissionsCard,
+    errorMessage: "Error fetching service missions",
   },
 };
 

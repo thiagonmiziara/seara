@@ -22,12 +22,11 @@ const PWAInstallPrompt: React.FC = () => {
         (window.navigator as any).standalone
     );
 
-    // Only show prompt if not dismissed and not in standalone mode
     if (
       localStorage.getItem(PWA_INSTALL_PROMPT_DISMISSED) === "true" ||
       isStandalone
     ) {
-      setShowPrompt(false); // Ensure it's hidden if conditions are met
+      setShowPrompt(false);
       return;
     }
 
@@ -68,12 +67,10 @@ const PWAInstallPrompt: React.FC = () => {
     localStorage.setItem(PWA_INSTALL_PROMPT_DISMISSED, "true");
   };
 
-  // Only render if showPrompt is true
   if (!showPrompt) {
     return null;
   }
 
-  // If it's iOS and already in standalone mode, don't show
   if (isIOS && isStandalone) {
     return null;
   }

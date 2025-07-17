@@ -16,9 +16,9 @@ export interface NewsItem {
   slug: string;
   title: string;
   date: string;
-  summary: Document;
-  imageUrl: string;
-  content?: Document;
+  content: Document;
+  missionaryName: string;
+  imageUrl?: string;
 }
 
 export interface CarouselItem {
@@ -118,4 +118,44 @@ export interface IDevotional {
   date: string;
   preview: string;
   content: Document;
+}
+
+export interface IMissionDiaryEntry {
+  id: string;
+  slug: string;
+  title: string;
+  date: string;
+  content: Document;
+  missionaryName: string;
+  imageUrl: string;
+  qrCodePixUrl: string;
+  donationTitle: string;
+  donationSubtitle: string;
+  pixKey: string;
+  bankName: string;
+  agency: string;
+  account: string;
+  beneficiary: string;
+  cnpj?: string;
+}
+
+export interface IMissionItem {
+  id: string;
+  slug: string;
+  title: string;
+  imageUrl: string;
+  description: string;
+  qrCodeUrl: string;
+}
+
+export interface IMissionDetails {
+  id: string;
+  slug: string;
+  title: string;
+  imageUrl: string;
+  description: string;
+  fullDetails: Document;
+  objectives: string[];
+  howToHelp: string[];
+  qrCodeUrl: string;
 }
