@@ -19,13 +19,14 @@ import {
   BookHeart,
   Newspaper,
   Menu,
+  Phone,
 } from "lucide-react";
 import Logo from "../Logo"; // Assuming you have a Logo component that renders the SVG
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // Basic navigation items, can be expanded with dropdowns or a mobile menu
   const navItems = [
     { href: "/", label: "Início", icon: Home },
+    { href: "/contato", label: "Contato", icon: Phone },
     { href: "/comunidades", label: "Comunidades", icon: Users },
     { href: "/escolas", label: "Escolas", icon: BookOpen },
     { href: "/cultos", label: "Cultos", icon: CalendarDays },

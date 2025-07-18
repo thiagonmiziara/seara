@@ -1,6 +1,6 @@
 import { Document } from "@contentful/rich-text-types";
 
-export interface MainBannerData {
+export interface IMainBannerData {
   id: string;
   title: string;
   backgroundImageUrl: string;
@@ -158,4 +158,12 @@ export interface IMissionDetails {
   objectives: string[];
   howToHelp: string[];
   qrCodeUrl: string;
+}
+
+export interface IContact {
+  id: string;
+  address: string;
+  phone: string;
+  email: string;
+  mapLink: string;
 }
