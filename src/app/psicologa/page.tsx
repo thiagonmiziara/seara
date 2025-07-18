@@ -4,10 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Brain } from "lucide-react";
 import { getPsychologicalSupport } from "@/services/contentfulHttp";
 import { IPsychologicalSupportData } from "@/types";
+import RichTextRenderer from "@/lib/richTextRenderer";
 
 export default async function PsicologaPage() {
-  const psychologicalSupportData: IPsychologicalSupportData | null =
-    await getPsychologicalSupport();
+  const psychologicalSupportData = await getPsychologicalSupport();
 
   if (!psychologicalSupportData) {
     return null;
@@ -47,9 +47,9 @@ export default async function PsicologaPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className='px-0 space-y-6'>
-              <p className='text-lg text-muted-foreground leading-relaxed'>
-                {psychologicalSupportData.bio}
-              </p>
+              <div className='text-lg text-muted-foreground leading-relaxed'>
+                <RichTextRenderer document={psychologicalSupportData.bio} />
+              </div>
 
               <div>
                 <h3 className='text-xl font-semibold text-foreground mb-2'>

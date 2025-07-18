@@ -9,6 +9,8 @@ import {
   INewsItem,
   ILatestSermon,
   IYoungData,
+  IPsychologicalSupportData,
+  IKidsData,
 } from "@/types";
 import { Asset } from "contentful";
 import { Document } from "@contentful/rich-text-types";
@@ -123,7 +125,7 @@ export async function getLatestNews(): Promise<INewsItem | null> {
 
 export async function getMainBanner(): Promise<IMainBannerData | null> {
   const entries = await contentfulClient.getEntries({
-    content_type: "mainBanner",
+    content_type: "bannerPrincipal",
     limit: 1,
   });
 
@@ -149,7 +151,7 @@ export async function getMainBanner(): Promise<IMainBannerData | null> {
 
 export async function getCommunities() {
   const entries = await contentfulClient.getEntries({
-    content_type: "comunidades",
+    content_type: "comunidadesDeAlcance",
   });
 
   if (!entries.items || entries.items.length === 0) {
@@ -381,7 +383,7 @@ export async function getProducts() {
   }));
 }
 
-export async function getKidsDetails() {
+export async function getKidsDetails(): Promise<IKidsData | null> {
   const entries = await contentfulClient.getEntries({
     content_type: "kidsDetalhes",
     limit: 1,
@@ -460,7 +462,7 @@ export async function getServiceProviders() {
   }));
 }
 
-export async function getPsychologicalSupport() {
+export async function getPsychologicalSupport(): Promise<IPsychologicalSupportData | null> {
   const entries = await contentfulClient.getEntries({
     content_type: "apoioPsicologico",
   });

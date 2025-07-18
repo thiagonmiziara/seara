@@ -71,10 +71,11 @@ export interface IEmptyStateProps {
 }
 
 export interface IKidsData {
+  id: string;
   name: string;
   imageUrl: string;
-  description: string;
-  vision: string;
+  description: Document;
+  vision: Document;
   ageGroups: { name: string; description: string }[];
   leader: string;
   contact: string;
@@ -105,7 +106,7 @@ export interface IPsychologicalSupportData {
   name: string;
   title: string;
   imageUrl: string;
-  bio: string;
+  bio: Document;
   services: string[];
   phone: string;
   email: string;

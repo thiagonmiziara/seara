@@ -12,8 +12,7 @@ import {
   getMinistries,
 } from "@/services/contentfulHttp";
 import { redirect } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import RichTextRenderer from "@/lib/richTextRenderer";
 
 export async function generateStaticParams() {
   const ministries = await getMinistries();
@@ -73,9 +72,7 @@ export default async function MinistryBySlugPage({
         </CardHeader>
         <CardContent className='space-y-6 text-lg'>
           {ministry.fullDescription && (
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {ministry.fullDescription}
-            </ReactMarkdown>
+            <RichTextRenderer document={ministry.fullDescription} />
           )}
         </CardContent>
       </Card>

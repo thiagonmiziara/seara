@@ -8,9 +8,10 @@ import { getKidsDetails } from "@/services/contentfulHttp";
 import { IKidsData } from "@/types";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import RichTextRenderer from "@/lib/richTextRenderer";
 
 export default async function KidsPage() {
-  const kidsData: IKidsData | null = await getKidsDetails();
+  const kidsData = await getKidsDetails();
 
   if (!kidsData) {
     return null;
@@ -45,21 +46,17 @@ export default async function KidsPage() {
           </CardTitle>
         </CardHeader>
         <CardContent className='space-y-8 px-4 md:px-8 py-8'>
-          <p className='text-xl text-center text-muted-foreground leading-relaxed max-w-3xl mx-auto'>
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {kidsData.description}
-            </ReactMarkdown>
-          </p>
+          <div className='text-xl text-center text-muted-foreground leading-relaxed max-w-3xl mx-auto'>
+            <RichTextRenderer document={kidsData.description} />
+          </div>
 
           <div className='p-6 bg-card-foreground/5 rounded-lg'>
             <h3 className='text-2xl font-semibold mb-4 text-foreground text-center'>
               Nossa Visão
             </h3>
-            <p className='text-lg text-center text-muted-foreground'>
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {kidsData.vision}
-              </ReactMarkdown>
-            </p>
+            <div className='text-lg text-center text-muted-foreground'>
+              <RichTextRenderer document={kidsData.vision} />
+            </div>
           </div>
 
           <div>
