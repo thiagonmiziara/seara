@@ -415,7 +415,7 @@ export async function getKidsDetails(): Promise<IKidsData | null> {
 
 export async function getYoungDetails(): Promise<IYoungData | null> {
   const entries = await contentfulClient.getEntries({
-    content_type: "jovemDetalhes",
+    content_type: "detalhesJovens",
     limit: 1,
   });
 
@@ -577,7 +577,7 @@ export async function getDailyMissionsMissionsCard(): Promise<
   IMissionDiaryEntry[] | null
 > {
   const entries = await contentfulClient.getEntries({
-    content_type: "diarioDeMissoesCard",
+    content_type: "diarioDeMissoes",
   });
 
   if (!entries.items || entries.items.length === 0) {
