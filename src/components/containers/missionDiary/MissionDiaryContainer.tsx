@@ -72,15 +72,8 @@ export const MissionDiaryContainer: React.FC = () => {
     );
   }
 
-  if (entries.length === 0) {
-    return (
-      <SectionWrapper title='Diário de Missões'>
-        <EmptyState
-          title='Nenhuma entrada de diário encontrada'
-          description='Parece que ainda não há registros no diário de missões.'
-        />
-      </SectionWrapper>
-    );
+  if (!entries) {
+    return null;
   }
 
   return (

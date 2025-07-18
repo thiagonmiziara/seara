@@ -11,7 +11,10 @@ import type { CarouselItem } from "@/types";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CalendarCheck, Users, MapPin, Info } from "lucide-react";
-import { getMeetings, getMeetingsDetailBySlug } from "@/lib/contentfulHttp";
+import {
+  getMeetings,
+  getMeetingsDetailBySlug,
+} from "@/services/contentfulHttp";
 
 export async function generateStaticParams() {
   const meetings = await getMeetings();
@@ -53,7 +56,7 @@ export default async function MeetingDetailPage({
             alt={`${meeting.name} Logo`}
             width={100}
             height={100}
-            className='rounded-lg mr-0 md:mr-6 mb-4 md:mb-0'
+            className='w-[100px] h-[100px] rounded-full object-cover overflow-hidden mr-0 md:mr-6 mb-4 md:mb-0'
             data-ai-hint='logo event symbol'
           />
           <div>

@@ -7,8 +7,12 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import SectionWrapper from "@/components/shared/SectionWrapper";
-import { BookOpen, Calendar, Users } from "lucide-react";
-import { getAllSchools, getSchoolDetailBySlug } from "@/lib/contentfulHttp";
+import { BookOpen, Calendar, GraduationCap, Users } from "lucide-react";
+import {
+  getAllSchools,
+  getSchoolDetailBySlug,
+} from "@/services/contentfulHttp";
+import RichTextRenderer from "@/lib/richTextRenderer";
 
 export async function generateStaticParams() {
   const schools = await getAllSchools();
@@ -18,11 +22,11 @@ export async function generateStaticParams() {
 }
 
 export default async function SchoolDetailPage({
-  params,
+  params: { slug },
 }: {
   params: { slug: string };
 }) {
-  const school = await getSchoolDetailBySlug(params.slug);
+  const school = await getSchoolDetailBySlug(slug);
 
   if (!school) {
     return (
@@ -41,16 +45,17 @@ export default async function SchoolDetailPage({
           width={1200}
           height={500}
           className='w-full h-64 md:h-96 object-cover'
-          data-ai-hint='learning students books'
+          data-ai-hint='people worship praying'
           priority
         />
+
         <CardHeader className='pt-6 flex flex-col md:flex-row items-start md:items-center'>
           <Image
             src={school.imageUrl}
             alt={`${school.name} Logo`}
             width={100}
             height={100}
-            className='rounded-lg mr-0 md:mr-6 mb-4 md:mb-0'
+            className='w-[100px] h-[100px] rounded-full object-cover overflow-hidden mr-0 md:mr-6 mb-4 md:mb-0'
             data-ai-hint='logo education symbol'
           />
           <div>
@@ -63,15 +68,25 @@ export default async function SchoolDetailPage({
           </div>
         </CardHeader>
         <CardContent className='space-y-6 text-lg'>
-          {school.fullDescription && <p>{school.fullDescription}</p>}
-
           <div className='space-y-4 pt-4'>
+            {school.fullDescription && (
+              <div className='rounded-xl border bg-card-foreground/5 p-4 shadow-sm'>
+                <h3 className='font-semibold text-foreground flex gap-3 mb-2'>
+                  <GraduationCap className='h-6 w-6 text-accent mt-1 shrink-0' />
+                  Descrição
+                </h3>
+                <div className='prose prose-invert max-w-none break-words whitespace-pre-line text-sm leading-relaxed'>
+                  <RichTextRenderer document={school.fullDescription} />
+                </div>
+              </div>
+            )}
+
             {school.curriculum && school.curriculum.length > 0 && (
               <div className='flex items-start space-x-3 p-4 bg-card-foreground/5 rounded-lg'>
                 <BookOpen className='h-6 w-6 text-accent mt-1 shrink-0' />
                 <div>
                   <h3 className='font-semibold text-foreground'>
-                    Main Curriculum
+                    Grade curricular
                   </h3>
                   <ul className='list-disc list-inside text-muted-foreground'>
                     {school.curriculum.map((item: string) => (
@@ -85,7 +100,7 @@ export default async function SchoolDetailPage({
               <div className='flex items-start space-x-3 p-4 bg-card-foreground/5 rounded-lg'>
                 <Calendar className='h-6 w-6 text-accent mt-1 shrink-0' />
                 <div>
-                  <h3 className='font-semibold text-foreground'>Duration</h3>
+                  <h3 className='font-semibold text-foreground'>Duração</h3>
                   <p className='text-muted-foreground'>{school.duration}</p>
                 </div>
               </div>
@@ -95,7 +110,7 @@ export default async function SchoolDetailPage({
                 <Users className='h-6 w-6 text-accent mt-1 shrink-0' />
                 <div>
                   <h3 className='font-semibold text-foreground'>
-                    Target Audience
+                    Publico alvo
                   </h3>
                   <p className='text-muted-foreground'>
                     {school.targetAudience}

@@ -11,14 +11,14 @@ export interface IMainBannerData {
   logoUrl: string;
 }
 
-export interface NewsItem {
+export interface INewsItem {
   id: string;
   slug: string;
   title: string;
   date: string;
-  content: Document;
-  missionaryName: string;
+  missionaryName?: string;
   imageUrl?: string;
+  summary: Document;
 }
 
 export interface CarouselItem {
@@ -81,6 +81,7 @@ export interface IKidsData {
 }
 
 export interface IYoungData {
+  id: string;
   name: string;
   imageUrl: string;
   description: string;
@@ -166,4 +167,16 @@ export interface IContact {
   phone: string;
   email: string;
   mapLink: string;
+}
+
+export interface ISchoolDetail {
+  id: string;
+  name: string;
+  slug: string;
+  imageUrl: string;
+  description: string;
+  fullDescription: Document;
+  curriculum: string[];
+  duration: string;
+  targetAudience: string;
 }

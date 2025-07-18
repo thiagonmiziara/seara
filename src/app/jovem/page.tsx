@@ -3,10 +3,9 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarDays } from "lucide-react";
 import { getYoungDetails } from "@/services/contentfulHttp";
-import { IYoungData } from "@/types";
 
 export default async function JovemPage() {
-  const youngData: IYoungData | null = await getYoungDetails();
+  const youngData = await getYoungDetails();
 
   if (!youngData) {
     return null;
@@ -33,7 +32,7 @@ export default async function JovemPage() {
             alt={`Logo ${youngData.name}`}
             width={120}
             height={120}
-            className='rounded-full mx-auto mb-4 border-4 border-primary shadow-lg'
+            className='w-[120px] h-[120px] rounded-full object-cover border-2 border-primary mx-auto mb-4'
             data-ai-hint='logo ministry symbol'
           />
           <CardTitle className='text-3xl md:text-4xl text-primary'>

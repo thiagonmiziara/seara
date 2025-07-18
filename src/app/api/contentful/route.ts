@@ -1,11 +1,9 @@
 import {
+  getDailyMissionsMissionsCard,
+  getDevotionals,
   getMainBanner,
   getProducts,
   getServiceProviders,
-} from "@/lib/contentfulHttp";
-import {
-  getDailyMissionsMissionsCard,
-  getDevotionals,
 } from "@/services/contentfulHttp";
 import { NextResponse } from "next/server";
 

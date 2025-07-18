@@ -7,7 +7,7 @@ import {
   CardDescription,
   CardFooter,
 } from "@/components/ui/card";
-import { getAllNews, getMainBanner } from "@/lib/contentfulHttp";
+import { getAllNews, getMainBanner } from "@/services/contentfulHttp";
 import { NewsItem } from "@/types";
 import { CalendarDays, ArrowRight } from "lucide-react";
 import Link from "next/link"; // Import Link from next/link

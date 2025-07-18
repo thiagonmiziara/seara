@@ -7,25 +7,24 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import SectionWrapper from "@/components/shared/SectionWrapper";
-import type { NewsItem } from "@/types";
 import { CalendarDays, UserCircle } from "lucide-react";
-import { getNewsItemBySlug, getAllNews } from "@/lib/contentfulHttp"; // Import functions
+import { getNewsItemBySlug, getAllNews } from "@/services/contentfulHttp"; // Import functions
 import RichTextRenderer from "@/lib/richTextRenderer";
 import { formatDate } from "@/lib/utils";
 
 export async function generateStaticParams() {
-  const news = await getAllNews(); // Fetch all news to generate slugs
+  const news = await getAllNews();
   return news.map((item) => ({
     slug: item.slug,
   }));
 }
 
 export default async function NewsDetailPage({
-  params,
+  params: { slug },
 }: {
   params: { slug: string };
 }) {
-  const newsItem = await getNewsItemBySlug(params.slug); // Fetch news by slug
+  const newsItem = await getNewsItemBySlug(slug);
 
   if (!newsItem) {
     return (

@@ -1,4 +1,4 @@
-import { getMinistries } from "@/lib/contentfulHttp";
+import { getMinistries } from "@/services/contentfulHttp";
 import MinistrySection from "@/components/MinistrySection";
 
 interface IMinistrySections {

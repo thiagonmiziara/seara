@@ -4,13 +4,12 @@ import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Podcast, Headphones, Rss, ArrowRight } from "lucide-react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
-import { getLatestNews, getLatestSermon } from "@/lib/contentfulHttp";
-import { ILatestSermon, NewsItem } from "@/types";
 import RichTextRenderer from "@/lib/richTextRenderer";
+import { getLatestNews, getLatestSermon } from "@/services/contentfulHttp";
 
 export default async function SearaHighlights() {
-  const latestSermon: ILatestSermon | null = await getLatestSermon();
-  const latestNews: NewsItem | null = await getLatestNews();
+  const latestSermon = await getLatestSermon();
+  const latestNews = await getLatestNews();
 
   return (
     <SectionWrapper

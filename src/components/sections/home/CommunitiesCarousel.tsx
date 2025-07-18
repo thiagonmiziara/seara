@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import { HorizontalScrollContainer } from "@/components/shared/HorizontalScrollContainer";
-import { getCommunities } from "@/lib/contentfulHttp";
+import { getCommunities } from "@/services/contentfulHttp";
 
 export default async function CommunitiesCarousel() {
   const communities: CarouselItem[] | null = await getCommunities();

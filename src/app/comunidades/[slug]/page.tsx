@@ -8,8 +8,11 @@ import {
 import Image from "next/image";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import { MapPin, CalendarDays, Users } from "lucide-react";
-import { getCommunityDetailBySlug, getCommunities } from "@/lib/contentfulHttp";
 import RichTextRenderer from "@/lib/richTextRenderer";
+import {
+  getCommunities,
+  getCommunityDetailBySlug,
+} from "@/services/contentfulHttp";
 
 export async function generateStaticParams() {
   const communities = await getCommunities();
@@ -19,11 +22,11 @@ export async function generateStaticParams() {
 }
 
 export default async function CommunityDetailPage({
-  params,
+  params: { slug },
 }: {
   params: { slug: string };
 }) {
-  const community = await getCommunityDetailBySlug(params.slug);
+  const community = await getCommunityDetailBySlug(slug);
 
   if (!community) {
     return (

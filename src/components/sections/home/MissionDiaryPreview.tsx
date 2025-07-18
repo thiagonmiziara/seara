@@ -84,7 +84,8 @@ export default async function MissionDiaryPreview() {
                     variant='outline'
                     className='flex-1 border-accent text-accent hover:bg-accent hover:text-accent-foreground'
                   >
-                    <HeartHandshake className='mr-2 h-4 w-4' /> Fazer uma Doação
+                    <HeartHandshake className='mr-2 h-4 w-4' />
+                    <Link href={`/doar/${item.slug}`}> Fazer uma Doação</Link>
                   </Button>
                 )}
               </div>

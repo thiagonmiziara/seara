@@ -28,11 +28,11 @@ export async function generateStaticParams() {
 }
 
 export default async function MissionDetailPage({
-  params,
+  params: { slug },
 }: {
   params: { slug: string };
 }) {
-  const getMissionDetails = await getMissionDetailsBySlug(params.slug);
+  const getMissionDetails = await getMissionDetailsBySlug(slug);
 
   if (!getMissionDetails) {
     return (

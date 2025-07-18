@@ -6,6 +6,9 @@ import {
   IMissionDetails,
   IMissionDiaryEntry,
   IMissionItem,
+  INewsItem,
+  ILatestSermon,
+  IYoungData,
 } from "@/types";
 import { Asset } from "contentful";
 import { Document } from "@contentful/rich-text-types";
@@ -90,11 +93,10 @@ export async function getNewsItemBySlug(slug: string) {
       : "",
     date: item.fields.date,
     slug: item.fields.title.toLowerCase().replace(/\s+/g, "-"),
-    content: item.fields.content, // Include full content
   };
 }
 
-export async function getLatestNews() {
+export async function getLatestNews(): Promise<INewsItem | null> {
   const entries = await contentfulClient.getEntries({
     content_type: "noticias",
     order: ["-fields.date"], // Order by date descending
@@ -116,7 +118,6 @@ export async function getLatestNews() {
       : "",
     date: item.fields.date,
     slug: item.fields.title.toLowerCase().replace(/\s+/g, "-"),
-    content: item.fields.content,
   };
 }
 
@@ -188,6 +189,9 @@ export async function getSchoolDetailBySlug(slug: string) {
       : "",
     description: item.fields.description,
     fullDescription: item.fields.fullDescription,
+    curriculum: item.fields.curriculum,
+    duration: item.fields.duration,
+    targetAudience: item.fields.targetAudience,
   };
 }
 
@@ -290,7 +294,7 @@ export async function getMeetingsDetailBySlug(slug: string) {
   };
 }
 
-export async function getLatestSermon() {
+export async function getLatestSermon(): Promise<ILatestSermon | null> {
   const entries = await contentfulClient.getEntries({
     content_type: "ultimaPregacao",
   });
@@ -407,7 +411,7 @@ export async function getKidsDetails() {
   };
 }
 
-export async function getYoungDetails() {
+export async function getYoungDetails(): Promise<IYoungData | null> {
   const entries = await contentfulClient.getEntries({
     content_type: "jovemDetalhes",
     limit: 1,
@@ -601,7 +605,6 @@ export async function getDailyMissionsMissionsCard(): Promise<
     cnpj: String(item.fields.cnpj ?? ""),
   }));
 }
-
 
 export async function getContact(): Promise<IContact | null> {
   const entries = await contentfulClient.getEntries({

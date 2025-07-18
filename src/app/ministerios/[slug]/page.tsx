@@ -7,7 +7,10 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import SectionWrapper from "@/components/shared/SectionWrapper";
-import { getMinistryDetailBySlug, getMinistries } from "@/lib/contentfulHttp";
+import {
+  getMinistryDetailBySlug,
+  getMinistries,
+} from "@/services/contentfulHttp";
 import { redirect } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -20,12 +23,10 @@ export async function generateStaticParams() {
 }
 
 export default async function MinistryBySlugPage({
-  params,
+  params: { slug },
 }: {
   params: { slug: string };
 }) {
-  const { slug } = params;
-
   if (["kids", "loja", "jovem"].includes(slug)) {
     redirect(`/${slug}`);
   }
@@ -58,7 +59,7 @@ export default async function MinistryBySlugPage({
             alt={`${ministry.name} Logo`}
             width={100}
             height={100}
-            className='rounded-lg mr-0 md:mr-6 mb-4 md:mb-0'
+            className='w-[100px] h-[100px] rounded-full object-cover overflow-hidden mr-0 md:mr-6 mb-4 md:mb-0'
             data-ai-hint='ministry logo'
           />
           <div>

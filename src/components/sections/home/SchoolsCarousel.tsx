@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { GraduationCap, ArrowRight } from "lucide-react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import { HorizontalScrollContainer } from "@/components/shared/HorizontalScrollContainer";
-import { getAllSchools } from "@/lib/contentfulHttp";
+import { getAllSchools } from "@/services/contentfulHttp";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
