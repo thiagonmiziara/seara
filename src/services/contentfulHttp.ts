@@ -36,7 +36,7 @@ export async function getMissionDiaryEntryBySlug(
   slug: string
 ): Promise<IMissionDiaryEntry | null> {
   const entries = await contentfulClient.getEntries({
-    content_type: "diarioDeMissoesCard",
+    content_type: "diarioDeMissoes",
     "fields.slug": slug,
     limit: 1,
     include: 1,
