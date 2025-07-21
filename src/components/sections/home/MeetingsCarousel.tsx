@@ -12,10 +12,10 @@ import { Button } from "@/components/ui/button";
 import { Users, ArrowRight } from "lucide-react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import { HorizontalScrollContainer } from "@/components/shared/HorizontalScrollContainer";
-import { getMeetings } from "@/services/contentfulHttp";
+import { getMeetings } from "@/services/get-meetings";
 
 export default async function MeetingsCarousel() {
-  const meetings: CarouselItem[] | null = await getMeetings();
+  const meetings = await getMeetings();
 
   return (
     <SectionWrapper

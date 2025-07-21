@@ -9,14 +9,12 @@ import Image from "next/image";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import { MapPin, CalendarDays, Users } from "lucide-react";
 import RichTextRenderer from "@/lib/richTextRenderer";
-import {
-  getCommunities,
-  getCommunityDetailBySlug,
-} from "@/services/contentfulHttp";
+import { getCommunities } from "@/services/get-communities";
+import { getCommunityDetailBySlug } from "@/services/get-community-detail-by-slug";
 
 export async function generateStaticParams() {
   const communities = await getCommunities();
-  return communities.map((community) => ({
+  return communities?.map((community) => ({
     slug: community.slug,
   }));
 }
@@ -94,9 +92,9 @@ export default async function CommunityDetailPage({
           </div>
 
           <div className='mt-8 p-6 bg-card-foreground/5 rounded-lg'>
-            <p className='text-2xl font-semibold mb-4 text-foreground'>
-              {community.fullDescription}
-            </p>
+            <div className='text-2xl font-semibold mb-4 text-foreground'>
+              <RichTextRenderer document={community.fullDescription} />
+            </div>
           </div>
         </CardContent>
       </Card>

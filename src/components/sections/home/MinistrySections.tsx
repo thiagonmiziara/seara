@@ -1,15 +1,12 @@
-import { getMinistries } from "@/services/contentfulHttp";
 import MinistrySection from "@/components/MinistrySection";
-
-interface IMinistrySections {
-  slug: string;
-  name: string;
-  imageUrl: string;
-  description: string;
-}
+import { getMinistries } from "@/services/get-ministries";
 
 export default async function MinistrySections() {
-  const ministries: IMinistrySections[] | null = await getMinistries();
+  const ministries = await getMinistries();
+
+  if (!ministries) {
+    return null;
+  }
 
   return (
     <>

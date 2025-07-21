@@ -8,15 +8,13 @@ import {
 import Image from "next/image";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import { BookOpen, Calendar, GraduationCap, Users } from "lucide-react";
-import {
-  getAllSchools,
-  getSchoolDetailBySlug,
-} from "@/services/contentfulHttp";
 import RichTextRenderer from "@/lib/richTextRenderer";
+import { getSchoolDetailBySlug } from "@/services/get-school-detail-by-slug";
+import { getAllSchools } from "@/services/get-all-schools";
 
 export async function generateStaticParams() {
   const schools = await getAllSchools();
-  return schools.map((school) => ({
+  return schools?.map((school) => ({
     slug: school.slug,
   }));
 }

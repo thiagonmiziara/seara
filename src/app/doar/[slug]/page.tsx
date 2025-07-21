@@ -6,14 +6,12 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { HeartHandshake, Landmark, QrCode, CreditCard } from "lucide-react";
 import Link from "next/link";
-import {
-  getMissionDiaryEntryBySlug,
-  getMissions,
-} from "@/services/contentfulHttp";
+
+import { getMissionDiaryEntryBySlug } from "@/services/get-mission-diary-entry-by-slug";
+import { getMissions } from "@/services/get-missions";
 
 export async function generateStaticParams() {
   const missions = await getMissions();

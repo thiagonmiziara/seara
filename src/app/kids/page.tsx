@@ -4,11 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Smile, BookHeart, Palette, Users, ShieldCheck } from "lucide-react"; // Palette for arts/crafts
-import { getKidsDetails } from "@/services/contentfulHttp";
+
 import { IKidsData } from "@/types";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import RichTextRenderer from "@/lib/richTextRenderer";
+import { getKidsDetails } from "@/services/get-kids-details";
 
 export default async function KidsPage() {
   const kidsData = await getKidsDetails();

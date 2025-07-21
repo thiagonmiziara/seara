@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Podcast, Headphones, Rss, ArrowRight } from "lucide-react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import RichTextRenderer from "@/lib/richTextRenderer";
-import { getLatestNews, getLatestSermon } from "@/services/contentfulHttp";
+import { getLatestNews } from "@/services/get-latest-news";
+import { getLatestSermon } from "@/services/get-latest-sermon";
 
 export default async function SearaHighlights() {
   const latestSermon = await getLatestSermon();

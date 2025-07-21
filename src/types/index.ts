@@ -57,14 +57,6 @@ export interface IMinistrySectionProps {
   buttons: IMinistrySectionButton[];
 }
 
-export interface IProduct {
-  id: string;
-  name: string;
-  imageUrls: string[];
-  price: string;
-  phoneNumber: string;
-}
-
 export interface IEmptyStateProps {
   title: string;
   description: string;
@@ -180,4 +172,52 @@ export interface ISchoolDetail {
   curriculum: string[];
   duration: string;
   targetAudience: string;
+}
+
+export interface ICommunity {
+  id: string;
+  name: string;
+  slug: string;
+  imageUrl: string;
+  description: string;
+  fullDescription: Document;
+  address: string;
+  meetingTimes: string;
+  leader: string;
+}
+
+export interface IMeetings {
+  id: string;
+  name: string;
+  slug: string;
+  imageUrl: string;
+  description: string;
+  fullDescription: Document;
+  schedule: string;
+  location: string;
+  contactPerson: string;
+}
+
+export interface IMinistrySections {
+  slug: string;
+  name: string;
+  imageUrl: string;
+  description: string;
+}
+
+export interface IMinistryDetails {
+  id: string;
+  slug: string;
+  name: string;
+  imageUrl: string;
+  description: string;
+  fullDescription: Document;
+}
+
+export interface IProducts {
+  id: string;
+  name: string;
+  imageUrls: string[];
+  price: string;
+  phone: string;
 }

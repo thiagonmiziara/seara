@@ -7,18 +7,14 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import SectionWrapper from "@/components/shared/SectionWrapper";
-import type { CarouselItem } from "@/types";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { CalendarCheck, Users, MapPin, Info } from "lucide-react";
-import {
-  getMeetings,
-  getMeetingsDetailBySlug,
-} from "@/services/contentfulHttp";
+import { getMeetings } from "@/services/get-meetings";
+import { getMeetingsDetailBySlug } from "@/services/get-meetings-detail-by-slug";
+import RichTextRenderer from "@/lib/richTextRenderer";
 
 export async function generateStaticParams() {
   const meetings = await getMeetings();
-  return meetings.map((meeting) => ({
+  return meetings?.map((meeting) => ({
     slug: meeting.slug,
   }));
 }
@@ -69,7 +65,9 @@ export default async function MeetingDetailPage({
           </div>
         </CardHeader>
         <CardContent className='space-y-6 text-lg'>
-          <p>{meeting.fullDescription}</p>
+          <div>
+            <RichTextRenderer document={meeting.fullDescription} />
+          </div>
 
           <div className='space-y-4 pt-4'>
             <div className='flex items-start space-x-3 p-4 bg-card-foreground/5 rounded-lg'>

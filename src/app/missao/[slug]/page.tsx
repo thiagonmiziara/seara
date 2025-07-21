@@ -12,10 +12,8 @@ import Link from "next/link";
 import { Globe, HeartHandshake, Users, Target } from "lucide-react";
 import { MissionDiaryContainer } from "@/components/containers/missionDiary/MissionDiaryContainer";
 import RichTextRenderer from "@/lib/richTextRenderer";
-import {
-  getMissions,
-  getMissionDetailsBySlug,
-} from "@/services/contentfulHttp";
+import { getMissions } from "@/services/get-missions";
+import { getMissionDetailsBySlug } from "@/services/get-mission-details-by-slug";
 
 export async function generateStaticParams() {
   const missions = await getMissions();

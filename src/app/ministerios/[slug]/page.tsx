@@ -7,25 +7,24 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import SectionWrapper from "@/components/shared/SectionWrapper";
-import {
-  getMinistryDetailBySlug,
-  getMinistries,
-} from "@/services/contentfulHttp";
 import { redirect } from "next/navigation";
 import RichTextRenderer from "@/lib/richTextRenderer";
+import { getMinistries } from "@/services/get-ministries";
+import { getMinistryDetailBySlug } from "@/services/get-ministry-detail-by-slug";
 
 export async function generateStaticParams() {
   const ministries = await getMinistries();
-  return ministries.map((ministry) => ({
+  return ministries?.map((ministry) => ({
     slug: ministry.slug,
   }));
 }
 
 export default async function MinistryBySlugPage({
-  params: { slug },
+  params,
 }: {
   params: { slug: string };
 }) {
+  const { slug } = await params;
   if (["kids", "loja", "jovem"].includes(slug)) {
     redirect(`/${slug}`);
   }

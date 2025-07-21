@@ -2,9 +2,8 @@ import SectionWrapper from "@/components/shared/SectionWrapper";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Brain } from "lucide-react";
-import { getPsychologicalSupport } from "@/services/contentfulHttp";
-import { IPsychologicalSupportData } from "@/types";
 import RichTextRenderer from "@/lib/richTextRenderer";
+import { getPsychologicalSupport } from "@/services/get-psychological-support";
 
 export default async function PsicologaPage() {
   const psychologicalSupportData = await getPsychologicalSupport();

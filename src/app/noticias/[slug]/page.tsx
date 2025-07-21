@@ -1,20 +1,15 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import { CalendarDays, UserCircle } from "lucide-react";
-import { getNewsItemBySlug, getAllNews } from "@/services/contentfulHttp"; // Import functions
 import RichTextRenderer from "@/lib/richTextRenderer";
 import { formatDate } from "@/lib/utils";
+import { getAllNews } from "@/services/get-all-news";
+import { getNewsItemBySlug } from "@/services/get-news-item-by-slug";
 
 export async function generateStaticParams() {
   const news = await getAllNews();
-  return news.map((item) => ({
+  return news?.map((item) => ({
     slug: item.slug,
   }));
 }

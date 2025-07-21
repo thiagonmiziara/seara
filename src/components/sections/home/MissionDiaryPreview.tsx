@@ -1,4 +1,3 @@
-import type { IMissionItem } from "@/types";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -11,8 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Globe, HeartHandshake, ArrowRight } from "lucide-react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
-import { getMissions } from "@/services/contentfulHttp";
-import RichTextRenderer from "@/lib/richTextRenderer";
+import { getMissions } from "@/services/get-missions";
 
 export default async function MissionDiaryPreview() {
   const missionData = await getMissions();

@@ -2,7 +2,7 @@ import SectionWrapper from "@/components/shared/SectionWrapper";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarDays } from "lucide-react";
-import { getYoungDetails } from "@/services/contentfulHttp";
+import { getYoungDetails } from "@/services/get-young-details";
 
 export default async function JovemPage() {
   const youngData = await getYoungDetails();

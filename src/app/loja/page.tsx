@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import EmptyState from "@/components/shared/EmptyState";
-import type { IProduct } from "@/types";
+import type { IProducts } from "@/types";
 import Image from "next/image";
 import {
   Card,
@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/carousel";
 
 export default function LojaPage() {
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const [products, setProducts] = useState<IProducts[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -54,7 +54,7 @@ export default function LojaPage() {
     const message = encodeURIComponent(
       `Olá, vim pelo site e gostaria de saber mais sobre o produto: ${productName}`
     );
-    const whatsappUrl = `https://wa.me/+55${products[0].phoneNumber}?text=${message}`;
+    const whatsappUrl = `https://wa.me/+55${products[0].phone}?text=${message}`;
     window.open(whatsappUrl, "_blank");
   };
 

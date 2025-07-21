@@ -1,10 +1,7 @@
 import Image from "next/image";
-// Importar useState e useEffect
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
-import { IMainBannerData } from "@/types";
-import { getMainBanner } from "@/services/contentfulHttp";
+import { getMainBanner } from "@/services/get-main-banner";
 
 export default async function MainBanner() {
   const bannerData = await getMainBanner();

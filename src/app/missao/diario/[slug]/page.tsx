@@ -12,11 +12,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { formatDate } from "@/lib/utils";
-import {
-  getDailyMissionsMissionsCard,
-  getMissionDiaryEntryBySlug,
-} from "@/services/contentfulHttp";
 import RichTextRenderer from "@/lib/richTextRenderer";
+import { getMissionDiaryEntryBySlug } from "@/services/get-mission-diary-entry-by-slug";
+import { getDailyMissionsMissionsCard } from "@/services/get-daily-missions-missions-card";
 
 export async function generateStaticParams() {
   const entries = await getDailyMissionsMissionsCard();

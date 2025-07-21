@@ -1,10 +1,8 @@
-import {
-  getDailyMissionsMissionsCard,
-  getDevotionals,
-  getMainBanner,
-  getProducts,
-  getServiceProviders,
-} from "@/services/contentfulHttp";
+import { getDailyMissionsMissionsCard } from "@/services/get-daily-missions-missions-card";
+import { getDevotionals } from "@/services/get-devotionals";
+import { getMainBanner } from "@/services/get-main-banner";
+import { getProducts } from "@/services/get-products";
+import { getServiceProviders } from "@/services/get-service-providers";
 import { NextResponse } from "next/server";
 
 // Utility function to handle API errors

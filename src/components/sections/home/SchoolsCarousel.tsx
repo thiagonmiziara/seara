@@ -1,4 +1,3 @@
-import type { CarouselItem } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -12,13 +11,11 @@ import { Button } from "@/components/ui/button";
 import { GraduationCap, ArrowRight } from "lucide-react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import { HorizontalScrollContainer } from "@/components/shared/HorizontalScrollContainer";
-import { getAllSchools } from "@/services/contentfulHttp";
-import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/lib/utils";
+import { getAllSchools } from "@/services/get-all-schools";
 
 export default async function SchoolsCarousel() {
-  const schools: CarouselItem[] | null = await getAllSchools();
+  const schools = await getAllSchools();
 
   const itemCount = schools ? schools.length : 3;
 

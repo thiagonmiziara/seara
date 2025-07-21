@@ -6,7 +6,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-
+import { getContact } from "@/services/get-contact";
 import {
   Phone,
   Mail,
@@ -17,7 +17,6 @@ import {
   Info,
 } from "lucide-react";
 import Link from "next/link";
-import { getContact } from "@/services/contentfulHttp";
 
 export default async function ContatoPage() {
   const contactInfo = await getContact();

@@ -7,16 +7,19 @@ import {
   CardDescription,
   CardFooter,
 } from "@/components/ui/card";
-import { getAllNews, getMainBanner } from "@/services/contentfulHttp";
-import { NewsItem } from "@/types";
 import { CalendarDays, ArrowRight } from "lucide-react";
-import Link from "next/link"; // Import Link from next/link
+import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import RichTextRenderer from "@/lib/richTextRenderer"; // Import RichTextRenderer
+import RichTextRenderer from "@/lib/richTextRenderer";
+import { getAllNews } from "@/services/get-all-news";
 
 export default async function SearaNewsPage() {
-  const allNews: NewsItem[] = await getAllNews();
+  const allNews = await getAllNews();
+
+  if (!allNews) {
+    return null;
+  }
 
   return (
     <SectionWrapper
