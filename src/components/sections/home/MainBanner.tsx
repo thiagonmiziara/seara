@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { getMainBanner } from "@/services/get-main-banner";
+import RichTextRenderer from "@/lib/richTextRenderer";
 
 export default async function MainBanner() {
   const bannerData = await getMainBanner();
@@ -28,9 +29,9 @@ export default async function MainBanner() {
 
   return (
     <div className='relative h-[calc(100vh-4rem)] min-h-[500px] md:min-h-[600px] flex items-center justify-center text-center text-white overflow-hidden'>
-      {bannerData.backgroundImageUrl && (
+      {bannerData.imageUrl && (
         <Image
-          src={bannerData.backgroundImageUrl}
+          src={bannerData.imageUrl}
           alt={bannerData.title || "Banner Principal Seara de Deus"}
           layout='fill'
           objectFit='cover'
@@ -50,15 +51,15 @@ export default async function MainBanner() {
           <h2 className='text-2xl sm:text-3xl font-semibold mb-3 text-primary'>
             Nossa Visão
           </h2>
-          <p className='text-lg sm:text-xl mb-8 leading-relaxed shadow-text'>
-            {bannerData.vision}
-          </p>
+          <div className='text-lg sm:text-xl mb-8 leading-relaxed shadow-text'>
+            <RichTextRenderer document={bannerData.vision} />
+          </div>
           <h2 className='text-2xl sm:text-3xl font-semibold mb-3 text-primary'>
             Nosso Propósito
           </h2>
-          <p className='text-lg sm:text-xl mb-10 leading-relaxed shadow-text'>
-            {bannerData.purpose}
-          </p>
+          <div className='text-lg sm:text-xl mb-10 leading-relaxed shadow-text'>
+            <RichTextRenderer document={bannerData.purpose} />
+          </div>
         </div>
         {bannerData.buttonText && bannerData.buttonLink && (
           <Button

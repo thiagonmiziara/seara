@@ -99,7 +99,7 @@ export default async function MissionDetailPage({
             </h3>
             <div className='flex flex-col items-center md:flex-row md:justify-center gap-6'>
               <Image
-                src={getMissionDetails.qrCodeUrl}
+                src={getMissionDetails.qrCodePixUrl}
                 alt='QR Code para Doação'
                 width={180}
                 height={180}

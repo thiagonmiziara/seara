@@ -13,6 +13,7 @@ import { ArrowRight } from "lucide-react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import { HorizontalScrollContainer } from "@/components/shared/HorizontalScrollContainer";
 import { getCommunities } from "@/services/get-communities";
+import RichTextRenderer from "@/lib/richTextRenderer";
 
 export default async function CommunitiesCarousel() {
   const communities = await getCommunities();
@@ -46,9 +47,9 @@ export default async function CommunitiesCarousel() {
               <CardTitle className='text-xl mb-2 text-foreground'>
                 {item.name}
               </CardTitle>
-              <p className='text-sm text-muted-foreground line-clamp-2'>
-                {item.description}
-              </p>
+              <div className='text-sm text-muted-foreground line-clamp-2'>
+                <RichTextRenderer document={item.description} />
+              </div>
             </CardContent>
             <CardFooter className='p-6 pt-0'>
               <Button

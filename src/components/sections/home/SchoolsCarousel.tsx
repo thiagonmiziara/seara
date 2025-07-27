@@ -13,6 +13,7 @@ import SectionWrapper from "@/components/shared/SectionWrapper";
 import { HorizontalScrollContainer } from "@/components/shared/HorizontalScrollContainer";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getAllSchools } from "@/services/get-all-schools";
+import RichTextRenderer from "@/lib/richTextRenderer";
 
 export default async function SchoolsCarousel() {
   const schools = await getAllSchools();
@@ -76,9 +77,9 @@ export default async function SchoolsCarousel() {
                   <CardTitle className='text-xl mb-2 text-foreground'>
                     {item.name}
                   </CardTitle>
-                  <p className='text-sm text-muted-foreground line-clamp-2'>
-                    {item.description}
-                  </p>
+                  <div className='text-sm text-muted-foreground line-clamp-2'>
+                    <RichTextRenderer document={item.description} />
+                  </div>
                 </CardContent>
                 <CardFooter className='p-6 pt-0'>
                   <Button

@@ -3,9 +3,9 @@ import { Document } from "@contentful/rich-text-types";
 export interface IMainBannerData {
   id: string;
   title: string;
-  backgroundImageUrl: string;
-  vision: string;
-  purpose: string;
+  imageUrl: string;
+  vision: Document;
+  purpose: Document;
   buttonText?: string;
   buttonLink?: string;
   logoUrl: string;
@@ -27,7 +27,7 @@ export interface CarouselItem {
   name: string;
   logoUrl?: string;
   imageUrl: string;
-  description: string;
+  description: Document;
 }
 
 export interface ILatestSermon {
@@ -151,7 +151,8 @@ export interface IMissionDetails {
   fullDetails: Document;
   objectives: string[];
   howToHelp: string[];
-  qrCodeUrl: string;
+  qrCodeUrl?: string;
+  qrCodePixUrl: string;
 }
 
 export interface IContact {

@@ -13,6 +13,7 @@ import { Users, ArrowRight } from "lucide-react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import { HorizontalScrollContainer } from "@/components/shared/HorizontalScrollContainer";
 import { getMeetings } from "@/services/get-meetings";
+import RichTextRenderer from "@/lib/richTextRenderer";
 
 export default async function MeetingsCarousel() {
   const meetings = await getMeetings();
@@ -45,7 +46,7 @@ export default async function MeetingsCarousel() {
                 {item.name}
               </CardTitle>
               <p className='text-sm text-muted-foreground line-clamp-2'>
-                {item.description}
+                <RichTextRenderer document={item.description} />
               </p>
             </CardContent>
             <CardFooter className='p-6 pt-0'>

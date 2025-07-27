@@ -7,7 +7,7 @@ export async function getMissionDetailsBySlug(
   slug: string
 ): Promise<IMissionDetails | null> {
   const entries = await contentfulClient.getEntries({
-    content_type: "detalhesMissao",
+    content_type: "diarioDeMissoes",
     "fields.slug": slug,
     limit: 1,
     include: 1,
@@ -32,8 +32,8 @@ export async function getMissionDetailsBySlug(
     fullDetails: fields.fullDetails as Document,
     objectives: (fields.objectives as string[]) ?? [],
     howToHelp: (fields.howToHelp as string[]) ?? [],
-    qrCodeUrl: qrCodeAsset?.fields?.file?.url
-      ? `https:${qrCodeAsset.fields.file.url}`
+    qrCodePixUrl: qrCodePixUrlAsset?.fields?.file?.url
+      ? `https:${qrCodePixUrlAsset.fields.file.url}`
       : "",
   };
 }

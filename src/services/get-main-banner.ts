@@ -14,8 +14,8 @@ export async function getMainBanner(): Promise<IMainBannerData | null> {
   return {
     id: item.sys.id,
     title: item.fields.title,
-    backgroundImageUrl: item.fields.backgroundImage?.fields?.file?.url
-      ? `https:${item.fields.backgroundImage.fields.file.url}`
+    imageUrl: item.fields.imageUrl?.fields?.file?.url
+      ? `https:${item.fields.imageUrl.fields.file.url}`
       : "",
     vision: item.fields.vision,
     purpose: item.fields.purpose,
