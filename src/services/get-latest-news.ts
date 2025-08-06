@@ -19,7 +19,9 @@ export async function getLatestNews(): Promise<INewsItem | null> {
     title: item.fields.title,
     summary: item.fields.summary,
     imageUrl: item.fields.image?.fields?.file?.url
-      ? `https:${item.fields.image.fields.file.url}`
+      ? `https:${item.fields.image.fields.file.url}?v=${new Date(
+          item.sys.updatedAt
+        ).getTime()}`
       : "",
     date: item.fields.date,
     slug: item.fields.title.toLowerCase().replace(/\s+/g, "-"),
