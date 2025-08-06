@@ -15,6 +15,8 @@ import { HorizontalScrollContainer } from "@/components/shared/HorizontalScrollC
 import { getMeetings } from "@/services/get-meetings";
 import RichTextRenderer from "@/lib/richTextRenderer";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export default async function MeetingsCarousel() {
   const meetings = await getMeetings();
 

@@ -15,6 +15,8 @@ import { HorizontalScrollContainer } from "@/components/shared/HorizontalScrollC
 import { getCommunities } from "@/services/get-communities";
 import RichTextRenderer from "@/lib/richTextRenderer";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export default async function CommunitiesCarousel() {
   const communities = await getCommunities();
 

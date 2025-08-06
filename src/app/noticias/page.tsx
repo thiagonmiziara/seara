@@ -14,6 +14,8 @@ import { Button } from "@/components/ui/button";
 import RichTextRenderer from "@/lib/richTextRenderer";
 import { getAllNews } from "@/services/get-all-news";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export default async function SearaNewsPage() {
   const allNews = await getAllNews();
 

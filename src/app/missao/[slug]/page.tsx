@@ -15,6 +15,8 @@ import RichTextRenderer from "@/lib/richTextRenderer";
 import { getMissions } from "@/services/get-missions";
 import { getMissionDetailsBySlug } from "@/services/get-mission-details-by-slug";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export async function generateStaticParams() {
   const missions = await getMissions();
   if (!missions) {

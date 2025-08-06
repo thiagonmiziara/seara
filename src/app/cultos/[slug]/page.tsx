@@ -12,6 +12,8 @@ import { getMeetings } from "@/services/get-meetings";
 import { getMeetingsDetailBySlug } from "@/services/get-meetings-detail-by-slug";
 import RichTextRenderer from "@/lib/richTextRenderer";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export async function generateStaticParams() {
   const meetings = await getMeetings();
   return meetings?.map((meeting) => ({

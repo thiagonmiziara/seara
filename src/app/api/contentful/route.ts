@@ -5,6 +5,8 @@ import { getProducts } from "@/services/get-products";
 import { getServiceProviders } from "@/services/get-service-providers";
 import { NextResponse } from "next/server";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 // Utility function to handle API errors
 function handleApiError(error: unknown, message: string, status: number = 500) {
   console.error(message, error);

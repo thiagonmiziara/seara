@@ -15,6 +15,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getAllSchools } from "@/services/get-all-schools";
 import RichTextRenderer from "@/lib/richTextRenderer";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export default async function SchoolsCarousel() {
   const schools = await getAllSchools();
 

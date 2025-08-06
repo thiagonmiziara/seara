@@ -5,6 +5,8 @@ import { Brain } from "lucide-react";
 import RichTextRenderer from "@/lib/richTextRenderer";
 import { getPsychologicalSupport } from "@/services/get-psychological-support";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export default async function PsicologaPage() {
   const psychologicalSupportData = await getPsychologicalSupport();
 

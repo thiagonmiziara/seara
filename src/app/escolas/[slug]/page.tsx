@@ -12,6 +12,8 @@ import RichTextRenderer from "@/lib/richTextRenderer";
 import { getSchoolDetailBySlug } from "@/services/get-school-detail-by-slug";
 import { getAllSchools } from "@/services/get-all-schools";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export async function generateStaticParams() {
   const schools = await getAllSchools();
   return schools?.map((school) => ({

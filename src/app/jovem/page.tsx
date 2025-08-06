@@ -4,6 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarDays } from "lucide-react";
 import { getYoungDetails } from "@/services/get-young-details";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export default async function JovemPage() {
   const youngData = await getYoungDetails();
 

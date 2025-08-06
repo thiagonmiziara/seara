@@ -8,7 +8,6 @@ import Footer from "@/components/layout/Footer";
 import FloatingContactButtons from "@/components/layout/FloatingContactButtons";
 import { cn } from "@/lib/utils";
 import GlobalLoading from "@/components/GlobalLoading";
-import PWAInstallPrompt from "@/components/shared/PWAInstallPrompt";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -51,7 +50,6 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <GlobalLoading />
         </Suspense>
-        <PWAInstallPrompt />
       </body>
     </html>
   );

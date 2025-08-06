@@ -13,6 +13,8 @@ import Link from "next/link";
 import { getMissionDiaryEntryBySlug } from "@/services/get-mission-diary-entry-by-slug";
 import { getMissions } from "@/services/get-missions";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export async function generateStaticParams() {
   const missions = await getMissions();
   if (!missions) {

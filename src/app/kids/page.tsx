@@ -3,13 +3,13 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Smile, BookHeart, Palette, Users, ShieldCheck } from "lucide-react"; // Palette for arts/crafts
-
-import { IKidsData } from "@/types";
+import { Smile } from "lucide-react"; // Palette for arts/crafts
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import RichTextRenderer from "@/lib/richTextRenderer";
 import { getKidsDetails } from "@/services/get-kids-details";
+
+export const revalidate = 60; // Revalidate at most every 60 seconds
 
 export default async function KidsPage() {
   const kidsData = await getKidsDetails();

@@ -1,6 +1,8 @@
 import MinistrySection from "@/components/MinistrySection";
 import { getMinistries } from "@/services/get-ministries";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export default async function MinistrySections() {
   const ministries = await getMinistries();
 

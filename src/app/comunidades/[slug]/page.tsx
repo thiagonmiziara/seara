@@ -12,7 +12,7 @@ import RichTextRenderer from "@/lib/richTextRenderer";
 import { getCommunities } from "@/services/get-communities";
 import { getCommunityDetailBySlug } from "@/services/get-community-detail-by-slug";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60; // Revalidate at most every 60 seconds
 
 export async function generateStaticParams() {
   const communities = await getCommunities();

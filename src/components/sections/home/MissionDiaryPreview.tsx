@@ -12,6 +12,8 @@ import { Globe, HeartHandshake, ArrowRight } from "lucide-react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import { getMissions } from "@/services/get-missions";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export default async function MissionDiaryPreview() {
   const missionData = await getMissions();
 

@@ -16,6 +16,8 @@ import RichTextRenderer from "@/lib/richTextRenderer";
 import { getMissionDiaryEntryBySlug } from "@/services/get-mission-diary-entry-by-slug";
 import { getDailyMissionsMissionsCard } from "@/services/get-daily-missions-missions-card";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export async function generateStaticParams() {
   const entries = await getDailyMissionsMissionsCard();
   return (

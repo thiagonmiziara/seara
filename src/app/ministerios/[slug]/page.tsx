@@ -12,6 +12,8 @@ import RichTextRenderer from "@/lib/richTextRenderer";
 import { getMinistries } from "@/services/get-ministries";
 import { getMinistryDetailBySlug } from "@/services/get-ministry-detail-by-slug";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export async function generateStaticParams() {
   const ministries = await getMinistries();
   return ministries?.map((ministry) => ({

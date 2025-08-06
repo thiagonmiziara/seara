@@ -7,6 +7,8 @@ import { formatDate } from "@/lib/utils";
 import { getAllNews } from "@/services/get-all-news";
 import { getNewsItemBySlug } from "@/services/get-news-item-by-slug";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export async function generateStaticParams() {
   const news = await getAllNews();
   return news?.map((item) => ({

@@ -18,6 +18,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export default async function ContatoPage() {
   const contactInfo = await getContact();
 

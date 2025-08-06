@@ -4,6 +4,8 @@ import Link from "next/link";
 import { getMainBanner } from "@/services/get-main-banner";
 import RichTextRenderer from "@/lib/richTextRenderer";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export default async function MainBanner() {
   const bannerData = await getMainBanner();
 

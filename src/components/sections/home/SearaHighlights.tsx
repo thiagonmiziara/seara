@@ -8,6 +8,8 @@ import RichTextRenderer from "@/lib/richTextRenderer";
 import { getLatestNews } from "@/services/get-latest-news";
 import { getLatestSermon } from "@/services/get-latest-sermon";
 
+export const revalidate = 60; // Revalidate at most every 60 seconds
+
 export default async function SearaHighlights() {
   const latestSermon = await getLatestSermon();
   const latestNews = await getLatestNews();
