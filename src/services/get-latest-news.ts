@@ -4,7 +4,7 @@ import { INewsItem } from "@/types";
 export async function getLatestNews(): Promise<INewsItem | null> {
   const entries = await contentfulClient.getEntries({
     content_type: "noticias",
-    order: ["-fields.date"], // Order by date descending
+    order: ["-sys.createdAt"], // Order by date descending
     limit: 1, // Get only the latest one
   });
 
