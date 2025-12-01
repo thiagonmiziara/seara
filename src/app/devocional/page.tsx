@@ -19,9 +19,9 @@ export default function DevocionalPage() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    const fetchDevotionals = async () => {
+    const fetchDevotionals = async (isPolling = false) => {
       try {
-        setLoading(true);
+        if (!isPolling) setLoading(true);
         setError(false);
         const response = await fetch("/api/contentful?type=serviceDevotionals", {
           cache: 'no-store',
@@ -46,7 +46,7 @@ export default function DevocionalPage() {
     fetchDevotionals();
 
     // Poll for updates every 30 seconds
-    const interval = setInterval(fetchDevotionals, 30000);
+    const interval = setInterval(() => fetchDevotionals(true), 30000);
 
     // Cleanup interval on unmount
     return () => clearInterval(interval);
