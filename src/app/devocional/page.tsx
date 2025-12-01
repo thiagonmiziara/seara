@@ -23,7 +23,12 @@ export default function DevocionalPage() {
       try {
         setLoading(true);
         setError(false);
-        const response = await fetch("/api/contentful?type=serviceDevotionals");
+        const response = await fetch("/api/contentful?type=serviceDevotionals", {
+          cache: 'no-store',
+          headers: {
+            'Cache-Control': 'no-cache',
+          },
+        });
         if (!response.ok) {
           throw new Error("Failed to fetch devotionals");
         }
@@ -37,7 +42,14 @@ export default function DevocionalPage() {
       }
     };
 
+    // Fetch immediately on mount
     fetchDevotionals();
+
+    // Poll for updates every 30 seconds
+    const interval = setInterval(fetchDevotionals, 30000);
+
+    // Cleanup interval on unmount
+    return () => clearInterval(interval);
   }, []);
 
   const handleReadMore = (devotional: IDevotional) => {

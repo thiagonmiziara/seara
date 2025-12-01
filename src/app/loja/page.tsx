@@ -126,7 +126,7 @@ export default function LojaPage() {
             key={item.id}
             className='flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300'
           >
-            <CardHeader className='p-0 relative'>
+            <CardHeader className='p-0 relative overflow-hidden'>
               {item.imageUrls && item.imageUrls.length > 1 ? (
                 <Carousel className='w-full'>
                   <CarouselContent>
@@ -137,10 +137,9 @@ export default function LojaPage() {
                           alt={`${item.name} - Imagem ${index + 1}`}
                           width={350}
                           height={350}
-                          className='object-cover w-full h-64'
-                          data-ai-hint={`product merchandise store image ${
-                            index + 1
-                          }`}
+                          className='w-full h-auto'
+                          data-ai-hint={`product merchandise store image ${index + 1
+                            }`}
                         />
                       </CarouselItem>
                     ))}
@@ -157,7 +156,7 @@ export default function LojaPage() {
                   alt={item.name}
                   width={350}
                   height={350}
-                  className='object-cover w-full h-64'
+                  className='w-full h-auto'
                   data-ai-hint='product merchandise store'
                 />
               )}

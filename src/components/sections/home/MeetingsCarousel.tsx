@@ -32,13 +32,13 @@ export default async function MeetingsCarousel() {
             className='w-[300px] min-w-[300px] md:w-[350px] md:min-w-[350px] flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300'
           >
             {item.imageUrl && (
-              <CardHeader className='p-0 h-64'>
+              <CardHeader className='p-0 overflow-hidden'>
                 <Image
                   src={item.imageUrl}
                   alt={item.name}
                   width={400}
                   height={250}
-                  className='h-full w-full object-contain'
+                  className='w-full h-auto'
                   data-ai-hint='prayer meeting group'
                 />
               </CardHeader>

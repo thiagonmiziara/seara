@@ -5,8 +5,6 @@ import { getProducts } from "@/services/get-products";
 import { getServiceProviders } from "@/services/get-service-providers";
 import { NextResponse } from "next/server";
 
-export const revalidate = 60; // Revalidate at most every 60 seconds
-
 // Utility function to handle API errors
 function handleApiError(error: unknown, message: string, status: number = 500) {
   console.error(message, error);
@@ -16,7 +14,7 @@ function handleApiError(error: unknown, message: string, status: number = 500) {
 // Map request types to their corresponding functions and error messages
 const requestHandlers: Record<
   string,
-  { handler: () => Promise<any>; errorMessage: string }
+  { handler: () => Promise<any>; errorMessage: string; noCache?: boolean }
 > = {
   mainBanner: {
     handler: getMainBanner,
@@ -33,6 +31,7 @@ const requestHandlers: Record<
   serviceDevotionals: {
     handler: getDevotionals,
     errorMessage: "Error fetching service devotionals",
+    noCache: true, // Disable cache for devotionals
   },
   serviceDailyMissionsCard: {
     handler: getDailyMissionsMissionsCard,
@@ -48,12 +47,28 @@ export async function GET(request: Request) {
     return handleApiError(null, "Invalid request type", 400);
   }
 
-  const { handler, errorMessage } = requestHandlers[type];
+  const { handler, errorMessage, noCache } = requestHandlers[type];
 
   try {
     const data = await handler();
+
+    // Add no-cache headers for devotionals
+    if (noCache) {
+      return NextResponse.json(data, {
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+        },
+      });
+    }
+
     return NextResponse.json(data);
   } catch (error) {
     return handleApiError(error, errorMessage);
   }
 }
+
+// Disable caching for this route
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;

@@ -35,13 +35,13 @@ export default async function SearaNewsPage() {
             className='flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300'
           >
             {item.imageUrl && (
-              <CardHeader className='p-0'>
+              <CardHeader className='p-0 overflow-hidden'>
                 <Image
                   src={item.imageUrl}
                   alt={item.title}
                   width={400}
                   height={200}
-                  className='object-cover w-full h-48'
+                  className='w-full h-auto'
                 />
               </CardHeader>
             )}
