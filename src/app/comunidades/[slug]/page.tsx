@@ -47,7 +47,22 @@ export default async function CommunityDetailPage({
         <div className="flex flex-col gap-5 w-full max-w-lg">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">
             Venha fazer parte da nossa{" "}
-            <span className="text-primary">comunidade!</span>
+            <span className="text-primary inline-block relative">
+              comunidade!
+              <svg
+                className="absolute -bottom-2 left-0 w-full text-primary/40"
+                viewBox="0 0 200 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2 10C50 4 150 4 198 10"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
           </h1>
           <p className="text-muted-foreground text-lg mb-2">
             {getCommunityDetails.fullDescription}

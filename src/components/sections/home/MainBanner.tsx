@@ -9,7 +9,7 @@ export default function MainBanner() {
           src="/assets/searasedeigreja.png"
           alt="Sede da Igreja Seara de Deus"
           fill
-          className="object-cover opacity-20"
+          className="object-cover opacity-70"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/90 via-neutral-900/80 to-neutral-900" />
