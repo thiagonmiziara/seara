@@ -10,7 +10,7 @@ export async function getLatestSermon(): Promise<ILatestSermon | null> {
   if (!entries?.items?.length) return null;
 
   const item = entries.items[0]; // Get the full item to access sys.updatedAt
-  console.log("🚀 ~ getLatestSermon ~ item:", item);
+
   const imageAsset = item.fields.imageUrl as Asset;
 
   return {
@@ -18,8 +18,8 @@ export async function getLatestSermon(): Promise<ILatestSermon | null> {
     preacher: String(item.fields.preacher ?? ""),
     imageUrl: imageAsset?.fields?.file?.url
       ? `https:${imageAsset.fields.file.url}?v=${new Date(
-          item.sys.updatedAt
-        ).getTime()}`
+        item.sys.updatedAt
+      ).getTime()}`
       : "",
     podcastUrl: String(item.fields.podcastUrl ?? ""),
   };

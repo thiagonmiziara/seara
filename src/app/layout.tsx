@@ -30,20 +30,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='pt-BR' className='dark'>
+    <html lang="pt-BR" className="dark">
       <head>
-        <link rel='manifest' href='/manifest.json' />
-        <link rel='icon' href='/assets/logosemtexto.jpeg' />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/assets/logosemtexto.jpeg" />
       </head>
       <body
         className={cn(
           geistSans.variable,
           geistMono.variable,
-          "antialiased flex flex-col min-h-screen"
+          "antialiased flex flex-col min-h-screen overflow-x-hidden"
         )}
       >
         <Header />
-        <main className='flex-grow'>{children}</main>
+        <main className="flex-grow">{children}</main>
         <Footer />
         <FloatingContactButtons />
         <Toaster />

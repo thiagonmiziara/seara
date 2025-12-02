@@ -1,103 +1,123 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
-import Image from "next/image";
 import SectionWrapper from "@/components/shared/SectionWrapper";
-import { CalendarCheck, Users, MapPin, Info } from "lucide-react";
-import { getMeetings } from "@/services/get-meetings";
-import { getMeetingsDetailBySlug } from "@/services/get-meetings-detail-by-slug";
-import RichTextRenderer from "@/lib/richTextRenderer";
+import { CalendarCheck, Users, MapPin } from "lucide-react";
+import { meetings } from "@/data/meetings";
 
-export const revalidate = 60; // Revalidate at most every 60 seconds
-
-export async function generateStaticParams() {
-  const meetings = await getMeetings();
-  return meetings?.map((meeting) => ({
+export function generateStaticParams() {
+  return meetings.map((meeting) => ({
     slug: meeting.slug,
   }));
 }
 
-export default async function MeetingDetailPage({
+export default function MeetingDetailPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const meeting = await getMeetingsDetailBySlug(params.slug);
+  const meeting = meetings.find((m) => m.slug === params.slug);
 
   if (!meeting) {
     return (
-      <SectionWrapper title='Erro'>
-        <div className='text-center'>Culto ou encontro não encontrado.</div>
+      <SectionWrapper title="Erro">
+        <div className="text-center">Culto ou encontro não encontrado.</div>
       </SectionWrapper>
     );
   }
 
   return (
-    <SectionWrapper title={meeting.name}>
-      <Card className='overflow-hidden shadow-xl'>
-        <Image
-          src={meeting.imageUrl}
-          alt={meeting.name}
-          width={1200}
-          height={500}
-          className='w-full h-64 md:h-96 object-cover'
-          data-ai-hint='people worship praying'
-          priority
-        />
-        <CardHeader className='pt-6 flex flex-col md:flex-row items-start md:items-center'>
-          <Image
-            src={meeting.imageUrl}
-            alt={`${meeting.name} Logo`}
-            width={100}
-            height={100}
-            className='w-[100px] h-[100px] rounded-full object-cover overflow-hidden mr-0 md:mr-6 mb-4 md:mb-0'
-            data-ai-hint='logo event symbol'
-          />
-          <div>
-            <CardTitle className='text-3xl md:text-4xl text-primary'>
-              {meeting.name}
-            </CardTitle>
-            <CardDescription className='text-lg text-muted-foreground'>
-              {meeting.description}
-            </CardDescription>
-          </div>
-        </CardHeader>
-        <CardContent className='space-y-6 text-lg'>
-          <div>
-            <RichTextRenderer document={meeting.fullDescription} />
+    <div className="relative w-full min-h-[70vh] flex flex-col items-center justify-center">
+      {/* Conteúdo detalhado estilo Comunidades */}
+      <div className="bg-background flex justify-center items-center min-h-[calc(100vh-4rem)] px-2 w-full">
+        <div className="flex flex-col lg:flex-row gap-8 w-full max-w-5xl items-center justify-center">
+          {/* Imagem */}
+          <div className="flex justify-center items-center bg-black/0">
+            <img
+              src={meeting.imageUrl}
+              alt={meeting.name}
+              className="rounded-lg shadow-lg transition-all duration-300 w-full max-w-[400px] h-auto max-h-[720px] object-contain bg-background hover:ring-4 hover:ring-primary"
+              style={{ maxWidth: 400, maxHeight: 720 }}
+            />
           </div>
 
-          <div className='space-y-4 pt-4'>
-            <div className='flex items-start space-x-3 p-4 bg-card-foreground/5 rounded-lg'>
-              <CalendarCheck className='h-6 w-6 text-accent mt-1 shrink-0' />
-              <div>
-                <h3 className='font-semibold text-foreground'>Programação</h3>
-                <p className='text-muted-foreground'>{meeting.schedule}</p>
+          {/* Detalhes */}
+          <div className="flex flex-col gap-5 w-full max-w-lg">
+            <h1 className="text-3xl md:text-4xl font-bold mb-2">
+              {meeting.name}{" "}
+              <span className="text-primary inline-block relative">
+                detalhes{" "}
+                <svg
+                  className="absolute -bottom-2 left-0 w-full text-primary/40"
+                  viewBox="0 0 200 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2 10C50 4 150 4 198 10"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+            </h1>
+            <p className="text-muted-foreground text-lg mb-2">
+              {meeting.fullDescription || meeting.description}
+            </p>
+
+            {/* Endereço */}
+            <div className="bg-card rounded-lg p-5 border border-border transition-all duration-300 hover:ring-2 hover:ring-primary cursor-pointer">
+              <div className="flex items-start gap-3">
+                <MapPin className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="text-lg font-semibold mb-1">Endereço</h3>
+                  <p className="text-muted-foreground">{meeting.address}</p>
+                </div>
               </div>
             </div>
-            <div className='flex items-start space-x-3 p-4 bg-card-foreground/5 rounded-lg'>
-              <MapPin className='h-6 w-6 text-accent mt-1 shrink-0' />
-              <div>
-                <h3 className='font-semibold text-foreground'>Local</h3>
-                <p className='text-muted-foreground'>{meeting.location}</p>
+
+            {/* Horário */}
+            <div className="bg-card rounded-lg p-5 border border-border transition-all duration-300 hover:ring-2 hover:ring-primary cursor-pointer">
+              <div className="flex items-start gap-3">
+                <CalendarCheck className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="text-lg font-semibold mb-1">Horário</h3>
+                  <p className="text-muted-foreground">
+                    {meeting.meetingTimes}
+                  </p>
+                </div>
               </div>
             </div>
-            <div className='flex items-start space-x-3 p-4 bg-card-foreground/5 rounded-lg'>
-              <Users className='h-6 w-6 text-accent mt-1 shrink-0' />
-              <div>
-                <h3 className='font-semibold text-foreground'>
-                  Responsável / Contato
-                </h3>
-                <p className='text-muted-foreground'>{meeting.contactPerson}</p>
+
+            {/* Líder / Contato */}
+            {meeting.leader && (
+              <div className="bg-card rounded-lg p-5 border border-border transition-all duration-300 hover:ring-2 hover:ring-primary cursor-pointer">
+                <div className="flex items-start gap-3">
+                  <Users className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1">Líder</h3>
+                    <p className="text-muted-foreground">{meeting.leader}</p>
+                  </div>
+                </div>
               </div>
+            )}
+
+            {/* Google Maps */}
+            <div className="bg-card rounded-lg overflow-hidden border border-border mt-2">
+              <iframe
+                src={`https://www.google.com/maps?q=${encodeURIComponent(
+                  meeting.address || ""
+                )}&output=embed`}
+                width="100%"
+                height="180"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full"
+              ></iframe>
             </div>
           </div>
-        </CardContent>
-      </Card>
-    </SectionWrapper>
+        </div>
+      </div>
+    </div>
   );
 }

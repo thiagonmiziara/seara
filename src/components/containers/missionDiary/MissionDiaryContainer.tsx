@@ -41,18 +41,18 @@ export const MissionDiaryContainer: React.FC = () => {
 
   if (loading) {
     return (
-      <SectionWrapper title='Diário de Missões'>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+      <SectionWrapper title="Diário de Missões">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(3)].map((_, index) => (
-            <Card key={index} className='w-full shadow-lg'>
-              <Skeleton className='h-48 w-full rounded-t-lg' />
+            <Card key={index} className="w-full shadow-lg">
+              <Skeleton className="h-48 w-full rounded-t-lg" />
               <CardHeader>
-                <Skeleton className='h-6 w-3/4 mb-2' />
-                <Skeleton className='h-4 w-1/2' />
+                <Skeleton className="h-6 w-3/4 mb-2" />
+                <Skeleton className="h-4 w-1/2" />
               </CardHeader>
               <CardContent>
-                <Skeleton className='h-4 w-full mb-2' />
-                <Skeleton className='h-4 w-5/6' />
+                <Skeleton className="h-4 w-full mb-2" />
+                <Skeleton className="h-4 w-5/6" />
               </CardContent>
             </Card>
           ))}
@@ -63,9 +63,9 @@ export const MissionDiaryContainer: React.FC = () => {
 
   if (error) {
     return (
-      <SectionWrapper title='Diário de Missões'>
+      <SectionWrapper title="Diário de Missões">
         <EmptyState
-          title='Erro ao carregar diário de missões'
+          title="Erro ao carregar diário de missões"
           description={error}
         />
       </SectionWrapper>
@@ -77,12 +77,12 @@ export const MissionDiaryContainer: React.FC = () => {
   }
 
   return (
-    <SectionWrapper title='Diário de Missões'>
+    <SectionWrapper title="Diário de Missões">
       <HorizontalScrollContainer>
         {entries.map((entry) => (
           <Card
             key={entry.id}
-            className='w-[300px] min-w-[300px] md:w-[350px] md:min-w-[350px] flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 mr-4'
+            className="w-full max-w-[300px] md:max-w-[350px] flex-shrink-0 flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 mr-4"
           >
             <MissionDiaryEntryCard entry={entry} />
           </Card>

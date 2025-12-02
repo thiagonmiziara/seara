@@ -14,16 +14,17 @@ export function HorizontalScrollContainer({
   shouldCenter = false,
 }: HorizontalScrollContainerProps) {
   return (
-    <ScrollArea className={cn("w-full whitespace-nowrap", className)}>
+    <ScrollArea className={cn("w-full overflow-x-auto", className)}>
       <div
         className={cn(
-          "flex space-x-4 p-1 pb-4",
-          shouldCenter ? "w-full justify-center" : "w-max"
+          "inline-flex space-x-4 p-1 pb-4",
+          shouldCenter ? "w-full justify-center" : ""
         )}
+        style={{ WebkitOverflowScrolling: "touch" }}
       >
         {children}
       </div>
-      <ScrollBar orientation='horizontal' className='h-2.5' />
+      <ScrollBar orientation="horizontal" className="h-2.5" />
     </ScrollArea>
   );
 }
