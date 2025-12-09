@@ -13,6 +13,9 @@ const nextConfig: any = {
     ignoreBuildErrors: true,
   },
   // eslint removido: não é mais suportado no next.config.ts
+  experimental: {
+    turbopackUseSystemTlsCerts: true,
+  },
   images: {
     remotePatterns: [
       {

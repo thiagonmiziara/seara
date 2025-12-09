@@ -2,8 +2,11 @@ import { contentfulClient } from "@/lib/contentful";
 import { INewsItem } from "@/types";
 
 export async function getNewsItemBySlug(
-  slug: string
+  slug: string | undefined
 ): Promise<INewsItem | null> {
+  if (!slug || typeof slug !== "string") {
+    return null;
+  }
   const entries = await contentfulClient.getEntries({
     content_type: "noticias",
     "fields.title[match]": slug.replace(/-/g, " "),
@@ -24,6 +27,6 @@ export async function getNewsItemBySlug(
       ? `https:${item.fields.image.fields.file.url}`
       : "",
     date: item.fields.date,
-    slug: item.fields.title.toLowerCase().replace(/\s+/g, "-"),
+    slug: item.fields.title?.toLowerCase().replace(/\s+/g, "-") || "",
   };
 }
