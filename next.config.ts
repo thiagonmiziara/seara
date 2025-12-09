@@ -12,9 +12,7 @@ const nextConfig: any = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  // eslint removido: não é mais suportado no next.config.ts
   images: {
     remotePatterns: [
       {
@@ -37,6 +35,7 @@ const nextConfig: any = {
       },
     ],
   },
+  turbopack: {},
 };
 
 export default withPwa(nextConfig);

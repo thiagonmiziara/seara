@@ -1,4 +1,4 @@
-import { ChevronDown, Sparkles } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 export function HeroSection() {
   return (
