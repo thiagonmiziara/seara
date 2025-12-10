@@ -1,4 +1,5 @@
 import { BookOpen, Music, Users2, Flame, Calendar } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 const activities = [
   {
@@ -48,63 +49,36 @@ export function ActivitiesSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {activities.map((activity, index) => (
-            <div
+            <Card
               key={index}
-              className={`group relative p-8 rounded-3xl border transition-all duration-300 hover:scale-[1.02] ${
-                activity.highlight
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-card border-border hover:border-primary/50"
-              }`}
+              className={`flex items-center gap-4 bg-card rounded-xl p-5 border transition-all duration-300 hover:scale-[1.02] hover:border-primary/60 border-border`}
             >
-              <div className="flex items-start justify-between mb-6">
+              <div className="flex-shrink-0">
+                <activity.icon
+                  className={`h-6 w-6 ${
+                    activity.highlight ? "text-primary" : "text-primary"
+                  }`}
+                />
+              </div>
+              <div className="flex-1">
                 <div
-                  className={`p-4 rounded-2xl ${
-                    activity.highlight
-                      ? "bg-primary-foreground/20"
-                      : "bg-primary/10"
+                  className={`font-bold text-lg ${
+                    activity.highlight ? "text-primary" : "text-foreground"
                   }`}
                 >
-                  <activity.icon
-                    className={`w-8 h-8 ${
-                      activity.highlight
-                        ? "text-primary-foreground"
-                        : "text-primary"
-                    }`}
-                  />
+                  {activity.title}
                 </div>
-                <div
-                  className={`flex items-center gap-2 text-sm ${
-                    activity.highlight
-                      ? "text-primary-foreground/80"
-                      : "text-muted-foreground"
-                  }`}
-                >
+                <div className={`text-muted-foreground text-sm mb-1`}>
+                  {activity.description}
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                   <Calendar className="w-4 h-4" />
                   <span>{activity.schedule}</span>
                 </div>
               </div>
-
-              <h3
-                className={`text-2xl font-bold mb-2 ${
-                  activity.highlight
-                    ? "text-primary-foreground"
-                    : "text-foreground"
-                }`}
-              >
-                {activity.title}
-              </h3>
-              <p
-                className={`text-base ${
-                  activity.highlight
-                    ? "text-primary-foreground/80"
-                    : "text-muted-foreground"
-                }`}
-              >
-                {activity.description}
-              </p>
-            </div>
+            </Card>
           ))}
         </div>
       </div>

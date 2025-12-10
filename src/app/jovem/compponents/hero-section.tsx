@@ -36,11 +36,13 @@ export function HeroSection() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce">
-        <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground/60">
-          Descubra
-        </span>
-        <ChevronDown className="h-6 w-6 text-white/50" />
+      <div className="absolute bottom-8 w-full flex justify-center animate-bounce">
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-xs font-medium uppercase tracking-widest text-white/50">
+            Descubra
+          </span>
+          <ChevronDown className="h-6 w-6 text-white/50" />
+        </div>
       </div>
     </section>
   );

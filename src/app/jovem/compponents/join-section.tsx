@@ -38,20 +38,14 @@ export function JoinSection() {
                 <span>searajovem@teste.com</span>
               </div>
             </div>
-
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full font-semibold group"
-            >
-              Entre em Contato
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
           </div>
 
           {/* Right Content - Social Links */}
           <div className="grid grid-cols-2 gap-4">
             <a
-              href="#"
+              href="https://www.instagram.com/searajovem/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group p-8 bg-background rounded-3xl border border-border hover:border-primary/50 transition-all duration-300 hover:scale-105"
             >
               <Instagram className="w-10 h-10 text-primary mb-4" />
@@ -72,22 +66,31 @@ export function JoinSection() {
               <p className="text-sm text-muted-foreground">Grupo da Galera</p>
             </a>
 
-            <a
-              href="#"
-              className="group col-span-2 p-8 bg-primary rounded-3xl transition-all duration-300 hover:scale-[1.02]"
-            >
-              <div className="flex items-center justify-between">
+            <div className="col-span-2 bg-background rounded-3xl border border-border overflow-hidden shadow-xl p-0">
+              <div className="flex items-center gap-3 px-8 pt-8 pb-4">
+                <MapPinIcon className="w-8 h-8 text-primary" />
                 <div>
-                  <h3 className="text-2xl font-bold text-primary-foreground mb-1">
-                    Venha nos visitar!
+                  <h3 className="text-xl font-bold text-foreground mb-1">
+                    Igreja Seara de Deus - Sede
                   </h3>
-                  <p className="text-primary-foreground/80">
-                    Domingos às 18:00 - Culto de Jovens
+                  <p className="text-muted-foreground text-sm">
+                    Av. Mato Grosso, 694 - Nossa Sra. Aparecida, Uberlândia -
+                    MG, 38400-724
                   </p>
                 </div>
-                <ArrowRight className="w-8 h-8 text-primary-foreground" />
               </div>
-            </a>
+              <div className="w-full">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3736.859182694944!2d-48.2742206!3d-18.9047337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94a445fb95e87dbd%3A0xf82a1239ff0bffa8!2sIgreja%20Seara%20de%20Deus%20-%20Sede!5e0!3m2!1spt-BR!2sbr!4v1717780782999!5m2!1spt-BR!2sbr"
+                  height="180"
+                  width="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
           </div>
         </div>
       </div>
