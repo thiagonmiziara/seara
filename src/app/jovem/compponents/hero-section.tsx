@@ -2,7 +2,7 @@ import { ChevronDown } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative min-h-[70vh] flex flex-col items-center justify-center overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 text-[20rem] font-black text-primary leading-none select-none">
@@ -35,8 +35,8 @@ export function HeroSection() {
         </p>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 w-full flex justify-center animate-bounce">
+      {/* Scroll Indicator - apenas desktop */}
+      <div className="hidden md:flex absolute bottom-8 w-full justify-center animate-bounce">
         <div className="flex flex-col items-center gap-2">
           <span className="text-xs font-medium uppercase tracking-widest text-white/50">
             Descubra
