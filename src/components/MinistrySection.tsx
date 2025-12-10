@@ -58,30 +58,30 @@ export default function MinistrySection({ data, reverse }: IMinistrySection) {
             reverse ? "md:col-start-1 md:row-start-1" : ""
           }`}
         >
-          <div className='mb-2 flex items-center text-sm font-semibold uppercase tracking-wide text-primary justify-center md:justify-start'>
-            <Users className='mr-2 h-5 w-5' />
+          <div className="mb-2 flex items-center text-sm font-semibold uppercase tracking-wide text-primary justify-center md:justify-start">
+            <Users className="mr-2 h-5 w-5" />
             Ministério
           </div>
-          <h2 className='text-3xl font-bold text-primary mb-4 text-center md:text-left'>
+          <h2 className="text-3xl font-bold text-primary mb-4 text-center md:text-left">
             {data.name}
           </h2>
-          <p className='text-lg text-muted-foreground mb-6 text-center md:text-left'>
+          <p className="text-lg text-muted-foreground mb-6 text-center md:text-left">
             {data.description}
           </p>
-          <Link href={`/ministerios/${data.slug}`}>
-            <Button size='lg' className='mt-4 w-full md:w-auto'>
+          <Link href={`/${data.slug}`}>
+            <Button size="lg" className="mt-4 w-full md:w-auto">
               Saiba Mais
             </Button>
           </Link>
         </div>
 
-        <div className='hidden'>
+        <div className="hidden">
           <Image
             src={data.imageUrl}
             alt={`${data.name} Logo`}
             width={1}
             height={1}
-            data-ai-hint='logo abstract design'
+            data-ai-hint="logo abstract design"
           />
         </div>
       </div>

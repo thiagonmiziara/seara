@@ -1,113 +1,148 @@
-import SectionWrapper from "@/components/shared/SectionWrapper";
-import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { Smile } from "lucide-react"; // Palette for arts/crafts
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import RichTextRenderer from "@/lib/richTextRenderer";
-import { getKidsDetails } from "@/services/get-kids-details";
-
-export const revalidate = 60; // Revalidate at most every 60 seconds
+import { HeroSection } from "@/components/sections/HeroSection";
+import { MissionSection } from "@/components/sections/MissionSection";
+import { ActivitiesSection } from "@/components/sections/ActivitiesSection";
+import { JoinSection } from "@/components/sections/JoinSection";
+import { Heart, Users, Lightbulb, Mail, Instagram } from "lucide-react";
 
 export default async function KidsPage() {
-  const kidsData = await getKidsDetails();
+  const missionValues = [
+    {
+      icon: Lightbulb,
+      title: "Aprendizado",
+      description:
+        "Ensinando as crianças os caminhos de Deus desde pequenas com alegria e diversão.",
+    },
+    {
+      icon: Heart,
+      title: "Amor",
+      description: "Cada criança é valiosa e especial no Reino de Deus.",
+    },
+    {
+      icon: Users,
+      title: "Comunidade",
+      description:
+        "Construindo uma comunidade amorosa onde as crianças crescem juntas.",
+    },
+  ];
 
-  if (!kidsData) {
-    return null;
-  }
+  const activities = [
+    {
+      icon: Heart,
+      title: "Creche e Berçário",
+      description: "Para bebês e crianças pequenas",
+      schedule: "Domingos",
+      highlight: false,
+    },
+    {
+      icon: Heart,
+      title: "Pré-escola",
+      description: "Atividades educativas e lúdicas",
+      schedule: "Domingos",
+      highlight: false,
+    },
+    {
+      icon: Heart,
+      title: "Fundamental 1",
+      description: "Ensino cristão com diversão",
+      schedule: "Domingos",
+      highlight: true,
+    },
+    {
+      icon: Heart,
+      title: "Fundamental 2",
+      description: "Desenvolvimento de liderança",
+      schedule: "Domingos",
+      highlight: false,
+    },
+  ];
+
+  const socialLinks = [
+    {
+      icon: <Instagram className="w-10 h-10 text-primary mb-4" />,
+      title: "Instagram",
+      description: "Siga-nos no Instagram",
+      href: `https://www.instagram.com/searadeus/`,
+    },
+    {
+      icon: <Mail className="w-10 h-10 text-primary mb-4" />,
+      title: "Email",
+      description: "Entre em contato conosco por email",
+      href: `mailto:contato@searadeus.com`,
+    },
+  ];
+
+  const locationIcon = (
+    <div className="p-3 bg-primary/10 rounded-xl">
+      <Users className="w-6 h-6 text-primary" />
+    </div>
+  );
 
   return (
-    <SectionWrapper
-      title={kidsData.name}
-      subtitle='Ensinando o caminho em que devem andar desde pequenos.'
-    >
-      <Card className='overflow-hidden shadow-xl'>
-        <Image
-          src={kidsData.imageUrl}
-          alt={`Banner ${kidsData.name}`}
-          width={1200}
-          height={500}
-          className='w-full h-64 md:h-96 object-cover'
-          data-ai-hint='children playing learning church'
-          priority
-        />
-        <CardHeader className='pt-6 text-center'>
-          <Image
-            src={kidsData.imageUrl}
-            alt={`Logo ${kidsData.name}`}
-            width={120}
-            height={120}
-            className='rounded-full mx-auto mb-4 border-4 border-primary shadow-lg'
-            data-ai-hint='logo kids ministry'
-          />
-          <CardTitle className='text-3xl md:text-4xl text-primary'>
-            {kidsData.name}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className='space-y-8 px-4 md:px-8 py-8'>
-          <div className='text-xl text-center text-muted-foreground leading-relaxed max-w-3xl mx-auto'>
-            <RichTextRenderer document={kidsData.description} />
-          </div>
+    <main className="min-h-screen bg-background">
+      <HeroSection
+        backgroundLetters={["K", "I"]}
+        title={
+          <span>
+            <span className="text-primary">KIDS</span>
+          </span>
+        }
+        description={
+          <span>
+            Ensinando o caminho desde pequenos{" "}
+            <span className="text-primary font-semibold">
+              de forma divertida
+            </span>
+          </span>
+        }
+      />
 
-          <div className='p-6 bg-card-foreground/5 rounded-lg'>
-            <h3 className='text-2xl font-semibold mb-4 text-foreground text-center'>
-              Nossa Visão
-            </h3>
-            <div className='text-lg text-center text-muted-foreground'>
-              <RichTextRenderer document={kidsData.vision} />
-            </div>
-          </div>
+      <MissionSection
+        subtitle="Nossa Missão Kids"
+        title={
+          <span>
+            Formando crianças <span className="text-primary">sábias</span> em
+            Deus
+          </span>
+        }
+        description="O Ministério de Crianças da Seara de Deus tem como missão formar cidadãos do Reino através de uma educação cristã que desenvolve caráter, fé e propósito. Nos comprometemos em criar um ambiente seguro, amoroso e divertido onde cada criança descobre seu valor em Jesus e aprende a viver de acordo com os princípios da Palavra de Deus. Desejamos ser parceiros das famílias, plantando sementes de fé que germinarão em vidas transformadas e dedicadas ao Senhor."
+        values={missionValues}
+      />
 
-          <div>
-            <h3 className='text-2xl font-semibold mb-6 text-foreground text-center'>
-              Nossas Turmas
-            </h3>
-            <div className='grid md:grid-cols-2 gap-6'>
-              {kidsData.ageGroups.map((group) => {
-                return (
-                  <div
-                    key={group.name}
-                    className='flex items-start space-x-4 p-4 bg-card rounded-lg shadow'
-                  >
-                    <Smile className='h-8 w-8 text-accent mt-1 shrink-0' />
-                    <div>
-                      <h4 className='font-semibold text-lg text-foreground'>
-                        {group.name}
-                      </h4>
-                      <p className='text-muted-foreground text-sm'>
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                          {group.description}
-                        </ReactMarkdown>
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+      <ActivitiesSection
+        subtitle="Nossas Turmas"
+        title="Faixas Etárias & <span className='text-primary'>Atividades</span>"
+        description="Atividades adequadas para cada idade, sempre divertidas e educativas."
+        activities={activities}
+      />
 
-          <div className='text-center mt-10 p-6 border-t border-border'>
-            <h3 className='text-2xl font-semibold mb-4 text-foreground'>
-              Traga Seus Filhos!
-            </h3>
-            <p className='text-muted-foreground mb-2'>
-              Líder Responsável: {kidsData.leader}
-            </p>
-            <p className='text-muted-foreground mb-4'>
-              Para mais informações: {kidsData.contact}
-            </p>
-            <Button
-              size='lg'
-              asChild
-              className='bg-primary hover:bg-primary/90 text-primary-foreground'
-            >
-              <Link href='/contato'>Fale Conosco</Link>
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-    </SectionWrapper>
+      <JoinSection
+        subtitle="Participe"
+        title={
+          <span>
+            Traga Seus <span className="text-primary">Filhos!</span>
+          </span>
+        }
+        description={"Um lugar seguro e amoroso para crianças crescerem na fé."}
+        infoItems={[
+          {
+            icon: <Users className="w-5 h-5 text-primary" />,
+            label: `Líder: Pastor`,
+          },
+          {
+            icon: <Mail className="w-5 h-5 text-primary" />,
+            label: "contato@searadeus.com",
+          },
+        ]}
+        socialLinks={socialLinks}
+        location={{
+          icon: locationIcon,
+          title: "Igreja Seara de Deus - Sede",
+          address:
+            "Av. Mato Grosso, 694 - Nossa Sra. Aparecida, Uberlândia - MG, 38400-724",
+          mapEmbedUrl:
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3736.859182694944!2d-48.2742206!3d-18.9047337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94a445fb95e87dbd%3A0xf82a1239ff0bffa8!2sIgreja%20Seara%20de%20Deus%20-%20Sede!5e0!3m2!1spt-BR!2sbr!4v1717780782999!5m2!1spt-BR!2sbr",
+        }}
+      />
+    </main>
   );
 }
