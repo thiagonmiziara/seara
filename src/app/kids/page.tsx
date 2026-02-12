@@ -86,6 +86,8 @@ export default async function KidsPage() {
             <span className="text-primary">KIDS</span>
           </span>
         }
+        showBackButton={true}
+        backButtonText="Página Inicial"
         description={
           <span>
             Ensinando o caminho desde pequenos{" "}

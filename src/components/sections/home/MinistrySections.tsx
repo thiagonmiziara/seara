@@ -1,24 +1,18 @@
-import MinistrySection from "@/components/MinistrySection";
-import { getMinistries } from "@/services/get-ministries";
+import MinistrySection from '@/components/MinistrySection';
+import SectionWrapper from '@/components/shared/SectionWrapper';
+import { ministriesData } from '@/data/ministries';
 
-export const revalidate = 60; // Revalidate at most every 60 seconds
-
-export default async function MinistrySections() {
-  const ministries = await getMinistries();
-
-  if (!ministries) {
-    return null;
-  }
-
+export default function MinistrySections() {
   return (
-    <>
-      {ministries.map((item, index) => (
-        <MinistrySection
-          key={item.slug + index}
-          data={item}
-          reverse={index % 2 === 1}
-        />
-      ))}
-    </>
+    <SectionWrapper
+      title='Ministérios'
+      subtitle='Conheca os ministerios e encontre um lugar para crescer e servir.'
+    >
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+        {ministriesData.map((item, index) => (
+          <MinistrySection key={item.slug + index} data={item} />
+        ))}
+      </div>
+    </SectionWrapper>
   );
 }

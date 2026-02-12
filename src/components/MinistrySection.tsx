@@ -1,11 +1,10 @@
-"use client";
+'use client';
 
-import { Users } from "lucide-react";
-import { useState, useEffect } from "react";
-import SectionWrapper from "./shared/SectionWrapper";
-import Image from "next/image";
-import { Button } from "./ui/button";
-import Link from "next/link";
+import { Users } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { Button } from './ui/button';
+import Link from 'next/link';
 
 interface IMinistrySection {
   data: {
@@ -14,77 +13,63 @@ interface IMinistrySection {
     imageUrl: string;
     description: string;
   };
-  reverse: boolean;
 }
 
-export default function MinistrySection({ data, reverse }: IMinistrySection) {
+export default function MinistrySection({ data }: IMinistrySection) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  const animationClass = reverse
-    ? "animate-slide-in-right"
-    : "animate-slide-in-left";
-
   return (
-    <SectionWrapper>
-      <div
-        className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-center ${
-          reverse ? "md:grid-cols-2-reversed" : ""
-        } ${isVisible ? animationClass : "opacity-0"}`}
-      >
-        <div
-          className={`relative w-full h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-lg ${
-            reverse ? "md:col-start-2" : ""
-          }`}
-        >
+    <div
+      className={`group relative w-full overflow-hidden rounded-2xl bg-card/40 backdrop-blur-md border border-border/50 hover:border-primary/50 transition-all duration-500 shadow-2xl ${isVisible ? 'animate-fade-in-down' : 'opacity-0'}`}
+    >
+      <div className='absolute -right-4 -top-8 text-[10rem] md:text-[12rem] font-black text-primary/5 select-none transition-all duration-700 group-hover:text-primary/10 group-hover:-translate-y-4'>
+        {data.name.charAt(0)}
+      </div>
+
+      <div className='relative h-32 flex items-center justify-center p-2 z-10'>
+        <div className='w-full h-full flex items-center justify-center'>
           <Image
             src={data.imageUrl}
             alt={data.name}
-            fill
-            style={{ objectFit: "cover" }}
+            width={120}
+            height={120}
+            className='object-contain animate-floating'
             data-ai-hint={
-              data.slug === "jovem"
-                ? "youth group teenagers"
-                : "children kids playing"
+              data.slug === 'jovem'
+                ? 'youth group teenagers'
+                : 'children kids playing'
             }
-          />
-        </div>
-
-        <div
-          className={`flex flex-col justify-center ${
-            reverse ? "md:col-start-1 md:row-start-1" : ""
-          }`}
-        >
-          <div className="mb-2 flex items-center text-sm font-semibold uppercase tracking-wide text-primary justify-center md:justify-start">
-            <Users className="mr-2 h-5 w-5" />
-            Ministério
-          </div>
-          <h2 className="text-3xl font-bold text-primary mb-4 text-center md:text-left">
-            {data.name}
-          </h2>
-          <p className="text-lg text-muted-foreground mb-6 text-center md:text-left">
-            {data.description}
-          </p>
-          <Link href={`/${data.slug}`}>
-            <Button size="lg" className="mt-4 w-full md:w-auto">
-              Saiba Mais
-            </Button>
-          </Link>
-        </div>
-
-        <div className="hidden">
-          <Image
-            src={data.imageUrl}
-            alt={`${data.name} Logo`}
-            width={1}
-            height={1}
-            data-ai-hint="logo abstract design"
+            priority
           />
         </div>
       </div>
-    </SectionWrapper>
+
+      <div className='relative flex-grow p-5 flex flex-col justify-end z-10'>
+        <div className='mb-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 w-fit'>
+          <Users className='h-3 w-3 text-primary' />
+          <span className='text-[10px] font-bold uppercase tracking-widest text-primary/80'>
+            Ministério
+          </span>
+        </div>
+        <h2 className='text-xl font-black mb-2 text-foreground tracking-tight group-hover:text-primary transition-colors duration-300'>
+          {data.name}
+        </h2>
+        <p className='text-xs text-muted-foreground leading-tight line-clamp-2 mb-4'>
+          {data.description}
+        </p>
+        <Link href={`/${data.slug}`} className='mt-auto'>
+          <Button
+            size='lg'
+            className='w-full bg-primary/10 hover:bg-primary text-primary hover:text-primary-foreground border-primary/20 hover:border-primary transition-all duration-500 h-10 rounded-lg font-bold text-sm'
+          >
+            Saiba Mais
+          </Button>
+        </Link>
+      </div>
+    </div>
   );
 }

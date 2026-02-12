@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail, Brain, GraduationCap } from 'lucide-react';
 const psychologistData = {
   name: 'Lorena Fernandes dos Santos',
   title: 'Psicóloga Clínica',
-  imageUrl: '/assets/psicologa.jpg',
+  imageUrl: '/assets/lorena.jpg',
   bio: 'Psicóloga Clínica, graduada em Psicologia, com Pós-Graduação em Terapia Cognitivo-Comportamental e em Gestão de Pessoas. Possui Curso de Formação em Terapia do Esquema, abordagem que amplia a TCC ao aprofundar a compreensão dos padrões emocionais, cognitivos e comportamentais desenvolvidos ao longo da vida.',
   services:
     'Atua na psicoterapia com foco na Terapia Cognitivo-Comportamental (TCC) e na Terapia do Esquema, auxiliando o paciente na identificação de esquemas iniciais desadaptativos, modos de funcionamento emocional e estratégias de enfrentamento que impactam suas emoções, relações e comportamentos. O processo terapêutico visa o fortalecimento do adulto saudável, o desenvolvimento do autoconhecimento e a construção de padrões emocionais mais saudáveis, promovendo mudanças duradouras e maior bem-estar psicológico.',

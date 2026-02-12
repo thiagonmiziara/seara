@@ -1,126 +1,160 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
-import Image from "next/image";
-import SectionWrapper from "@/components/shared/SectionWrapper";
-import { BookOpen, Calendar, GraduationCap, Users } from "lucide-react";
+import { notFound } from "next/navigation";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { MissionSection } from "@/components/sections/MissionSection";
+import { ActivitiesSection } from "@/components/sections/ActivitiesSection";
+import { JoinSection } from "@/components/sections/JoinSection";
+import { schoolsData } from "@/data/schools";
 import RichTextRenderer from "@/lib/richTextRenderer";
-import { getSchoolDetailBySlug } from "@/services/get-school-detail-by-slug";
-import { getAllSchools } from "@/services/get-all-schools";
-
-export const revalidate = 60; // Revalidate at most every 60 seconds
+import {
+    BookOpen,
+    Users,
+    Target,
+    Clock,
+    GraduationCap,
+    Shield,
+    Instagram,
+    MessageCircle,
+    Mail,
+    Users2,
+} from "lucide-react";
 
 export async function generateStaticParams() {
-  const schools = await getAllSchools();
-  return schools?.map((school) => ({
-    slug: school.slug,
-  }));
+    return schoolsData.map((school) => ({
+        slug: school.slug,
+    }));
 }
 
-export default async function SchoolDetailPage({
-  params: { slug },
+export default async function SchoolPage({
+    params,
 }: {
-  params: { slug: string };
+    params: Promise<{ slug: string }>;
 }) {
-  const school = await getSchoolDetailBySlug(slug);
+    const { slug } = await params;
+    const school = schoolsData.find((s) => s.slug === slug);
 
-  if (!school) {
-    return (
-      <SectionWrapper title='Error'>
-        <div className='text-center'>School or course not found.</div>
-      </SectionWrapper>
+    if (!school) {
+        notFound();
+    }
+
+    // Map curriculum to MissionSection values
+    const missionValues = school.curriculum.slice(0, 3).map((item, idx) => ({
+        icon: [Target, Shield, BookOpen][idx % 3],
+        title: item,
+        description: `Aprofundamento e aplicação prática dos princípios de ${item.toLowerCase()}.`,
+    }));
+
+    // Map more info to ActivitiesSection
+    const activities = [
+        {
+            icon: Clock,
+            title: "Duração",
+            description: `Programa intensivo com duração total de ${school.duration}.`,
+            schedule: "Consulte horários",
+            highlight: true,
+        },
+        {
+            icon: Users,
+            title: "Público Alvo",
+            description: school.targetAudience,
+            schedule: "Inscrições abertas",
+            highlight: false,
+        },
+        {
+            icon: GraduationCap,
+            title: "Certificação",
+            description: "Certificado de conclusão reconhecido pela Igreja Seara de Deus.",
+            schedule: "Ao final do curso",
+            highlight: false,
+        },
+    ];
+
+    const socialLinks = [
+        {
+            icon: <Instagram className="w-10 h-10 text-primary mb-4" />,
+            title: "Instagram",
+            description: "@searadeus",
+            href: "https://www.instagram.com/searadeus",
+        },
+        {
+            icon: <MessageCircle className="w-10 h-10 text-primary mb-4" />,
+            title: "WhatsApp",
+            description: "Informações e Inscrições",
+            href: "#",
+        },
+    ];
+
+    const locationIcon = (
+        <div className="p-3 bg-primary/10 rounded-xl">
+            <GraduationCap className="w-6 h-6 text-primary" />
+        </div>
     );
-  }
 
-  return (
-    <SectionWrapper title={school.name}>
-      <Card className='overflow-hidden shadow-xl'>
-        <Image
-          src={school.imageUrl}
-          alt={school.name}
-          width={1200}
-          height={500}
-          className='w-full h-64 md:h-96 object-cover'
-          data-ai-hint='people worship praying'
-          priority
-        />
+    return (
+        <main className="min-h-screen bg-background text-foreground">
+            <HeroSection
+                backgroundLetters={
+                    school.name === "Escola de Líderes" ? ["E", "L"] : ["F", "B"]
+                }
+                title={<span className="text-primary">{school.name.toUpperCase()}</span>}
+                showBackButton={true}
+                backButtonText="Página Inicial"
+                description={
+                    <div className="text-balance">
+                        <RichTextRenderer document={school.description} />
+                    </div>
+                }
+            />
 
-        <CardHeader className='pt-6 flex flex-col md:flex-row items-start md:items-center'>
-          <Image
-            src={school.imageUrl}
-            alt={`${school.name} Logo`}
-            width={100}
-            height={100}
-            className='w-[100px] h-[100px] rounded-full object-cover overflow-hidden mr-0 md:mr-6 mb-4 md:mb-0'
-            data-ai-hint='logo education symbol'
-          />
-          <div>
-            <CardTitle className='text-3xl md:text-4xl text-primary'>
-              {school.name}
-            </CardTitle>
-            <CardDescription className='text-lg text-muted-foreground'>
-              {school.description}
-            </CardDescription>
-          </div>
-        </CardHeader>
-        <CardContent className='space-y-6 text-lg'>
-          <div className='space-y-4 pt-4'>
-            {school.fullDescription && (
-              <div className='rounded-xl border bg-card-foreground/5 p-4 shadow-sm'>
-                <h3 className='font-semibold text-foreground flex gap-3 mb-2'>
-                  <GraduationCap className='h-6 w-6 text-accent mt-1 shrink-0' />
-                  Descrição
-                </h3>
-                <div className='prose prose-invert max-w-none break-words whitespace-pre-line text-sm leading-relaxed'>
-                  <RichTextRenderer document={school.fullDescription} />
-                </div>
-              </div>
-            )}
+            <MissionSection
+                subtitle="Sobre a Escola"
+                title={
+                    <span>
+                        {school.name} <span className="text-primary">Seara de Deus</span>
+                    </span>
+                }
+                description={
+                    <div className="text-balance">
+                        <RichTextRenderer document={school.fullDescription} />
+                    </div>
+                }
+                values={missionValues}
+            />
 
-            {school.curriculum && school.curriculum.length > 0 && (
-              <div className='flex items-start space-x-3 p-4 bg-card-foreground/5 rounded-lg'>
-                <BookOpen className='h-6 w-6 text-accent mt-1 shrink-0' />
-                <div>
-                  <h3 className='font-semibold text-foreground'>
-                    Grade curricular
-                  </h3>
-                  <ul className='list-disc list-inside text-muted-foreground'>
-                    {school.curriculum.map((item: string) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            )}
-            {school.duration && (
-              <div className='flex items-start space-x-3 p-4 bg-card-foreground/5 rounded-lg'>
-                <Calendar className='h-6 w-6 text-accent mt-1 shrink-0' />
-                <div>
-                  <h3 className='font-semibold text-foreground'>Duração</h3>
-                  <p className='text-muted-foreground'>{school.duration}</p>
-                </div>
-              </div>
-            )}
-            {school.targetAudience && (
-              <div className='flex items-start space-x-3 p-4 bg-card-foreground/5 rounded-lg'>
-                <Users className='h-6 w-6 text-accent mt-1 shrink-0' />
-                <div>
-                  <h3 className='font-semibold text-foreground'>
-                    Publico alvo
-                  </h3>
-                  <p className='text-muted-foreground'>
-                    {school.targetAudience}
-                  </p>
-                </div>
-              </div>
-            )}
-          </div>
-        </CardContent>
-      </Card>
-    </SectionWrapper>
-  );
+            <ActivitiesSection
+                subtitle="Detalhes do Curso"
+                title="Informações & <span className='text-primary'>Cronograma</span>"
+                description="Tudo o que você precisa saber para iniciar sua jornada de aprendizado."
+                activities={activities}
+            />
+
+            <JoinSection
+                subtitle="Inscrições"
+                title={
+                    <span>
+                        Invista no seu <span className="text-primary">Chamado!</span>
+                    </span>
+                }
+                description="Não perca a oportunidade de crescer e se capacitar. Nossas escolas estão com inscrições abertas para novas turmas."
+                infoItems={[
+                    {
+                        icon: <Users2 className="w-5 h-5 text-primary" />,
+                        label: "Vagas Limitadas",
+                    },
+                    {
+                        icon: <Mail className="w-5 h-5 text-primary" />,
+                        label: "escolas@searadeus.com",
+                    },
+                ]}
+                socialLinks={socialLinks}
+                location={{
+                    icon: locationIcon,
+                    title: "Igreja Seara de Deus - Sede",
+                    address:
+                        "Av. Mato Grosso, 694 - Nossa Sra. Aparecida, Uberlândia - MG, 38400-724",
+                    mapEmbedUrl:
+                        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3736.859182694944!2d-48.2742206!3d-18.9047337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94a445fb95e87dbd%3A0xf82a1239ff0bffa8!2sIgreja%20Seara%20de%20Deus%20-%20Sede!5e0!3m2!1spt-BR!2sbr!4v1717780782999!5m2!1spt-BR!2sbr",
+                }}
+            />
+        </main>
+    );
 }

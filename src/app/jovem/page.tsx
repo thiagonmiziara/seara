@@ -1,4 +1,3 @@
-import { getYoungDetails } from "@/services/get-young-details";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { MissionSection } from "@/components/sections/MissionSection";
 import { ActivitiesSection } from "@/components/sections/ActivitiesSection";
@@ -18,13 +17,7 @@ import {
 
 export const revalidate = 60;
 
-export default async function JovemPage() {
-  const youngData = await getYoungDetails();
-
-  if (!youngData) {
-    return null;
-  }
-
+export default function JovemPage() {
   const activities = [
     {
       icon: BookOpen,
@@ -103,6 +96,8 @@ export default async function JovemPage() {
       <HeroSection
         backgroundLetters={["J", "V"]}
         title={<span className="text-primary">JOVEM</span>}
+        showBackButton={true}
+        backButtonText="Página Inicial"
         description={
           <span>
             Conectando, Equipando e Enviando a{" "}

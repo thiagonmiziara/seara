@@ -6,7 +6,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import { getContact } from "@/services/get-contact";
+import { contactData } from "@/data/contact";
 import {
   Phone,
   Mail,
@@ -18,14 +18,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-export const revalidate = 60; // Revalidate at most every 60 seconds
-
-export default async function ContatoPage() {
-  const contactInfo = await getContact();
-
-  if (!contactInfo) {
-    return null;
-  }
+export default function ContatoPage() {
+  const contactInfo = contactData;
 
   return (
     <SectionWrapper

@@ -1,5 +1,6 @@
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowLeft } from "lucide-react";
 import React from "react";
+import Link from "next/link";
 
 interface HeroSectionProps {
   backgroundLetters?: [string, string];
@@ -8,6 +9,9 @@ interface HeroSectionProps {
   description: React.ReactNode;
   showScrollIndicator?: boolean;
   scrollIndicatorText?: string;
+  showBackButton?: boolean;
+  backButtonLink?: string;
+  backButtonText?: string;
 }
 
 export function HeroSection({
@@ -17,9 +21,24 @@ export function HeroSection({
   description,
   showScrollIndicator = true,
   scrollIndicatorText = "Descubra",
+  showBackButton = false,
+  backButtonLink = "/",
+  backButtonText = "Voltar",
 }: HeroSectionProps) {
   return (
     <section className="relative min-h-[70vh] flex flex-col items-center justify-center overflow-hidden">
+      {/* Back Button */}
+      {showBackButton && (
+        <div className="absolute top-8 left-4 md:left-8 z-30">
+          <Link
+            href={backButtonLink}
+            className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium group bg-background/20 backdrop-blur-md px-4 py-2 rounded-full border border-white/10"
+          >
+            <ArrowLeft className="h-4 w-4 transform group-hover:-translate-x-1 transition-transform" />
+            {backButtonText}
+          </Link>
+        </div>
+      )}
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 text-[20rem] font-black text-primary leading-none select-none">

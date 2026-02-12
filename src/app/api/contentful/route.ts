@@ -1,8 +1,8 @@
 import { getDailyMissionsMissionsCard } from "@/services/get-daily-missions-missions-card";
 import { getDevotionals } from "@/services/get-devotionals";
-import { getMainBanner } from "@/services/get-main-banner";
 import { getProducts } from "@/services/get-products";
 import { getServiceProviders } from "@/services/get-service-providers";
+import { mainBannerData } from "@/data/main-banner";
 import { NextResponse } from "next/server";
 
 // Utility function to handle API errors
@@ -14,10 +14,10 @@ function handleApiError(error: unknown, message: string, status: number = 500) {
 // Map request types to their corresponding functions and error messages
 const requestHandlers: Record<
   string,
-  { handler: () => Promise<any>; errorMessage: string; noCache?: boolean }
+  { handler: () => Promise<any> | any; errorMessage: string; noCache?: boolean }
 > = {
   mainBanner: {
-    handler: getMainBanner,
+    handler: () => mainBannerData,
     errorMessage: "Error fetching main banner",
   },
   products: {

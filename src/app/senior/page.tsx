@@ -98,6 +98,8 @@ export default function SeniorPage() {
             <span className="text-primary">SENIOR</span>
           </span>
         }
+        showBackButton={true}
+        backButtonText="Página Inicial"
         description={
           <span>
             Celebrando a vida, a fé e o{" "}
