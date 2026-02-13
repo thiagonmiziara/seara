@@ -33,7 +33,27 @@ export default function RootLayout({
     <html lang='pt-BR' className='dark'>
       <head>
         <link rel='manifest' href='/manifest.json' />
-        <link rel='icon' href='/assets/logoseara.png' />
+        <link rel='icon' href='/favicon.ico' />
+        <link
+          rel='apple-touch-icon'
+          sizes='180x180'
+          href='/assets/apple-touch-180.png'
+        />
+        <link
+          rel='apple-touch-icon'
+          sizes='167x167'
+          href='/assets/apple-touch-167.png'
+        />
+        <link
+          rel='apple-touch-icon'
+          sizes='152x152'
+          href='/assets/apple-touch-152.png'
+        />
+        <meta name='apple-mobile-web-app-capable' content='yes' />
+        <meta
+          name='apple-mobile-web-app-status-bar-style'
+          content='black-translucent'
+        />
       </head>
       <body
         className={cn(
