@@ -1,29 +1,29 @@
 {
   "theme_color": "#9AEC4C",
-  "background_color": "#3B3B3B",
+  "background_color": "#000000",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "app_name": "Seara",
+  "app_name": "Igreja Seara de Deus",
   "short_name": "Seara",
   "icons": [
     {
-      "src": "/assets/logoseara.png",
+      "src": "/assets/logonovabranca.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/assets/logoseara.png",
+      "src": "/assets/logonovabranca.png",
       "sizes": "256x256",
       "type": "image/png"
     },
     {
-      "src": "/assets/logoseara.png",
+      "src": "/assets/logonovabranca.png",
       "sizes": "384x384",
       "type": "image/png"
     },
     {
-      "src": "/assets/logoseara.png",
+      "src": "/assets/logonovabranca.png",
       "sizes": "512x512",
       "type": "image/png"
     }
