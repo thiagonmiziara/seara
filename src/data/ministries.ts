@@ -18,7 +18,7 @@ export const ministriesData: IMinistrySections[] = [
   {
     slug: 'kids',
     name: 'Kids',
-    imageUrl: '/assets/logofundocinza.jpeg',
+    imageUrl: '/assets/logonovakids.png',
     description:
       'Ensinando o caminho desde pequenos de forma divertida, plantando sementes de fé que germinarão em vidas transformadas.',
   },
@@ -46,8 +46,15 @@ export const ministriesData: IMinistrySections[] = [
   {
     slug: 'somosum',
     name: 'Somos Um',
-    imageUrl: '/assets/somosum.png',
+    imageUrl: '/assets/logonovasomosumbranco.png',
     description:
       'Celebrando a unidade do corpo de Cristo, vivendo em comunhão e amor, unidos pelo mesmo propósito.',
+  },
+  {
+    slug: 'solteiros-25',
+    name: 'Solteiros +25',
+    imageUrl: '/assets/logo25.PNG',
+    description:
+      'Ministério para solteiros com mais de 25 anos, promovendo comunhão, apoio e crescimento espiritual.',
   },
 ];
