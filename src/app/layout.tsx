@@ -32,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang='pt-BR' className='dark'>
       <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
         <link rel='manifest' href='/manifest.json' />
         <link rel='icon' href='/favicon.ico' />
         <link
@@ -53,6 +54,11 @@ export default function RootLayout({
         <meta
           name='apple-mobile-web-app-status-bar-style'
           content='black-translucent'
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){function setVh(){document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');}setVh();window.addEventListener('resize', setVh);})();`,
+          }}
         />
       </head>
       <body

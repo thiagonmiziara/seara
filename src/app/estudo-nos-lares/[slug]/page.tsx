@@ -27,7 +27,7 @@ export default async function MeetingDetailPage({
   return (
     <div className='relative w-full min-h-[70vh] flex flex-col items-center justify-center'>
       {/* Conteúdo detalhado estilo Comunidades */}
-      <div className='bg-background flex justify-center items-center min-h-[calc(100vh-4rem)] px-2 w-full'>
+      <div className='bg-background flex justify-center items-center min-h-[calc(var(--vh)*100-4rem)] px-2 w-full'>
         <div className='flex flex-col lg:flex-row gap-8 w-full max-w-5xl items-center justify-center'>
           {/* Imagem */}
           <div className='flex justify-center items-center bg-black/0'>

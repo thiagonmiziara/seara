@@ -14,7 +14,7 @@ export function HorizontalScrollContainer({
   shouldCenter = false,
 }: HorizontalScrollContainerProps) {
   return (
-    <ScrollArea className={cn("w-full overflow-x-auto", className)}>
+    <ScrollArea className={cn("w-full", className)}>
       <div
         className={cn(
           "inline-flex space-x-4 p-1 pb-4",

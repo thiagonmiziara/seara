@@ -15,7 +15,7 @@ const psychologistData = {
 
 export default function PsicologaPage() {
   return (
-    <div className='bg-background min-h-[calc(100vh-4rem)] px-4 py-8 md:py-12'>
+    <div className='bg-background min-h-[calc(var(--vh)*100-4rem)] px-4 py-8 md:py-12'>
       <div className='max-w-6xl mx-auto'>
         {/* Header Section */}
         <div className='text-center mb-8 md:mb-12'>

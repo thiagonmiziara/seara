@@ -32,7 +32,7 @@ export default async function CommunityDetailPage({
   }
 
   return (
-    <div className="bg-background flex justify-center items-center min-h-[calc(100vh-4rem)] px-2">
+    <div className="bg-background flex justify-center items-center min-h-[calc(var(--vh)*100-4rem)] px-2">
       <div className="flex flex-col lg:flex-row gap-8 w-full max-w-5xl items-center justify-center">
         {/* Imagem da Comunidade */}
         <div className="flex justify-center items-center bg-black/0">
