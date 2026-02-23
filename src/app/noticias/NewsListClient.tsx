@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import SectionWrapper from '@/components/shared/SectionWrapper';
+import InlineLoading from '@/components/shared/InlineLoading';
 import {
   Card,
   CardHeader,
@@ -71,7 +72,11 @@ export default function NewsListClient() {
   }, []);
 
   if (loading)
-    return <SectionWrapper title='Seara News'>Carregando...</SectionWrapper>;
+    return (
+      <SectionWrapper title='Seara News'>
+        <InlineLoading />
+      </SectionWrapper>
+    );
   if (error)
     return <SectionWrapper title='Seara News'>Erro: {error}</SectionWrapper>;
   if (!news || news.length === 0)

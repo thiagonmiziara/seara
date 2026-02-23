@@ -9,6 +9,7 @@ import FloatingContactButtons from '@/components/layout/FloatingContactButtons';
 import BackToHomeClient from '@/components/shared/BackToHomeClient';
 import { cn } from '@/lib/utils';
 import GlobalLoading from '@/components/GlobalLoading';
+import SetVh from '@/components/SetVh';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -33,7 +34,10 @@ export default function RootLayout({
   return (
     <html lang='pt-BR' className='dark'>
       <head>
-        <meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1, viewport-fit=cover'
+        />
         <link rel='manifest' href='/manifest.json' />
         <link rel='icon' href='/favicon.ico' />
         <link
@@ -56,11 +60,6 @@ export default function RootLayout({
           name='apple-mobile-web-app-status-bar-style'
           content='black-translucent'
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){function setVh(){document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');}setVh();window.addEventListener('resize', setVh);})();`,
-          }}
-        />
       </head>
       <body
         className={cn(
@@ -70,6 +69,7 @@ export default function RootLayout({
         )}
       >
         <Header />
+        <SetVh />
         <BackToHomeClient />
         <main className='flex-grow'>{children}</main>
         <Footer />

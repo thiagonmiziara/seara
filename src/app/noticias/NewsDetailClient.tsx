@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import SectionWrapper from '@/components/shared/SectionWrapper';
+import InlineLoading from '@/components/shared/InlineLoading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 // use plain <img> to preserve aspect ratio and avoid cropping
 import { CalendarDays } from 'lucide-react';
@@ -49,7 +50,12 @@ export default function NewsDetailClient({ slug }: { slug: string }) {
     };
   }, [slug]);
 
-  if (loading) return <SectionWrapper title='Carregando...'> </SectionWrapper>;
+  if (loading)
+    return (
+      <SectionWrapper title='Carregando...'>
+        <InlineLoading />
+      </SectionWrapper>
+    );
   if (error) return <SectionWrapper title='Erro'>{error}</SectionWrapper>;
   if (!newsItem)
     return <SectionWrapper title='Erro'>Recado não encontrado.</SectionWrapper>;
