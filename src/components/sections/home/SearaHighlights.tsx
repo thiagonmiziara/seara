@@ -70,20 +70,7 @@ export default async function SearaHighlights() {
         {/* Latest News Card */}
         <Card className='group relative overflow-hidden bg-card/40 backdrop-blur-md border-border/50 hover:border-primary/50 transition-all duration-500 shadow-2xl md:h-full rounded-2xl'>
           <div className='md:flex md:h-full'>
-            {latestNews?.imageUrl && (
-              <div className='relative md:w-1/3 md:shrink-0 md:h-full overflow-hidden'>
-                <Image
-                  src={latestNews.imageUrl}
-                  alt={latestNews.title}
-                  width={600}
-                  height={400}
-                  className='object-cover w-full h-full transition-transform duration-700 group-hover:scale-110'
-                  data-ai-hint='news announcement event'
-                />
-                <div className='absolute inset-0 bg-gradient-to-r from-background/80 to-transparent md:hidden' />
-              </div>
-            )}
-            <div className='relative p-8 flex flex-col justify-center md:w-2/3 md:h-full z-10'>
+            <div className='relative p-8 flex flex-col justify-center md:w-full md:h-full z-10'>
               <div className='mb-4 flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 w-fit'>
                 <Rss className='h-3 w-3 text-primary' />
                 <span className='text-[10px] font-bold uppercase tracking-widest text-primary/80'>
