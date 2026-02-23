@@ -1,5 +1,9 @@
-import CommunitiesCarousel from "@/components/sections/home/CommunitiesCarousel";
+import CommunitiesCarousel from '@/components/sections/home/CommunitiesCarousel';
 
 export default function CommunitiesPage() {
-  return <CommunitiesCarousel />;
+  return (
+    <>
+      <CommunitiesCarousel />
+    </>
+  );
 }

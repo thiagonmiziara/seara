@@ -73,8 +73,6 @@ export default async function Solteiros25Page() {
             Solteiros <span className='text-primary'>+25</span>
           </span>
         }
-        showBackButton={true}
-        backButtonText='Página Inicial'
         description={
           <span>
             Um lugar para solteiros com mais de{' '}

@@ -6,6 +6,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import FloatingContactButtons from '@/components/layout/FloatingContactButtons';
+import BackToHomeClient from '@/components/shared/BackToHomeClient';
 import { cn } from '@/lib/utils';
 import GlobalLoading from '@/components/GlobalLoading';
 
@@ -69,6 +70,7 @@ export default function RootLayout({
         )}
       >
         <Header />
+        <BackToHomeClient />
         <main className='flex-grow'>{children}</main>
         <Footer />
         <FloatingContactButtons />

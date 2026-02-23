@@ -92,17 +92,6 @@ export default function NewsListClient() {
             key={item.id}
             className='flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300'
           >
-            {item.imageUrl && (
-              <CardHeader className='p-0 overflow-hidden'>
-                <Image
-                  src={item.imageUrl}
-                  alt={item.title}
-                  width={400}
-                  height={200}
-                  className='w-full h-auto'
-                />
-              </CardHeader>
-            )}
             <CardContent className='flex-grow p-6'>
               <CardTitle className='text-xl font-semibold mb-2 text-foreground line-clamp-2'>
                 {item.title}
