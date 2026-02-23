@@ -39,12 +39,12 @@ export function HeroSection({
           </Link>
         </div>
       )}
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 text-[20rem] font-black text-primary leading-none select-none">
+      {/* Background Pattern (hidden on small screens to avoid layout break) */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div className="hidden sm:block absolute top-20 left-10 text-[8rem] sm:text-[12rem] md:text-[20rem] font-black text-primary leading-none select-none">
           {backgroundLetters[0]}
         </div>
-        <div className="absolute bottom-20 right-10 text-[20rem] font-black text-primary leading-none select-none">
+        <div className="hidden sm:block absolute bottom-20 right-10 text-[8rem] sm:text-[12rem] md:text-[20rem] font-black text-primary leading-none select-none">
           {backgroundLetters[1]}
         </div>
       </div>
@@ -59,7 +59,7 @@ export function HeroSection({
           <span className="text-sm font-medium text-primary">{badgeText}</span>
         </div>
 
-        <h1 className="text-7xl md:text-9xl font-black tracking-tighter mb-6 text-foreground">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter mb-6 text-foreground leading-tight break-words">
           {title}
         </h1>
 

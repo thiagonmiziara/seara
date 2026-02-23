@@ -1,10 +1,10 @@
-import { contentfulClient } from "@/lib/contentful";
-import { INewsItem } from "@/types";
+import { contentfulClient } from '@/lib/contentful';
+import { INewsItem } from '@/types';
 
 export async function getLatestNews(): Promise<INewsItem | null> {
   const entries = await contentfulClient.getEntries({
-    content_type: "noticias",
-    order: ["-sys.createdAt"], // Order by date descending
+    content_type: 'noticias',
+    order: ['-sys.createdAt'], // Order by date descending
     limit: 1, // Get only the latest one
   });
 
@@ -18,12 +18,19 @@ export async function getLatestNews(): Promise<INewsItem | null> {
     id: item.sys.id,
     title: item.fields.title,
     summary: item.fields.summary,
-    imageUrl: item.fields.image?.fields?.file?.url
-      ? `https:${item.fields.image.fields.file.url}?v=${new Date(
-          item.sys.updatedAt
-        ).getTime()}`
-      : "",
+    imageUrl: (() => {
+      const imageField = item.fields.imageUrl ?? item.fields.image;
+      if (!imageField) return '';
+      const img = imageField.fields
+        ? imageField
+        : (Object.values(imageField)[0] ?? null);
+      const url = img?.fields?.file?.url;
+      if (!url) return '';
+      return url.toString().startsWith('http')
+        ? `${url}?v=${new Date(item.sys.updatedAt).getTime()}`
+        : `https:${url}?v=${new Date(item.sys.updatedAt).getTime()}`;
+    })(),
     date: item.fields.date,
-    slug: item.fields.title.toLowerCase().replace(/\s+/g, "-"),
+    slug: item.fields.slug,
   };
 }
