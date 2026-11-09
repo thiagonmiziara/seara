@@ -18,7 +18,7 @@ export function HeroSection({ backgroundLetters = ['S', 'D'], badgeText = 'MINIS
   return (
     <section className='relative isolate overflow-hidden bg-[#121212] text-white'>
       <div className='absolute right-[-.08em] top-[-.3em] select-none text-[18rem] font-black leading-none tracking-[-.12em] text-white/[.035] sm:text-[30rem]'>{backgroundLetters.join('')}</div>
-      <div className='relative mx-auto flex min-h-[580px] max-w-7xl flex-col justify-center px-5 py-24 sm:px-8 lg:min-h-[680px] lg:px-12'>
+      <div className='relative mx-auto flex min-h-[480px] max-w-7xl flex-col justify-center px-5 py-16 sm:px-8 lg:min-h-[540px] lg:px-12'>
         {showBackButton && <Link href={backButtonLink} className='absolute top-9 inline-flex items-center gap-2 text-sm font-semibold text-white/65 hover:text-[#1ed760]'><ArrowLeft className='h-4 w-4' /> {backButtonText}</Link>}
         <div className='max-w-4xl'>
           <p className='text-sm font-bold tracking-[.14em] text-[#1ed760]'>{badgeText}</p>

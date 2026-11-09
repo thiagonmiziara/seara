@@ -93,6 +93,14 @@ video {
   overflow-x: hidden !important;
 }
 
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .shadow-text {
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }

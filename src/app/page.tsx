@@ -19,7 +19,7 @@ export default function HomePage() {
         <Image src='/assets/searasedeigreja.png' alt='Sede da Igreja Seara de Deus' fill priority sizes='100vw' className='object-cover object-center opacity-45' />
         <div className='absolute inset-0 bg-[linear-gradient(90deg,rgba(18,18,18,.97)_0%,rgba(18,18,18,.87)_43%,rgba(18,18,18,.45)_100%)]' />
         <div className='absolute inset-x-0 bottom-0 h-56 bg-[linear-gradient(0deg,#121212,transparent)]' />
-        <div className='relative mx-auto flex min-h-[640px] max-w-7xl flex-col justify-center px-5 pb-12 pt-24 sm:px-8 lg:min-h-[760px] lg:justify-end lg:px-12 lg:pb-20'>
+        <div className='relative mx-auto flex min-h-[640px] max-w-7xl flex-col justify-center px-5 pb-12 pt-20 sm:px-8 lg:min-h-[760px] lg:justify-start lg:px-12 lg:pb-0 lg:pt-16'>
           <div className='grid items-end gap-12 lg:grid-cols-[1.15fr_.85fr]'>
             <div className='max-w-3xl'>
               <h1 className='max-w-3xl text-balance text-5xl font-black leading-[.94] tracking-[-.045em] text-white sm:text-6xl lg:text-8xl'>Todo mundo precisa de uma <span className='text-[#1ed760]'>casa.</span></h1>

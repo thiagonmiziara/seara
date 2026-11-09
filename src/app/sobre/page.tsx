@@ -10,7 +10,7 @@ export default function SobrePage() {
     <main className='bg-[#121212] text-white'>
       <section className='mx-auto max-w-7xl px-5 pb-20 pt-12 sm:px-8 lg:px-12 lg:pb-28 lg:pt-16'>
         <Link href='/' className='inline-flex items-center gap-2 text-sm font-semibold text-white/65 hover:text-[#1ed760]'><ArrowLeft className='h-4 w-4' /> Página inicial</Link>
-        <div className='mt-14 grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-center'>
+        <div className='mt-9 grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center'>
           <div className='relative min-h-72 overflow-hidden rounded-2xl bg-[#242424]'><Image src='/assets/logoseara.png' alt='Seara de Deus' fill priority sizes='(max-width: 1024px) 100vw, 40vw' className='object-contain p-14' /></div>
           <div><p className='text-sm font-bold tracking-[.14em] text-[#1ed760]'>IGREJA SEARA DE DEUS</p><h1 className='mt-4 text-5xl font-black leading-[.95] tracking-[-.055em] sm:text-7xl'>Uma comunidade para viver Jesus por inteiro.</h1><p className='mt-7 max-w-2xl text-lg leading-8 text-white/70'>Aqui você encontra espaço para crescer na Palavra, construir relações verdadeiras e servir com propósito.</p></div>
         </div>
