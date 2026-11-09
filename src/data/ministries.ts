@@ -50,11 +50,4 @@ export const ministriesData: IMinistrySections[] = [
     description:
       'Celebrando a unidade do corpo de Cristo, vivendo em comunhão e amor, unidos pelo mesmo propósito.',
   },
-  {
-    slug: 'solteiros-25',
-    name: 'Solteiros +25',
-    imageUrl: '/assets/logo25.PNG',
-    description:
-      'Ministério para solteiros com mais de 25 anos, promovendo comunhão, apoio e crescimento espiritual.',
-  },
 ];
