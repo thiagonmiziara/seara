@@ -1,125 +1,47 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from '@/components/ui/card';
-import SectionWrapper from '@/components/shared/SectionWrapper';
-import { MapPin, Clock, User } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowLeft, Clock3, MapPin, Navigation, Users } from 'lucide-react';
+import { notFound } from 'next/navigation';
 import { communities } from '@/data/communities';
 
 export function generateStaticParams() {
-  return communities.map((community) => ({
-    slug: community.slug,
-  }));
+  return communities.map((community) => ({ slug: community.slug }));
 }
 
-export default async function CommunityDetailPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function CommunityDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const getCommunityDetails = communities.find((c) => c.slug === slug);
-
-  if (!getCommunityDetails) {
-    return (
-      <SectionWrapper title='Error'>
-        <div className='text-center'>Nenhuma comunidade encontrada.</div>
-      </SectionWrapper>
-    );
-  }
+  const community = communities.find((item) => item.slug === slug);
+  if (!community) notFound();
+  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(community.address)}`;
 
   return (
-    <div className='bg-background flex justify-center items-center min-h-[calc(var(--vh)*100-4rem)] px-2 relative'>
-      <div className='flex flex-col lg:flex-row gap-8 w-full max-w-5xl items-center justify-center'>
-        {/* Imagem da Comunidade */}
-        <div className='flex justify-center items-center bg-black/0'>
-          <img
-            src={getCommunityDetails.imageUrl}
-            alt={getCommunityDetails.name}
-            className='rounded-lg shadow-lg transition-all duration-300 w-[400px] h-[720px] object-contain bg-background hover:ring-4 hover:ring-primary'
-            style={{ maxWidth: 400, maxHeight: 720 }}
-          />
-        </div>
-        {/* Detalhes da Comunidade */}
-        <div className='flex flex-col gap-5 w-full max-w-lg'>
-          <h1 className='text-3xl md:text-4xl font-bold mb-2'>
-            Venha fazer parte da nossa{' '}
-            <span className='text-primary inline-block relative'>
-              comunidade!
-              <svg
-                className='absolute -bottom-2 left-0 w-full text-primary/40'
-                viewBox='0 0 200 12'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  d='M2 10C50 4 150 4 198 10'
-                  stroke='currentColor'
-                  strokeWidth='3'
-                  strokeLinecap='round'
-                />
-              </svg>
-            </span>
-          </h1>
-          <p className='text-muted-foreground text-lg mb-2'>
-            {getCommunityDetails.fullDescription}
-          </p>
-          {/* Endereço */}
-          <div className='bg-card rounded-lg p-5 border border-border transition-all duration-300 hover:ring-2 hover:ring-primary cursor-pointer'>
-            <div className='flex items-start gap-3'>
-              <MapPin className='h-6 w-6 text-primary mt-1 flex-shrink-0' />
-              <div>
-                <h3 className='text-lg font-semibold mb-1'>Endereço</h3>
-                <p className='text-muted-foreground'>
-                  {getCommunityDetails.address}
-                </p>
-              </div>
+    <main className='bg-[#121212] text-white lg:h-[calc(100svh-10rem)] lg:overflow-hidden'>
+      <div className='mx-auto max-w-6xl px-5 py-10 sm:px-8 lg:grid lg:h-full lg:grid-rows-[auto_minmax(0,1fr)_150px] lg:gap-y-5 lg:px-12 lg:py-7'>
+        <Link href='/comunidades' className='inline-flex items-center gap-2 text-sm font-semibold text-white/65 hover:text-[#1ed760]'>
+          <ArrowLeft className='h-4 w-4' /> Comunidades
+        </Link>
+
+        <section className='mt-9 grid gap-7 lg:mt-0 lg:grid-cols-[230px_1fr] lg:items-center'>
+          <div className='relative aspect-[4/5] max-h-[360px] overflow-hidden rounded-2xl bg-[#242424] lg:h-full lg:max-h-[300px]'>
+            <Image src={community.imageUrl} alt={community.name} fill priority sizes='(max-width: 1024px) 100vw, 230px' className='object-contain p-4' />
+          </div>
+          <div>
+            <p className='text-xs font-bold tracking-[.14em] text-[#1ed760]'>COMUNIDADE SEARA</p>
+            <h1 className='mt-3 text-4xl font-black tracking-[-.055em] sm:text-5xl'>{community.name}</h1>
+            <p className='mt-4 max-w-xl text-base leading-7 text-white/70'>Uma casa para você viver fé, comunhão e propósito perto da sua vida.</p>
+            <div className='mt-7 grid gap-5 sm:grid-cols-3 lg:mt-6'>
+              <div><MapPin className='h-5 w-5 text-[#1ed760]' /><h2 className='mt-2 font-bold'>Endereço</h2><p className='mt-1 text-sm leading-5 text-white/65'>{community.address}</p></div>
+              <div><Clock3 className='h-5 w-5 text-[#1ed760]' /><h2 className='mt-2 font-bold'>Cultos</h2><p className='mt-1 text-sm leading-5 text-white/65'>{community.meetingTimes}</p></div>
+              <div><Users className='h-5 w-5 text-[#1ed760]' /><h2 className='mt-2 font-bold'>Liderança</h2><p className='mt-1 text-sm leading-5 text-white/65'>{community.leader}</p></div>
             </div>
+            <a href={directionsUrl} target='_blank' rel='noreferrer' className='mt-7 inline-flex items-center gap-2 rounded-full bg-[#1ed760] px-5 py-3 font-bold text-[#121212] transition-transform hover:scale-[1.03]'><Navigation className='h-4 w-4' /> Como chegar</a>
           </div>
-          {/* Horário dos Cultos */}
-          <div className='bg-card rounded-lg p-5 border border-border transition-all duration-300 hover:ring-2 hover:ring-primary cursor-pointer'>
-            <div className='flex items-start gap-3'>
-              <Clock className='h-6 w-6 text-primary mt-1 flex-shrink-0' />
-              <div>
-                <h3 className='text-lg font-semibold mb-1'>
-                  Horário dos cultos
-                </h3>
-                <p className='text-muted-foreground'>
-                  {getCommunityDetails.meetingTimes}
-                </p>
-              </div>
-            </div>
-          </div>
-          {/* Pastores */}
-          <div className='bg-card rounded-lg p-5 border border-border transition-all duration-300 hover:ring-2 hover:ring-primary cursor-pointer'>
-            <div className='flex items-start gap-3'>
-              <User className='h-6 w-6 text-primary mt-1 flex-shrink-0' />
-              <div>
-                <h3 className='text-lg font-semibold mb-1'>Pastores</h3>
-                <p className='text-muted-foreground'>
-                  {getCommunityDetails.leader}
-                </p>
-              </div>
-            </div>
-          </div>
-          {/* Mapa do Google */}
-          <div className='bg-card rounded-lg overflow-hidden border border-border mt-2'>
-            <iframe
-              src={getCommunityDetails.mapUrl}
-              width='100%'
-              height='180'
-              style={{ border: 0 }}
-              allowFullScreen
-              loading='lazy'
-              referrerPolicy='no-referrer-when-downgrade'
-              className='w-full'
-            ></iframe>
-          </div>
-        </div>
+        </section>
+
+        <section className='mt-12 overflow-hidden rounded-2xl border border-white/10 lg:mt-0'>
+          <iframe title={`Mapa ${community.name}`} src={community.mapUrl} width='100%' height='260' className='block border-0 grayscale lg:h-[150px]' loading='lazy' referrerPolicy='no-referrer-when-downgrade' />
+        </section>
       </div>
-    </div>
+    </main>
   );
 }

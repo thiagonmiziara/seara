@@ -1,4 +1,5 @@
 import { Document } from "@contentful/rich-text-types";
+import type { ElementType } from 'react';
 
 export interface IMainBannerData {
   id: string;
@@ -197,6 +198,13 @@ export interface IMeetings {
   schedule: string;
   location: string;
   contactPerson: string;
+}
+
+export interface ServiceTime {
+  id: string;
+  day: string;
+  time: string;
+  icon?: ElementType;
 }
 
 export interface IMinistrySections {

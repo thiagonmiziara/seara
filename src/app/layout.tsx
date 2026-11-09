@@ -6,7 +6,6 @@ import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import FloatingContactButtons from '@/components/layout/FloatingContactButtons';
-import BackToHomeClient from '@/components/shared/BackToHomeClient';
 import { cn } from '@/lib/utils';
 import GlobalLoading from '@/components/GlobalLoading';
 import SetVh from '@/components/SetVh';
@@ -39,7 +38,7 @@ export default function RootLayout({
           content='width=device-width, initial-scale=1, viewport-fit=cover'
         />
         <link rel='manifest' href='/manifest.json' />
-        <link rel='icon' href='/favicon.ico' />
+        <link rel='icon' href='/favicon.png' type='image/png' />
         <link
           rel='apple-touch-icon'
           sizes='180x180'
@@ -68,9 +67,14 @@ export default function RootLayout({
           'antialiased flex flex-col min-h-screen overflow-x-hidden',
         )}
       >
+        {/* THESIS: Uma porta de entrada viva para encontrar fé, pessoas e um próximo passo — não um mural de conteúdos dispersos.
+            OWN-WORLD: Carvão profundo, verde vivo e campos luminosos inspirados na energia do Spotify; superfícies nítidas, tipografia humana e ritmo editorial.
+            STORY: O visitante entende quem é a Seara, encontra uma comunidade, vê os cultos e escolhe onde caminhar.
+            FIRST VIEWPORT: Foto da sede toma a tela; marca e convite ficam à esquerda, uma agenda da semana ancora a ação à direita.
+            FORM: Landing page de acolhimento, direção escolhida a partir do brief do usuário; seed: seara-spotify-community.
+            FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md */}
         <Header />
         <SetVh />
-        <BackToHomeClient />
         <main className='flex-grow'>{children}</main>
         <Footer />
         <FloatingContactButtons />

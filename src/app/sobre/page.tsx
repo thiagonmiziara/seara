@@ -1,138 +1,27 @@
-import SectionWrapper from '@/components/shared/SectionWrapper';
 import Image from 'next/image';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import Logo from '@/components/Logo'; // Import the Logo component
-import { Church, Eye, Target, Heart, Users, BookHeart } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowLeft, ArrowRight, BookOpen, Compass, History } from 'lucide-react';
+
+const vision = 'Nossa visão é edificar uma igreja que cresce com profundidade e propósito — uma comunidade bíblica, saudável, alinhada ao céu e relevante na terra. Sonhamos com pessoas que conhecem a Palavra, discernem os tempos e vivem sua fé com responsabilidade, coragem e santidade.';
+const mission = 'Nossa missão é formar discípulos íntegros, maduros e cheios do Espírito, capazes de revelar Cristo no caráter, na vida diária e no serviço. Não buscamos notoriedade; buscamos transformação.';
 
 export default function SobrePage() {
-  const aboutData = {
-    churchName: "Seara de Deus",
-    bannerUrl: "https://placehold.co/1200x500.png?text=Nossa+Igreja",
-    history: "Fundada em [Ano], a Igreja Seara de Deus nasceu do desejo de um pequeno grupo de irmãos de criar uma comunidade de fé acolhedora, vibrante e comprometida com o Evangelho de Jesus Cristo. Ao longo dos anos, crescemos em número e em graça, sempre buscando servir a Deus e à nossa cidade com amor e dedicação. Nossa jornada é marcada por testemunhos de transformação, milagres e um profundo desejo de ver o Reino de Deus se expandir.",
-    vision: "Ser uma igreja relevante que glorifica a Deus, edifica os santos e proclama o Evangelho transformador de Jesus Cristo a todas as pessoas, manifestando o Seu amor e poder em nossa comunidade e além.",
-    mission: "Conectar pessoas com Deus através de um relacionamento pessoal com Jesus Cristo; Discipulá-las no caminho da fé, ensinando-as a obedecer a todos os mandamentos de Cristo; Enviá-las para servir e testemunhar, fazendo discípulos de todas as nações.",
-    values: [
-      { name: "Palavra de Deus", description: "A Bíblia como nossa única regra de fé e prática.", icon: BookHeart },
-      { name: "Adoração", description: "Cultuar a Deus em espírito e em verdade.", icon: Music },
-      { name: "Comunhão", description: "Viver em unidade e amor fraternal.", icon: Users },
-      { name: "Serviço", description: "Usar nossos dons para edificar a igreja e servir ao próximo.", icon: HeartHandshake },
-      { name: "Evangelismo e Missões", description: "Compartilhar as boas novas de salvação local e globalmente.", icon: Globe },
-    ],
-    leadershipTeam: [
-      { name: "Pr. Presidente Fundador", role: "Pastor Presidente", imageUrl: "https://placehold.co/150x150.png?text=Pr.+Pres." },
-      { name: "Pra. Vice-Presidente", role: "Pastora Vice-Presidente", imageUrl: "https://placehold.co/150x150.png?text=Pra.+Vice" },
-      // Add more leaders as needed
-    ]
-  };
-
   return (
-    <SectionWrapper title={`Sobre a ${aboutData.churchName}`} subtitle="Conheça nossa história, visão, missão e valores.">
-      <Card className="overflow-hidden shadow-xl">
-        <Image
-          src="/logo-seara.png" // Use the logo image
-          alt={`Logo ${aboutData.churchName}`} // Change alt text to reflect the logo
-          width={1200}
-          height={500}
-          className="w-full h-64 md:h-96 object-contain bg-background" // object-contain to fit the logo
-          data-ai-hint="church logo" // Update AI hint
-          priority
-        />
-        <CardHeader className="pt-6 text-center">
-           <Church className="h-16 w-16 text-primary mx-auto mb-4" />
-          <CardTitle className="text-3xl md:text-4xl text-primary">{aboutData.churchName}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-10 px-4 md:px-8 py-8 text-center"> {/* Added text-center for mobile centering */}
-         {/* Separated "Seara" and "de Deus" for coloring */}
-         <CardTitle className="text-3xl md:text-4xl">
-            <span className="text-white">Seara</span> <span className="text-green-600">de Deus</span>
-          </CardTitle>
+    <main className='bg-[#121212] text-white'>
+      <section className='mx-auto max-w-7xl px-5 pb-20 pt-12 sm:px-8 lg:px-12 lg:pb-28 lg:pt-16'>
+        <Link href='/' className='inline-flex items-center gap-2 text-sm font-semibold text-white/65 hover:text-[#1ed760]'><ArrowLeft className='h-4 w-4' /> Página inicial</Link>
+        <div className='mt-14 grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-center'>
+          <div className='relative min-h-72 overflow-hidden rounded-2xl bg-[#242424]'><Image src='/assets/logoseara.png' alt='Seara de Deus' fill priority sizes='(max-width: 1024px) 100vw, 40vw' className='object-contain p-14' /></div>
+          <div><p className='text-sm font-bold tracking-[.14em] text-[#1ed760]'>IGREJA SEARA DE DEUS</p><h1 className='mt-4 text-5xl font-black leading-[.95] tracking-[-.055em] sm:text-7xl'>Uma comunidade para viver Jesus por inteiro.</h1><p className='mt-7 max-w-2xl text-lg leading-8 text-white/70'>Aqui você encontra espaço para crescer na Palavra, construir relações verdadeiras e servir com propósito.</p></div>
+        </div>
+      </section>
 
-          
-          <SectionBlock title="Nossa História" icon={History}>
-            <p className="text-lg text-muted-foreground leading-relaxed">{aboutData.history}</p>
-          </SectionBlock>
+      <section className='bg-[#f6f6f2] px-5 py-20 text-[#121212] sm:px-8 lg:px-12 lg:py-28'><div className='mx-auto grid max-w-7xl gap-14 lg:grid-cols-2 lg:gap-24'>
+        <article><Compass className='h-7 w-7 text-[#168d42]' /><h2 className='mt-6 text-4xl font-black tracking-[-.045em] sm:text-5xl'>Nossa Visão</h2><p className='mt-6 text-lg leading-8 text-black/70'>{vision}</p></article>
+        <article><BookOpen className='h-7 w-7 text-[#168d42]' /><h2 className='mt-6 text-4xl font-black tracking-[-.045em] sm:text-5xl'>Nossa Missão</h2><p className='mt-6 text-lg leading-8 text-black/70'>{mission}</p></article>
+      </div></section>
 
-          <SectionBlock title="Nossa Visão" icon={Eye}>
-            <p className="text-lg text-muted-foreground leading-relaxed">{aboutData.vision}</p>
-          </SectionBlock>
-
-          <SectionBlock title="Nossa Missão" icon={Target}>
-            <p className="text-lg text-muted-foreground leading-relaxed">{aboutData.mission}</p>
-          </SectionBlock>
-
-          <div>
-            <h3 className="text-2xl font-semibold mb-6 text-foreground text-center flex items-center justify-center">
-              <Heart className="h-7 w-7 text-accent mr-3" /> Nossos Valores
-            </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {aboutData.values.map(value => {
-                const Icon = value.icon;
-                return (
-                  <div key={value.name} className="flex flex-col items-center text-center p-4 bg-card rounded-lg shadow">
-                    <Icon className="h-10 w-10 text-primary mb-3" />
-                    <h4 className="font-semibold text-lg text-foreground mb-1">{value.name}</h4>
-                    <p className="text-muted-foreground text-sm">{value.description}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-semibold mb-6 text-foreground text-center flex items-center justify-center">
-              <Users className="h-7 w-7 text-accent mr-3" /> Nossa Liderança
-            </h3>
-            <div className="flex flex-wrap justify-center gap-8">
-              {aboutData.leadershipTeam.map(leader => (
-                <div key={leader.name} className="flex flex-col items-center text-center">
-                  <Image 
-                    src={leader.imageUrl} 
-                    alt={leader.name} 
-                    width={120} 
-                    height={120} 
-                    className="rounded-full mb-2 shadow-md border-2 border-primary"
-                    data-ai-hint="leader pastor person"
-                  />
-                  <h4 className="font-semibold text-md text-foreground">{leader.name}</h4>
-                  <p className="text-sm text-muted-foreground">{leader.role}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          <div className="text-center mt-12 p-6 border-t border-border">
-            <h3 className="text-2xl font-semibold mb-4 text-foreground">Venha nos Visitar!</h3>
-            <p className="text-muted-foreground mb-4">Será um prazer recebê-lo em nossa casa. Consulte nossos horários de culto e participe conosco.</p>
-            <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              <Link href="/#service-times"> 
-                Ver Horários dos Cultos
-              </Link>
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-    </SectionWrapper>
+      <section id='historia' className='px-5 py-20 sm:px-8 lg:px-12 lg:py-28'><div className='mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start'><div className='flex h-14 w-14 items-center justify-center rounded-full bg-[#1ed760] text-[#121212]'><History className='h-7 w-7' /></div><div><h2 className='text-4xl font-black tracking-[-.045em] sm:text-6xl'>Conheça nossa história.</h2><p className='mt-6 max-w-2xl text-lg leading-8 text-white/70'>Em breve, este espaço vai contar como a Seara de Deus nasceu, as pessoas que fizeram parte dos primeiros passos e os marcos que trouxeram a igreja até aqui.</p><p className='mt-5 max-w-2xl text-white/50'>Compartilhe o texto e as fotos que devem fazer parte dessa história para publicarmos este capítulo com fidelidade.</p><Link href='/contato' className='mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 font-bold text-[#121212] transition-transform hover:scale-[1.03]'>Fale com a gente <ArrowRight className='h-4 w-4' /></Link></div></div></section>
+    </main>
   );
 }
-
-// Helper component for section blocks
-import type { LucideIcon } from 'lucide-react';
-import { History, Music, Globe, HeartHandshake, BookHeart as DefaultIcon } from 'lucide-react'; // DefaultIcon added to satisfy type if icon not in map
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-
-interface SectionBlockProps {
-  title: string;
-  icon: LucideIcon;
-  children: React.ReactNode;
-}
-
-const SectionBlock: React.FC<SectionBlockProps> = ({ title, icon: Icon, children }) => (
-  <div>
-    <h3 className="text-2xl font-semibold mb-4 text-foreground flex items-center">
-      <Icon className="h-7 w-7 text-accent mr-3" /> {title}
-    </h3>
-    {children}
-  </div>
-);
-

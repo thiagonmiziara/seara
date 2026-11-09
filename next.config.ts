@@ -13,9 +13,6 @@ const nextConfig: any = {
     ignoreBuildErrors: true,
   },
   // eslint removido: não é mais suportado no next.config.ts
-  experimental: {
-    turbopackUseSystemTlsCerts: true,
-  },
   images: {
     remotePatterns: [
       {
@@ -39,6 +36,15 @@ const nextConfig: any = {
     ],
   },
   turbopack: {},
+  async redirects() {
+    return [
+      { source: '/devocional', destination: '/', permanent: true },
+      { source: '/noticias', destination: '/', permanent: true },
+      { source: '/noticias/:path*', destination: '/', permanent: true },
+      { source: '/estudo-nos-lares', destination: '/', permanent: true },
+      { source: '/estudo-nos-lares/:path*', destination: '/', permanent: true },
+    ];
+  },
 };
 
 export default withPwa(nextConfig);

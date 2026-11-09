@@ -1,9 +1,8 @@
-import CommunitiesCarousel from '@/components/sections/home/CommunitiesCarousel';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowLeft, ArrowRight, MapPin } from 'lucide-react';
+import { communities } from '@/data/communities';
 
 export default function CommunitiesPage() {
-  return (
-    <>
-      <CommunitiesCarousel />
-    </>
-  );
+  return <main className='min-h-screen bg-[#121212] px-5 pb-20 pt-28 text-white sm:px-8 lg:px-12 lg:pb-28 lg:pt-36'><div className='mx-auto max-w-7xl'><Link href='/' className='inline-flex items-center gap-2 text-sm font-semibold text-white/65 hover:text-[#1ed760]'><ArrowLeft className='h-4 w-4' /> Página inicial</Link><h1 className='mt-14 max-w-3xl text-5xl font-black tracking-[-.055em] sm:text-7xl'>Encontre sua <span className='text-[#1ed760]'>comunidade.</span></h1><p className='mt-6 max-w-2xl text-lg leading-8 text-white/70'>Uma Seara perto da sua vida para caminhar em fé, amizade e propósito.</p><div className='mt-14 grid gap-px overflow-hidden rounded-2xl bg-white/15 sm:grid-cols-2 lg:grid-cols-3'>{communities.map((community) => <Link key={community.slug} href={`/comunidades/${community.slug}`} className='group relative min-h-80 overflow-hidden bg-[#242424] p-7'><Image src={community.imageUrl} alt='' fill sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw' className='object-cover opacity-25 transition duration-500 group-hover:scale-105 group-hover:opacity-45' /><div className='relative flex h-full flex-col justify-between'><MapPin className='h-5 w-5 text-[#1ed760]' /><div><h2 className='text-3xl font-black tracking-[-.04em]'>{community.name}</h2><p className='mt-3 max-w-sm text-sm leading-6 text-white/70'>{community.address}</p><span className='mt-7 inline-flex items-center gap-2 font-bold text-[#1ed760]'>Ver comunidade <ArrowRight className='h-4 w-4 transition-transform group-hover:translate-x-1' /></span></div></div></Link>)}</div></div></main>;
 }
