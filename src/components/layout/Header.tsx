@@ -24,7 +24,7 @@ export default function Header() {
   ];
 
   return (
-    <header className='sticky top-0 z-50 w-full border-b border-white/10 bg-[#121212]/92 backdrop-blur'>
+    <header className='sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur'>
       <div className='container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8'>
         <Link
           href='/'
@@ -34,19 +34,21 @@ export default function Header() {
         </Link>
         <nav className='hidden md:flex items-center gap-1 lg:gap-2'>
           {navItems.map((item) => (
-            <Button key={item.label} variant='ghost' asChild>
-              <Link href={item.href} className='flex items-center space-x-1 text-white/75 hover:text-white'>
-                <item.icon className='h-4 w-4' />
-                <span>{item.label}</span>
-              </Link>
-            </Button>
+            <Link
+              key={item.label}
+              href={item.href}
+              className='flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-foreground'
+            >
+              <item.icon className='h-4 w-4' />
+              <span>{item.label}</span>
+            </Link>
           ))}
         </nav>
         {/* Placeholder for mobile menu trigger */}
         <div className='md:hidden'>
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant='ghost' size='icon' className='text-white hover:bg-white/10 hover:text-white'>
+              <Button variant='ghost' size='icon' className='text-foreground hover:bg-secondary hover:text-foreground'>
                 <Menu className='h-6 w-6' />
               </Button>
             </SheetTrigger>

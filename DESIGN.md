@@ -2,15 +2,15 @@
 
 ## Visual direction
 
-The site uses an energetic, music-inspired dark world: charcoal surfaces, a vivid green action color, local photography, and one bright editorial break for service times. It is inspired by Spotify's contrast and energy without reproducing its interface or brand assets.
+The site uses a warm, calm editorial world: a cream canvas, pale olive-green surfaces, deep olive typography, and moss-green actions. Local photography adds human warmth; color is used consistently for wayfinding, emphasis, and interaction.
 
 ## Color roles
 
-- `#121212`: main canvas, navigation, and deep content fields.
-- `#1b1b1b` / `#242424`: secondary surfaces and image containers.
-- `#1ed760`: primary action, wayfinding, and active emphasis.
-- `#f6f6f2`: light editorial surface for the service schedule.
-- White and white-alpha text create the information hierarchy on dark fields.
+- `#F9F6ED`: main canvas and light editorial surfaces.
+- `#EAEEDC`: secondary surfaces and grouped content.
+- `#30382A`: primary text and deep olive emphasis.
+- `#526B38`: primary action, wayfinding, focus, and active emphasis.
+- Muted text and borders use darker olive neutrals that maintain readable contrast on cream.
 
 ## Typography and rhythm
 
@@ -30,9 +30,9 @@ The site uses an energetic, music-inspired dark world: charcoal surfaces, a vivi
 
 ## Components and interaction
 
-- Primary actions are green pill buttons; secondary actions are outlined or quiet text links.
-- Image overlays use readable dark surfaces, not decorative glass effects.
-- Hover states move links subtly or change contrast; keyboard focus is a 2px green outline with 4px offset.
+- Primary actions use moss-green surfaces with cream text; secondary actions are outlined or quiet text links.
+- Image overlays use readable deep-olive surfaces, not decorative glass effects.
+- Hover states move links subtly or change contrast; keyboard focus is a 2px moss-green outline with 4px offset.
 - All links retain semantic anchors and content remains meaningful without motion.
 
 ## Responsive behavior

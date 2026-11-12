@@ -31,12 +31,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='pt-BR' className='dark'>
+    <html lang='pt-BR'>
       <head>
         <meta
           name='viewport'
           content='width=device-width, initial-scale=1, viewport-fit=cover'
         />
+        <meta name='theme-color' content='#F9F6ED' />
         <link rel='manifest' href='/manifest.json' />
         <link rel='icon' href='/favicon.png' type='image/png' />
         <link
@@ -57,7 +58,7 @@ export default function RootLayout({
         <meta name='apple-mobile-web-app-capable' content='yes' />
         <meta
           name='apple-mobile-web-app-status-bar-style'
-          content='black-translucent'
+          content='default'
         />
       </head>
       <body
@@ -68,10 +69,10 @@ export default function RootLayout({
         )}
       >
         {/* THESIS: Uma porta de entrada viva para encontrar fé, pessoas e um próximo passo — não um mural de conteúdos dispersos.
-            OWN-WORLD: Carvão profundo, verde vivo e campos luminosos inspirados na energia do Spotify; superfícies nítidas, tipografia humana e ritmo editorial.
+            OWN-WORLD: Creme, verde-oliva e verde-musgo; superfícies acolhedoras, tipografia humana e ritmo editorial.
             STORY: O visitante entende quem é a Seara, encontra uma comunidade, vê os cultos e escolhe onde caminhar.
             FIRST VIEWPORT: Foto da sede toma a tela; marca e convite ficam à esquerda, uma agenda da semana ancora a ação à direita.
-            FORM: Landing page de acolhimento, direção escolhida a partir do brief do usuário; seed: seara-spotify-community.
+            FORM: Landing page de acolhimento, com a paleta fornecida pelo usuário.
             FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md */}
         <Header />
         <SetVh />

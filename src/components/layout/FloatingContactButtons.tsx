@@ -21,7 +21,7 @@ export default function FloatingContactButtons() {
       <Button
         asChild
         size='lg'
-        className='rounded-full shadow-lg bg-green-500 hover:bg-green-600 text-white p-3 h-auto'
+        className='h-auto rounded-full bg-primary p-3 text-background shadow-lg hover:bg-primary/90'
       >
         <Link
           href='https://wa.me/SEU_NUMERO_DE_WHATSAPP'

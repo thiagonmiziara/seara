@@ -1,14 +1,13 @@
 import Link from 'next/link';
-import { Church } from 'lucide-react';
 import Image from 'next/image';
 export default function Logo() {
   return (
     <Image
-      src='/assets/logonovabranca.png'
+      src='/assets/logofooter.png'
       alt='Seara de Deus'
-      className='w-40  md:w-48'
-      width={160}
-      height={160}
+      className='h-auto w-40 object-contain md:w-48'
+      width={300}
+      height={60}
     />
   );
 }

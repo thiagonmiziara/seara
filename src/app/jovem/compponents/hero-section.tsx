@@ -14,7 +14,7 @@ export function HeroSection() {
       </div>
 
       {/* Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(74,222,128,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(74,222,128,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(82,107,56,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(82,107,56,0.04)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
@@ -36,12 +36,12 @@ export function HeroSection() {
       </div>
 
       {/* Scroll Indicator - apenas desktop */}
-      <div className="hidden md:flex absolute bottom-8 w-full justify-center animate-bounce">
+      <div className="hidden md:flex absolute bottom-8 w-full justify-center">
         <div className="flex flex-col items-center gap-2">
-          <span className="text-xs font-medium uppercase tracking-widest text-white/50">
+          <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
             Descubra
           </span>
-          <ChevronDown className="h-6 w-6 text-white/50" />
+          <ChevronDown className="h-6 w-6 text-muted-foreground" />
         </div>
       </div>
     </section>

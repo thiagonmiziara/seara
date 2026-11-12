@@ -40,10 +40,10 @@ export default function BackToHome() {
       <Link
         href='/'
         aria-label='Página Inicial'
-        className='group flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium bg-background/20 backdrop-blur-md rounded-full border border-white/10 p-1 md:px-3 md:py-2'
+        className='group flex items-center gap-2 rounded-full border border-border bg-background/90 p-1 text-sm font-medium text-muted-foreground transition-colors hover:text-primary md:px-3 md:py-2'
       >
         {/* Mobile: slightly smaller icon-only circular button */}
-        <span className='flex items-center justify-center h-7 w-7 rounded-full bg-background/20 md:hidden'>
+        <span className='flex h-7 w-7 items-center justify-center rounded-full bg-secondary md:hidden'>
           <ArrowLeft className='h-3 w-3' />
         </span>
 

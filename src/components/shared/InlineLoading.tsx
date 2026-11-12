@@ -9,9 +9,9 @@ export default function InlineLoading({
 }) {
   return (
     <div className='flex items-center gap-3'>
-      <div className='h-9 w-9 rounded-full bg-neutral-900/60 backdrop-blur-sm flex items-center justify-center shadow-md'>
+      <div className='flex h-9 w-9 items-center justify-center rounded-full bg-foreground shadow-md'>
         <svg
-          className='h-5 w-5 text-white animate-spin'
+          className='h-5 w-5 animate-spin text-background'
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
           viewBox='0 0 24 24'

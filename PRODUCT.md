@@ -26,14 +26,14 @@ Visitantes acessam principalmente pelo celular, antes de uma primeira visita ou 
 
 - Comunidades, ministérios e páginas institucionais existentes devem ser preservados e destacados.
 - Devocional, Seara News e Estudos nos Lares deixam de fazer parte da navegação e da página inicial.
-- A paleta deve se inspirar nas cores do Spotify.
-- Informações biográficas completas de liderança não foram fornecidas; a interface não deve inventá-las.
+- A paleta usa creme `#F9F6ED`, verde-claro `#EAEEDC`, oliva `#30382A` e verde-musgo `#526B38`.
+- Informações biográficas completas de liderança não foram fornecidas; não inventar dados ou marcos históricos. Conteúdo fictício de demonstração deve ser identificado como ilustrativo.
 
 ## Brand Commitments
 
 - Nome: Igreja Seara de Deus.
 - Voz: acolhedora, direta e centrada em comunhão, fé e serviço.
-- Referência visual vinculante: cores do Spotify, interpretadas sem copiar a marca.
+- Referência visual vinculante: paleta creme e oliva apresentada pelo usuário.
 
 ## Evidence on Hand
 

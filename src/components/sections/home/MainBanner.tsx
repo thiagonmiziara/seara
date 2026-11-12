@@ -3,7 +3,7 @@ import { ChevronDown } from "lucide-react";
 
 export default function MainBanner() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-slate-900">
+    <section className="relative min-h-screen overflow-hidden bg-foreground">
       <div className="absolute inset-0">
         <Image
           src="/assets/searasedeigreja.png"
@@ -12,13 +12,13 @@ export default function MainBanner() {
           className="object-cover opacity-70"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/90 via-neutral-900/80 to-neutral-900" />
-        <div className="absolute inset-0 bg-gradient-to-r from-neutral-900 via-neutral-900/60 to-neutral-900/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-foreground/95 via-foreground/85 to-foreground" />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/60 to-foreground/70" />
       </div>
 
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-24 right-1/4 h-96 w-96 rounded-full bg-yellow-500/10 blur-3xl" />
-        <div className="absolute bottom-1/4 -left-24 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute -top-24 right-1/4 h-96 w-96 rounded-full bg-secondary/20 blur-3xl" />
+        <div className="absolute bottom-1/4 -left-24 h-80 w-80 rounded-full bg-primary/20 blur-3xl" />
       </div>
 
       {/* Content */}
@@ -29,20 +29,20 @@ export default function MainBanner() {
         {/* Right side - Content */}
         <div className="max-w-2xl text-center lg:text-right">
           {/* Badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-5 py-2.5 backdrop-blur-sm">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-secondary/30 bg-secondary/10 px-5 py-2.5 backdrop-blur-sm">
             <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
-            <span className="text-sm font-medium text-primary">
+            <span className="text-sm font-medium text-secondary">
               Igreja Seara de Deus
             </span>
           </div>
 
           {/* Main title */}
-          <h1 className="mb-6 text-balance text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 className="mb-6 text-balance text-4xl font-bold leading-tight text-background sm:text-5xl lg:text-6xl xl:text-7xl">
             Seara{" "}
-            <span className="relative inline-block text-primary">
+            <span className="relative inline-block text-secondary">
               De Deus
               <svg
-                className="absolute -bottom-2 left-0 w-full text-primary/40"
+                className="absolute -bottom-2 left-0 w-full text-secondary/50"
                 viewBox="0 0 200 12"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -59,10 +59,10 @@ export default function MainBanner() {
 
           {/* Vision section */}
           <div className="mb-8">
-            <h2 className="mb-4 text-xl font-semibold text-yellow-400 sm:text-2xl">
+            <h2 className="mb-4 text-xl font-semibold text-secondary sm:text-2xl">
               Nossa Visão
             </h2>
-            <p className="text-pretty text-base leading-relaxed text-gray-300 sm:text-lg">
+            <p className="text-pretty text-base leading-relaxed text-background/85 sm:text-lg">
               Nossa visão é edificar uma igreja que cresce com profundidade e
               propósito — uma comunidade bíblica, saudável, alinhada ao céu e
               relevante na terra. Sonhamos com pessoas que conhecem a Palavra,
@@ -72,10 +72,10 @@ export default function MainBanner() {
           </div>
 
           <div className="mb-10">
-            <h2 className="mb-4 text-xl font-semibold text-yellow-400 sm:text-2xl">
+            <h2 className="mb-4 text-xl font-semibold text-secondary sm:text-2xl">
               Nossa Missão
             </h2>
-            <p className="text-pretty text-base leading-relaxed text-gray-300 sm:text-lg">
+            <p className="text-pretty text-base leading-relaxed text-background/85 sm:text-lg">
               Nossa missão é formar discípulos íntegros, maduros e cheios do
               Espírito, capazes de revelar Cristo no caráter, na vida diária e
               no serviço. Não buscamos notoriedade; buscamos transformação.
@@ -84,16 +84,16 @@ export default function MainBanner() {
         </div>
       </div>
 
-      <div className="absolute bottom-8 w-full flex justify-center animate-bounce">
+      <div className="absolute bottom-8 w-full flex justify-center">
         <div className="flex flex-col items-center gap-2">
-          <span className="text-xs font-medium uppercase tracking-widest text-white/50">
+          <span className="text-xs font-medium uppercase tracking-widest text-background/80">
             Descubra
           </span>
-          <ChevronDown className="h-6 w-6 text-white/50" />
+          <ChevronDown className="h-6 w-6 text-background/80" />
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-neutral-900 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-foreground to-transparent" />
     </section>
   );
 }

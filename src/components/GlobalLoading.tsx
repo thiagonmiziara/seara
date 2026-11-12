@@ -100,7 +100,7 @@ export default function GlobalLoading() {
       <div className='fixed left-0 top-0 z-[9999] w-full pointer-events-none'>
         <div
           aria-hidden
-          className='h-1 bg-gradient-to-r from-emerald-400 to-green-600 shadow-lg transition-all duration-300 ease-out'
+          className='h-1 bg-primary shadow-lg transition-all duration-300 ease-out'
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -109,9 +109,9 @@ export default function GlobalLoading() {
       {visible && (
         <div className='fixed top-4 right-4 z-[9999] pointer-events-none'>
           <div className='flex items-center gap-3'>
-            <div className='h-9 w-9 rounded-full bg-neutral-900/60 backdrop-blur-sm flex items-center justify-center shadow-md'>
+            <div className='flex h-9 w-9 items-center justify-center rounded-full bg-foreground shadow-md'>
               <svg
-                className='h-5 w-5 text-white animate-spin'
+                className='h-5 w-5 animate-spin text-background'
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
                 viewBox='0 0 24 24'
