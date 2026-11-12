@@ -15,120 +15,98 @@ const psychologistData = {
 
 export default function PsicologaPage() {
   return (
-    <div className='bg-background min-h-[calc(var(--vh)*100-4rem)] px-4 py-8 md:py-12'>
-      <div className='max-w-6xl mx-auto'>
-        {/* Header Section */}
-        <div className='text-center mb-8 md:mb-12'>
-          <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold mb-3'>
+    <main className='min-h-screen bg-secondary px-5 py-10 text-foreground sm:px-8 lg:px-12 lg:py-14'>
+      <div className='mx-auto max-w-7xl'>
+        <div className='mb-10 max-w-3xl'>
+          <h1 className='text-balance text-4xl font-black tracking-[-.04em] sm:text-5xl lg:text-6xl'>
             Conheça nossa{' '}
-            <span className='text-primary inline-block relative'>
-              psicóloga
-              <svg
-                className='absolute -bottom-2 left-0 w-full text-primary/40'
-                viewBox='0 0 200 12'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  d='M2 10C50 4 150 4 198 10'
-                  stroke='currentColor'
-                  strokeWidth='3'
-                  strokeLinecap='round'
-                />
-              </svg>
-            </span>
+            <span className='text-primary'>psicóloga.</span>
           </h1>
-          <p className='text-muted-foreground text-lg mt-4'>
+          <p className='mt-4 text-lg leading-8 text-muted-foreground'>
             Apoio psicológico com excelência e acolhimento
           </p>
         </div>
 
-        {/* Main Content */}
-        <div className='flex flex-col lg:flex-row gap-6 md:gap-8 items-start'>
-          {/* Left Column - Image and Name */}
-          <div className='w-full lg:w-1/3 flex flex-col items-center'>
-            <div className='w-full max-w-[300px] mb-6'>
+        <div className='grid items-start gap-8 lg:grid-cols-[.7fr_1.3fr] lg:gap-12'>
+          <div className='flex flex-col items-start'>
+            <div className='mb-6 w-full max-w-[360px] overflow-hidden rounded-xl bg-background'>
               <Image
                 src={psychologistData.imageUrl}
                 alt={psychologistData.name}
                 width={300}
                 height={400}
-                className='rounded-lg shadow-xl w-full h-auto object-cover transition-all duration-300 hover:shadow-2xl'
+                className='h-auto w-full object-cover'
                 data-ai-hint='psychologist professional woman'
               />
             </div>
-            <div className='text-center lg:text-left w-full'>
-              <h2 className='text-2xl md:text-3xl font-bold text-foreground mb-2'>
+            <div className='w-full'>
+              <h2 className='text-2xl font-black tracking-[-.025em] sm:text-3xl'>
                 {psychologistData.name}
               </h2>
-              <p className='text-lg md:text-xl text-primary font-semibold'>
+              <p className='mt-2 text-lg font-semibold text-primary'>
                 {psychologistData.title}
               </p>
             </div>
           </div>
 
-          {/* Right Column - Info */}
-          <div className='w-full lg:w-2/3 space-y-6'>
-            {/* Formação */}
-            <div className='bg-card rounded-lg p-5 md:p-6 border border-border shadow-sm transition-all duration-300 hover:shadow-md'>
-              <div className='flex items-start gap-3 mb-3'>
-                <GraduationCap className='h-6 w-6 text-primary flex-shrink-0 mt-1' />
-                <h3 className='text-xl md:text-2xl font-semibold'>Formação</h3>
+          <div className='divide-y divide-border rounded-xl bg-background px-5 sm:px-8'>
+            <section className='py-6'>
+              <div className='mb-3 flex items-start gap-3'>
+                <GraduationCap className='mt-1 h-5 w-5 shrink-0 text-primary' aria-hidden='true' />
+                <h3 className='text-xl font-bold sm:text-2xl'>Formação</h3>
               </div>
-              <p className='text-muted-foreground leading-relaxed'>
+              <p className='leading-7 text-muted-foreground'>
                 {psychologistData.bio}
               </p>
-            </div>
+            </section>
 
-            {/* Serviços */}
-            <div className='bg-card rounded-lg p-5 md:p-6 border border-border shadow-sm transition-all duration-300 hover:shadow-md'>
-              <div className='flex items-start gap-3 mb-3'>
-                <Brain className='h-6 w-6 text-primary flex-shrink-0 mt-1' />
-                <h3 className='text-xl md:text-2xl font-semibold'>
+            <section className='py-6'>
+              <div className='mb-3 flex items-start gap-3'>
+                <Brain className='mt-1 h-5 w-5 shrink-0 text-primary' aria-hidden='true' />
+                <h3 className='text-xl font-bold sm:text-2xl'>
                   Serviços Oferecidos
                 </h3>
               </div>
-              <p className='text-muted-foreground leading-relaxed'>
+              <p className='leading-7 text-muted-foreground'>
                 {psychologistData.services}
               </p>
-            </div>
+            </section>
 
-            {/* Contact Info */}
-            <div className='bg-card rounded-lg p-5 md:p-6 border border-border shadow-sm transition-all duration-300 hover:shadow-md'>
-              <div className='flex items-start gap-3 mb-4'>
-                <Phone className='h-6 w-6 text-primary flex-shrink-0 mt-1' />
-                <h3 className='text-xl md:text-2xl font-semibold'>Contato</h3>
+            <section className='py-6'>
+              <div className='mb-4 flex items-start gap-3'>
+                <Phone className='mt-1 h-5 w-5 shrink-0 text-primary' aria-hidden='true' />
+                <h3 className='text-xl font-bold sm:text-2xl'>Contato</h3>
               </div>
               <div className='space-y-3'>
                 <div className='flex items-center gap-3 text-muted-foreground'>
-                  <Phone className='h-5 w-5 text-primary flex-shrink-0' />
+                  <Phone className='h-4 w-4 shrink-0 text-primary' aria-hidden='true' />
                   <a
                     href={`tel:${psychologistData.phone}`}
-                    className='hover:text-primary transition-colors text-base md:text-lg'
+                    className='text-base transition-colors hover:text-primary sm:text-lg'
                   >
                     {psychologistData.phone}
                   </a>
                 </div>
                 <div className='flex items-center gap-3 text-muted-foreground'>
-                  <Mail className='h-5 w-5 text-primary flex-shrink-0' />
+                  <Mail className='h-4 w-4 shrink-0 text-primary' aria-hidden='true' />
                   <a
                     href={`mailto:${psychologistData.email}`}
-                    className='hover:text-primary transition-colors break-all text-base md:text-lg'
+                    className='break-all text-base transition-colors hover:text-primary sm:text-lg'
                   >
                     {psychologistData.email}
                   </a>
                 </div>
                 <div className='flex items-start gap-3 text-muted-foreground'>
-                  <MapPin className='h-5 w-5 text-primary flex-shrink-0 mt-0.5' />
-                  <span className='text-base md:text-lg'>
+                  <MapPin className='mt-1 h-4 w-4 shrink-0 text-primary' aria-hidden='true' />
+                  <span className='text-base sm:text-lg'>
                     {psychologistData.address}
                   </span>
                 </div>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

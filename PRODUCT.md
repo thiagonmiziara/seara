@@ -26,14 +26,14 @@ Visitantes acessam principalmente pelo celular, antes de uma primeira visita ou 
 
 - Comunidades, ministérios e páginas institucionais existentes devem ser preservados e destacados.
 - Devocional, Seara News e Estudos nos Lares deixam de fazer parte da navegação e da página inicial.
-- A paleta usa creme `#F9F6ED`, verde-claro `#EAEEDC`, oliva `#30382A` e verde-musgo `#526B38`.
+- A identidade visual parte da logo: verde `#498427`, lima `#A7E551`, azul `#3D87F1` e grafite `#494545`, sobre superfícies claras.
 - Informações biográficas completas de liderança não foram fornecidas; não inventar dados ou marcos históricos. Conteúdo fictício de demonstração deve ser identificado como ilustrativo.
 
 ## Brand Commitments
 
 - Nome: Igreja Seara de Deus.
 - Voz: acolhedora, direta e centrada em comunhão, fé e serviço.
-- Referência visual vinculante: paleta creme e oliva apresentada pelo usuário.
+- Referência visual vinculante: logo oficial em `public/assets/logo.png`; seus verdes conduzem a interface e azul e lima entram como acentos.
 
 ## Evidence on Hand
 

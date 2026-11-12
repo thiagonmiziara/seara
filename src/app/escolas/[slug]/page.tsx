@@ -93,9 +93,8 @@ export default async function SchoolPage({
   return (
     <main className='min-h-screen bg-background text-foreground'>
       <HeroSection
-        backgroundLetters={
-          school.name === 'Escola de Líderes' ? ['E', 'L'] : ['F', 'B']
-        }
+        backButtonLink='/'
+        backButtonText='Página inicial'
         title={
           <span className='text-primary'>{school.name.toUpperCase()}</span>
         }

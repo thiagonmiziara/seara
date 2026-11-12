@@ -82,7 +82,7 @@ export default async function MissionDiaryPreview() {
                 {item.qrCodeUrl && (
                   <Button
                     variant='outline'
-                    className='flex-1 border-accent text-accent hover:bg-accent hover:text-accent-foreground'
+                    className='flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground'
                   >
                     <HeartHandshake className='mr-2 h-4 w-4' />
                     <Link href={`/doar/${item.slug}`}> Fazer uma Doação</Link>

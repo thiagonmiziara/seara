@@ -55,7 +55,7 @@ export default function SchoolsCarousel() {
 
               {/* Logo Section - Floating Effect */}
               <div className="relative h-64 flex items-center justify-center p-10 z-10">
-                <div className="relative w-full h-full drop-shadow-[0_20px_20px_rgba(74,222,128,0.15)] group-hover:drop-shadow-[0_25px_25px_rgba(74,222,128,0.25)] transition-all duration-500">
+                <div className="relative w-full h-full drop-shadow-[0_20px_20px_rgba(73,132,39,0.15)] group-hover:drop-shadow-[0_25px_25px_rgba(73,132,39,0.25)] transition-all duration-500">
                   <Image
                     src={item.imageUrl}
                     alt={item.name}

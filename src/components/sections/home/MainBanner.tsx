@@ -3,7 +3,7 @@ import { ChevronDown } from "lucide-react";
 
 export default function MainBanner() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-foreground">
+    <section className="relative min-h-screen overflow-hidden bg-brand-deep">
       <div className="absolute inset-0">
         <Image
           src="/assets/searasedeigreja.png"
@@ -12,8 +12,8 @@ export default function MainBanner() {
           className="object-cover opacity-70"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-foreground/95 via-foreground/85 to-foreground" />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/60 to-foreground/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-deep/95 via-brand-deep/85 to-brand-deep" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-deep via-brand-deep/60 to-brand-deep/70" />
       </div>
 
       <div className="absolute inset-0 overflow-hidden">
@@ -93,7 +93,7 @@ export default function MainBanner() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-foreground to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-brand-deep to-transparent" />
     </section>
   );
 }

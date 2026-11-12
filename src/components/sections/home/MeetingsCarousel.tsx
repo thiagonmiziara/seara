@@ -48,24 +48,19 @@ export default function MeetingsCarousel() {
               key={item.id}
               className='pl-4 basis-[85%] sm:basis-[60%] md:basis-1/2 lg:basis-1/3'
             >
-              <Card className='group relative h-[420px] flex flex-col overflow-hidden bg-card/40 backdrop-blur-md border-border/50 hover:border-primary/50 transition-all duration-500 shadow-2xl'>
-                <div className='absolute -right-4 -top-8 text-[12rem] font-black text-primary/5 select-none transition-all duration-700 group-hover:text-primary/10 group-hover:-translate-y-4'>
-                  {item.name.charAt(0)}
+              <Card className='group flex h-[440px] flex-col overflow-hidden border-border bg-background shadow-sm transition-shadow duration-300 hover:shadow-md'>
+                <div className='relative flex h-52 shrink-0 items-center justify-center bg-secondary p-3'>
+                  <Image
+                    src={item.imageUrl}
+                    alt={`Cartaz de ${item.name}`}
+                    width={300}
+                    height={420}
+                    sizes='(max-width: 640px) 65vw, (max-width: 1024px) 40vw, 28vw'
+                    className='h-full w-auto object-contain'
+                  />
                 </div>
 
-                <div className='relative h-32 flex items-center justify-center p-2 z-10'>
-                  <div className='w-full h-full flex items-center justify-center'>
-                    <Image
-                      src='/assets/logoseara.png'
-                      alt='Seara de Deus'
-                      width={120}
-                      height={120}
-                      className='object-contain'
-                    />
-                  </div>
-                </div>
-
-                <CardContent className='relative flex-grow p-5 flex flex-col justify-end z-10'>
+                <CardContent className='flex flex-grow flex-col justify-end p-5'>
                   <div className='mb-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 w-fit'>
                     <Home className='h-3 w-3 text-primary' />
                     <span className='text-[10px] font-bold uppercase tracking-widest text-primary/80'>
@@ -77,7 +72,7 @@ export default function MeetingsCarousel() {
                     {item.name}
                   </CardTitle>
 
-                  <div className='text-xs text-muted-foreground leading-tight line-clamp-2 mb-4'>
+                  <div className='mb-4 line-clamp-2 text-sm leading-6 text-muted-foreground'>
                     <RichTextRenderer document={item.description} />
                   </div>
 

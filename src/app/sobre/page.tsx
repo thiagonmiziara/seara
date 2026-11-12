@@ -10,7 +10,8 @@ const mission =
 export default function SobrePage() {
   return (
     <main className='bg-background text-foreground'>
-      <section className='mx-auto max-w-7xl px-5 pb-20 pt-8 sm:px-8 lg:px-12 lg:pb-28 lg:pt-10'>
+      <section className='bg-secondary px-5 pb-20 pt-8 sm:px-8 lg:px-12 lg:pb-28 lg:pt-10'>
+        <div className='mx-auto max-w-7xl'>
         <Link
           href='/'
           className='inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-primary'
@@ -44,9 +45,10 @@ export default function SobrePage() {
             />
           </div>
         </div>
+        </div>
       </section>
 
-      <section className='bg-secondary px-5 py-20 sm:px-8 lg:px-12 lg:py-24'>
+      <section className='bg-background px-5 py-20 sm:px-8 lg:px-12 lg:py-24'>
         <div className='mx-auto grid max-w-7xl gap-14 lg:grid-cols-2 lg:gap-24'>
           <article>
             <Compass className='h-7 w-7 text-primary' />
@@ -71,7 +73,7 @@ export default function SobrePage() {
 
       <section
         id='historia'
-        className='px-5 py-20 sm:px-8 lg:px-12 lg:py-28'
+        className='bg-secondary px-5 py-20 sm:px-8 lg:px-12 lg:py-28'
       >
         <div className='mx-auto grid max-w-7xl gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-20'>
           <article className='max-w-xl'>

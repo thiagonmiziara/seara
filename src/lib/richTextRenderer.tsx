@@ -56,7 +56,7 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ document }) => {
       [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => (
         <a
           href={node.data.uri}
-          className="text-blue-600 hover:underline"
+          className="text-primary hover:underline"
           target="_blank"
           rel="noopener noreferrer"
         >

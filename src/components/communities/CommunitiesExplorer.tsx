@@ -20,9 +20,9 @@ export default function CommunitiesExplorer() {
         })}
       </div>
 
-      <article className='mt-7 grid overflow-hidden rounded-2xl border border-border bg-secondary lg:min-h-[420px] lg:grid-cols-[268px_1fr]'>
-        <div className='relative min-h-[360px] overflow-hidden bg-muted sm:min-h-[420px] lg:min-h-0'>
-          <Image src={selected.imageUrl} alt={selected.name} fill sizes='(max-width: 1024px) 100vw, 268px' className='object-cover object-center' />
+      <article className='mt-7 grid overflow-hidden rounded-2xl border border-border bg-background lg:min-h-[420px] lg:grid-cols-[268px_1fr]'>
+        <div className='relative min-h-[360px] overflow-hidden bg-secondary sm:min-h-[420px] lg:min-h-0'>
+          <Image src={selected.imageUrl} alt={selected.name} fill sizes='(max-width: 1024px) 100vw, 268px' className='object-contain p-3' />
         </div>
         <div className='flex flex-col p-7 sm:p-9'>
           <div>

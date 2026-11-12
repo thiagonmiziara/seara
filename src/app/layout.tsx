@@ -37,7 +37,7 @@ export default function RootLayout({
           name='viewport'
           content='width=device-width, initial-scale=1, viewport-fit=cover'
         />
-        <meta name='theme-color' content='#F9F6ED' />
+        <meta name='theme-color' content='#3F7229' />
         <link rel='manifest' href='/manifest.json' />
         <link rel='icon' href='/favicon.png' type='image/png' />
         <link
@@ -69,10 +69,10 @@ export default function RootLayout({
         )}
       >
         {/* THESIS: Uma porta de entrada viva para encontrar fé, pessoas e um próximo passo — não um mural de conteúdos dispersos.
-            OWN-WORLD: Creme, verde-oliva e verde-musgo; superfícies acolhedoras, tipografia humana e ritmo editorial.
+            OWN-WORLD: Verdes da Seara, lima e azul da marca em superfícies acolhedoras e ritmo editorial.
             STORY: O visitante entende quem é a Seara, encontra uma comunidade, vê os cultos e escolhe onde caminhar.
-            FIRST VIEWPORT: Foto da sede toma a tela; marca e convite ficam à esquerda, uma agenda da semana ancora a ação à direita.
-            FORM: Landing page de acolhimento, com a paleta fornecida pelo usuário.
+            FIRST VIEWPORT: Convite em verde profundo ao lado de vídeo de culto em tela cheia; os cartazes completos apresentam as comunidades.
+            FORM: Home de acolhimento, com a paleta e as imagens reais da Igreja Seara de Deus.
             FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md */}
         <Header />
         <SetVh />

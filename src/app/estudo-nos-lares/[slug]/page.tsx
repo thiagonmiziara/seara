@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import SectionWrapper from '@/components/shared/SectionWrapper';
 import { CalendarCheck, Users, MapPin } from 'lucide-react';
 import { meetings } from '@/data/meetings';
@@ -25,100 +26,75 @@ export default async function MeetingDetailPage({
   }
 
   return (
-    <div className='relative w-full min-h-[70vh] flex flex-col items-center justify-center'>
-      {/* Conteúdo detalhado estilo Comunidades */}
-      <div className='bg-background flex justify-center items-center min-h-[calc(var(--vh)*100-4rem)] px-2 w-full'>
-        <div className='flex flex-col lg:flex-row gap-8 w-full max-w-5xl items-center justify-center'>
-          {/* Imagem */}
-          <div className='flex justify-center items-center bg-black/0'>
-            <img
-              src={meeting.imageUrl}
-              alt={meeting.name}
-              className='rounded-lg shadow-lg transition-all duration-300 w-full max-w-[400px] h-auto max-h-[720px] object-contain bg-background hover:ring-4 hover:ring-primary'
-              style={{ maxWidth: 400, maxHeight: 720 }}
-            />
-          </div>
+    <main className='min-h-screen bg-secondary px-5 py-10 text-foreground sm:px-8 lg:px-12 lg:py-14'>
+      <div className='mx-auto grid max-w-7xl gap-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-12'>
+        <div className='flex items-start justify-center rounded-xl bg-background p-4 sm:p-6'>
+          <Image
+            src={meeting.imageUrl}
+            alt={`Cartaz de ${meeting.name}`}
+            width={700}
+            height={1100}
+            priority
+            sizes='(max-width: 1024px) 100vw, 40vw'
+            className='max-h-[75svh] w-auto rounded-lg object-contain'
+          />
+        </div>
 
-          {/* Detalhes */}
-          <div className='flex flex-col gap-5 w-full max-w-lg'>
-            <h1 className='text-3xl md:text-4xl font-bold mb-2'>
-              {meeting.name}{' '}
-              <span className='text-primary inline-block relative'>
-                detalhes{' '}
-                <svg
-                  className='absolute -bottom-2 left-0 w-full text-primary/40'
-                  viewBox='0 0 200 12'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M2 10C50 4 150 4 198 10'
-                    stroke='currentColor'
-                    strokeWidth='3'
-                    strokeLinecap='round'
-                  />
-                </svg>
-              </span>
+        <div className='flex flex-col gap-6'>
+          <div>
+            <h1 className='text-balance text-4xl font-black tracking-[-.04em] sm:text-5xl'>
+              {meeting.name}
             </h1>
-            <p className='text-muted-foreground text-lg mb-2'>
+            <p className='mt-5 max-w-2xl text-lg leading-8 text-muted-foreground'>
               {meeting.fullDescription || meeting.description}
             </p>
+          </div>
 
-            {/* Endereço */}
-            <div className='bg-card rounded-lg p-5 border border-border transition-all duration-300 hover:ring-2 hover:ring-primary cursor-pointer'>
-              <div className='flex items-start gap-3'>
-                <MapPin className='h-6 w-6 text-primary mt-1 flex-shrink-0' />
+          <div className='divide-y divide-border border-y border-border'>
+            {meeting.address && (
+              <div className='flex items-start gap-4 py-5'>
+                <MapPin className='mt-1 h-5 w-5 shrink-0 text-primary' aria-hidden='true' />
                 <div>
-                  <h3 className='text-lg font-semibold mb-1'>Endereço</h3>
-                  <p className='text-muted-foreground'>{meeting.address}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Horário */}
-            <div className='bg-card rounded-lg p-5 border border-border transition-all duration-300 hover:ring-2 hover:ring-primary cursor-pointer'>
-              <div className='flex items-start gap-3'>
-                <CalendarCheck className='h-6 w-6 text-primary mt-1 flex-shrink-0' />
-                <div>
-                  <h3 className='text-lg font-semibold mb-1'>Horário</h3>
-                  <p className='text-muted-foreground'>
-                    {meeting.meetingTimes}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Líder / Contato */}
-            {meeting.leader && (
-              <div className='bg-card rounded-lg p-5 border border-border transition-all duration-300 hover:ring-2 hover:ring-primary cursor-pointer'>
-                <div className='flex items-start gap-3'>
-                  <Users className='h-6 w-6 text-primary mt-1 flex-shrink-0' />
-                  <div>
-                    <h3 className='text-lg font-semibold mb-1'>Líder</h3>
-                    <p className='text-muted-foreground'>{meeting.leader}</p>
-                  </div>
+                  <h2 className='font-bold'>Endereço</h2>
+                  <p className='mt-1 text-muted-foreground'>{meeting.address}</p>
                 </div>
               </div>
             )}
+            {meeting.meetingTimes && (
+              <div className='flex items-start gap-4 py-5'>
+                <CalendarCheck className='mt-1 h-5 w-5 shrink-0 text-primary' aria-hidden='true' />
+                <div>
+                  <h2 className='font-bold'>Horário</h2>
+                  <p className='mt-1 text-muted-foreground'>{meeting.meetingTimes}</p>
+                </div>
+              </div>
+            )}
+            {meeting.leader && (
+              <div className='flex items-start gap-4 py-5'>
+                <Users className='mt-1 h-5 w-5 shrink-0 text-primary' aria-hidden='true' />
+                <div>
+                  <h2 className='font-bold'>Liderança</h2>
+                  <p className='mt-1 text-muted-foreground'>{meeting.leader}</p>
+                </div>
+              </div>
+            )}
+          </div>
 
-            {/* Google Maps */}
-            <div className='bg-card rounded-lg overflow-hidden border border-border mt-2'>
+          {meeting.address && (
+            <div className='overflow-hidden rounded-xl border border-border bg-background'>
               <iframe
-                src={`https://www.google.com/maps?q=${encodeURIComponent(
-                  meeting.address || '',
-                )}&output=embed`}
+                title={`Mapa de ${meeting.name}`}
+                src={`https://www.google.com/maps?q=${encodeURIComponent(meeting.address)}&output=embed`}
                 width='100%'
-                height='180'
-                style={{ border: 0 }}
-                allowFullScreen
+                height='260'
+                className='block border-0 grayscale'
                 loading='lazy'
                 referrerPolicy='no-referrer-when-downgrade'
-                className='w-full'
-              ></iframe>
+              />
             </div>
-          </div>
+          )}
         </div>
       </div>
-    </div>
+    </main>
   );
 }

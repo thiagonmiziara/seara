@@ -171,7 +171,7 @@ export default function ServiceProvidersPage() {
                     {provider.name}
                   </CardTitle>
                 </div>
-                <CardDescription className='flex items-center text-accent'>
+                <CardDescription className='flex items-center text-primary'>
                   <Briefcase className='h-4 w-4 mr-2' /> {provider.serviceType}
                 </CardDescription>
               </CardHeader>
@@ -192,7 +192,7 @@ export default function ServiceProvidersPage() {
         )}
       </div>
       <div className='mt-12 p-6 bg-accent/10 rounded-lg text-center'>
-        <h3 className='text-xl font-semibold text-accent mb-2'>
+        <h3 className='text-xl font-semibold text-primary mb-2'>
           Quer divulgar seu serviço?
         </h3>
         <p className='text-muted-foreground mb-4'>

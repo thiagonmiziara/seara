@@ -11,15 +11,15 @@ interface SectionWrapperProps {
 
 export default function SectionWrapper({ id, className, children, title, subtitle }: SectionWrapperProps) {
   return (
-    <section id={id} className={cn('py-12 md:py-16 lg:py-20', className)}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id={id} className={cn('min-h-[60svh] bg-secondary py-14 text-foreground sm:py-16 lg:py-20', className)}>
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         {title && (
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-primary">
+          <h1 className="mb-4 max-w-5xl text-balance text-4xl font-black leading-[1.02] tracking-[-.04em] sm:text-5xl lg:text-6xl">
             {title}
-          </h2>
+          </h1>
         )}
         {subtitle && (
-          <p className="text-lg text-muted-foreground text-center mb-8 md:mb-12 max-w-2xl mx-auto">
+          <p className="mb-9 max-w-2xl text-lg leading-8 text-muted-foreground sm:mb-11">
             {subtitle}
           </p>
         )}

@@ -75,7 +75,7 @@ export default async function MissionDetailPage({
 
           <div className='p-6 bg-card-foreground/5 rounded-lg'>
             <h3 className='text-2xl font-semibold mb-3 text-foreground flex items-center'>
-              <Target className='h-6 w-6 text-accent mr-2' /> Nossos Objetivos
+              <Target className='h-6 w-6 text-primary mr-2' /> Nossos Objetivos
             </h3>
             <ul className='list-disc list-inside space-y-1 text-muted-foreground'>
               {getMissionDetails.objectives.map((obj: string) => (
@@ -86,7 +86,7 @@ export default async function MissionDetailPage({
 
           <div className='p-6 bg-card-foreground/5 rounded-lg'>
             <h3 className='text-2xl font-semibold mb-3 text-foreground flex items-center'>
-              <Users className='h-6 w-6 text-accent mr-2' /> Como Você Pode
+              <Users className='h-6 w-6 text-primary mr-2' /> Como Você Pode
               Ajudar
             </h3>
             <ul className='list-disc list-inside space-y-1 text-muted-foreground'>

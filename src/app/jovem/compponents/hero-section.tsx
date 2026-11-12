@@ -14,7 +14,7 @@ export function HeroSection() {
       </div>
 
       {/* Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(82,107,56,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(82,107,56,0.04)_1px,transparent_1px)] bg-[size:64px_64px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(73,132,39,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(73,132,39,0.04)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
